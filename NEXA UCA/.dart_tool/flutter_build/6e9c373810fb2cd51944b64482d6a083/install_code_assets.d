@@ -1,0 +1,1 @@
+ C:\\Users\\lourd\\Desktop\\NEXA-UCA\\NEXA\ UCA\\.dart_tool\\flutter_build\\6e9c373810fb2cd51944b64482d6a083\\native_assets.json: 
