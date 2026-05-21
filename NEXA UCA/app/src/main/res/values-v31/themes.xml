@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NEXAUCA" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.NEXAUCA.Splash" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">#0038D9</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_nexa_uca</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">#0038D9</item>
+        <item name="postSplashScreenTheme">@style/Theme.NEXAUCA</item>
+    </style>
+</resources>

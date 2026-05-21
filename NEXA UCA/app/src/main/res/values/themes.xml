@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="Theme.NEXAUCA" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.NEXAUCA.Splash" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#0038D9</item>
+    </style>
 </resources>
