@@ -1,4 +1,4 @@
-package com.pdm0126.nexauca
+package sv.uca.nexauca
 
 import org.junit.Test
 

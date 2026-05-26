@@ -30,13 +30,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pdm0126.nexauca.R
+import sv.uca.nexauca.R
+import sv.uca.nexauca.core.components.buttons.LoginButton
 import sv.uca.nexauca.core.theme.Inter
 import sv.uca.nexauca.core.theme.Space_Grotesk
 
 
 @Composable
 fun LoginScreen(){
+
     Scaffold(
         contentWindowInsets = WindowInsets(0),
         containerColor = Color(0xFFFAFBFB)
@@ -169,6 +171,13 @@ fun LoginScreen(){
                     fontWeight = FontWeight.Normal,
                     color = Color(0xFF8C8C8C)
                 )
+
+                Spacer(modifier = Modifier.height(200.dp))
+
+                LoginButton {
+
+                }
+
             }
         }
     }

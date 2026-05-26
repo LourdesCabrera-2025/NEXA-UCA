@@ -1,4 +1,4 @@
-package com.pdm0126.nexauca
+package sv.uca.nexauca
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,20 +8,16 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.splashscreen.SplashScreen
-import com.pdm0126.nexauca.ui.theme.NEXAUCATheme
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.ui.NavDisplay
+import sv.uca.nexauca.core.navigation.AppLoginRoute
+import sv.uca.nexauca.core.navigation.SplashRoute
 import sv.uca.nexauca.features.login.LoginScreen
 import sv.uca.nexauca.features.splash.SplashScreen
 
@@ -30,28 +26,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var showSplash by rememberSaveable {
-                mutableStateOf(true)
+            val backStack = remember {
+                mutableStateListOf<Any>(SplashRoute)
             }
 
-            AnimatedContent(
-                targetState = showSplash,
-                transitionSpec = {
-                    fadeIn() togetherWith fadeOut()
+            NavDisplay(
+                backStack = backStack,
+                onBack = {
+                    if (backStack.size > 1) {
+                        backStack.removeLastOrNull()
+                    }
                 },
-                label = "SplashToLoginTransition"
-            ) { isSplash->
-                if (isSplash) {
-                    SplashScreen(
-                        onSplashFinished = {
-                            showSplash = false
+                entryProvider = { key->
+                    when(key) {
+                        SplashRoute -> NavEntry(key) {
+                            SplashScreen(
+                                onSplashFinished = {
+                                    backStack.clear()
+                                    backStack.add(AppLoginRoute)
+                                }
+                            )
                         }
-                    )
-                }  else {
-                    LoginScreen()
-                }
 
-            }
+                        AppLoginRoute -> NavEntry(key) {
+                            LoginScreen()
+                        }
+                        else -> error("Ruta desconocida: $key")
+                    }
+                }
+            )
         }
     }
 }

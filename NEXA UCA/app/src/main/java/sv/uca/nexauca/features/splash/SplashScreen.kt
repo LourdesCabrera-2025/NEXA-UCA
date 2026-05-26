@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
@@ -65,6 +66,7 @@ fun SplashScreen(
     val primaryBlue = Color(0xFF0038D9)
     val darkBlue = Color(0xFF001B43)
     val softGray = Color(0xFF8A8A8A)
+
 
     val animateProgress by animateFloatAsState(
         targetValue = progress,

@@ -1,4 +1,4 @@
-package com.pdm0126.nexauca.ui.theme
+package sv.uca.nexauca.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

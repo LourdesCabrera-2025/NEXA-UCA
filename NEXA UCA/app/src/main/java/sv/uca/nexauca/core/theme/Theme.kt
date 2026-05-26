@@ -3,7 +3,7 @@ package sv.uca.nexauca.core.theme
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.pdm0126.nexauca.R
+import sv.uca.nexauca.R
 
 val Inter = FontFamily(
 
