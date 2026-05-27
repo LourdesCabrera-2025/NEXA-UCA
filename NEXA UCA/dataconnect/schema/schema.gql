@@ -1,4 +1,36 @@
-type Role @table{
-    id: UUID! @default(expr: "uuidV4()")
-    name: String! @unique
+type Role @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String! @unique
+}
+
+
+type Department @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String! @unique
+}
+
+type Career @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String!@unique
+  department: Department!
+}
+
+type  User @table {
+  #Firebase UID
+  id: String! @default(expr: "auth.uid")
+  email: String! @unique
+  fullName: String!
+  photoUrl:String
+  isActive: Boolean! @default(value: true)
+  createdAt: Date! @default(expr: "request.time")
+  role: Role!
+}
+
+type Student @table {
+  id: UUID! @default (expr: "uuidV4()")
+  studentCode: String! @unique
+  phoneNumber: String
+  birthDate: Date
+  user: User! @unique
+  career: Career
 }
