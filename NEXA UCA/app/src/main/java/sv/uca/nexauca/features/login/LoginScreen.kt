@@ -1,9 +1,11 @@
 package sv.uca.nexauca.features.login
 
+import android.app.Activity
+import android.util.Log
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +13,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -30,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import sv.uca.nexauca.R
 import sv.uca.nexauca.core.components.buttons.LoginButton
 import sv.uca.nexauca.core.theme.Inter
@@ -37,7 +39,11 @@ import sv.uca.nexauca.core.theme.Space_Grotesk
 
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    viewModel: LoginViewModel  = viewModel()
+){
+
+    val activity = LocalActivity.current
 
     Scaffold(
         contentWindowInsets = WindowInsets(0),
@@ -174,9 +180,14 @@ fun LoginScreen(){
 
                 Spacer(modifier = Modifier.height(200.dp))
 
-                LoginButton {
-
-                }
+                LoginButton(
+                    onClick = {
+                        Log.d("AUTH_MICROSOFT", "Boton presionado")
+                        activity?.let {
+                            viewModel.loginWithMicrosoft(it)
+                        }
+                    }
+                )
 
             }
         }

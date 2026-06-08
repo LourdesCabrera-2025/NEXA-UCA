@@ -1,0 +1,9 @@
+projects:
+  default:
+    schema: dataconnect/schema/*.gql
+    documents:
+      - dataconnect/nexa/**/*.gql
+    extensions:
+      endpoints:
+        default:
+          url: http://127.0.0.1:9399/v1beta/projects/demo-nexauca/locations/us-central1/services/nexauca/connectors/nexa

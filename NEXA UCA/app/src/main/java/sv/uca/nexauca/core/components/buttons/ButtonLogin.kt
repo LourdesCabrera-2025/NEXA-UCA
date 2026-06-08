@@ -24,7 +24,7 @@ fun LoginButton(onClick : () -> Unit) {
 
 
         Button(
-            onClick = {   },
+            onClick = {  onClick() },
             modifier = Modifier
                 .fillMaxWidth(0.87f),
             shape = RoundedCornerShape(5.dp,15.dp,5.dp,15.dp),

@@ -1,0 +1,6 @@
+connectorId: "nexa"
+authMode: PUBLIC
+generate:
+  kotlinSdk:
+    outputDir: "../../app/src/main/kotlin/sv/uca/nexauca/dataconnect"
+    package: "sv.uca.nexauca.dataconnect"

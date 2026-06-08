@@ -1,0 +1,47 @@
+
+mutation SeedDataCareers (
+  $arquitecturaIngenieriasId: UUID!
+  $cienciasHumanidadesId: UUID!
+  $comunicacionesMercadeoId: UUID!
+  $derechoId: UUID!
+  $disenoId: UUID!
+  $educacionId: UUID!
+  $empresarialEconomiaId: UUID!
+)
+@auth(level: NO_ACCESS){
+
+
+  # Insert Careers respect to architecture and Ingenireeng
+  career1: career_insert(data: {name: "Tecnico en Desarrollo de Software", departmentId:  $arquitecturaIngenieriasId})
+  career2: career_insert(data: {name: "Arquitectura", departmentId: $arquitecturaIngenieriasId})
+  career3: career_insert(data: {name: "Ingeniería de Alimentos", departmentId: $arquitecturaIngenieriasId})
+  career4: career_insert(data: {name: "Ingeniería Civil", departmentId: $arquitecturaIngenieriasId})
+  career5: career_insert(data: {name: "Ingeniería Eléctria", departmentId: $arquitecturaIngenieriasId})
+  career6: career_insert(data: {name: "Ingeniería Energética", departmentId: $arquitecturaIngenieriasId})
+  career7: career_insert(data: {name: "Ingeniería Industrial", departmentId: $arquitecturaIngenieriasId})
+  career8: career_insert(data: {name: "Ingeniería Informática", departmentId: $arquitecturaIngenieriasId})
+  career9: career_insert(data: {name: "Ingeniería Mecánica" , departmentId: $arquitecturaIngenieriasId})
+  career10: career_insert(data: {name: "Ingeniería Química", departmentId: $arquitecturaIngenieriasId})
+
+  career11:career_insert(data: {name: "Licenciatura en Ciencias Sociales", departmentId: $cienciasHumanidadesId})
+  career12:career_insert(data: {name: "Licenciatura en Filosofía", departmentId: $cienciasHumanidadesId})
+  career13:career_insert(data: {name: "Licenciatura en Inglés",departmentId: $cienciasHumanidadesId})
+  career14:career_insert(data: {name: "Licenciatura en Psicología", departmentId: $cienciasHumanidadesId})
+  career15:career_insert(data: {name: "Licenciatura en Teología", departmentId: $cienciasHumanidadesId})
+
+  career16:career_insert(data: {name: "Técnico en Marketing Digital", departmentId: $comunicacionesMercadeoId})
+  career17:career_insert(data: {name: "Técnico en Producción", departmentId: $comunicacionesMercadeoId})
+  career18:career_insert(data: {name: "Licenciatura en Mercadeo", departmentId: $comunicacionesMercadeoId})
+  career19:career_insert(data: {name: "Licenciatura en Comunicación Social", departmentId: $comunicacionesMercadeoId})
+
+  career20:career_insert(data: {name: "Licenciatura en Ciencias Jurídicas", departmentId: $derechoId})
+  career21:career_insert(data: {name: "Licenciatura en Diseño", departmentId: $disenoId})
+  career22:career_insert(data: {name: "Profesorado en Teología", departmentId: $educacionId})
+
+  career23:career_insert(data: {name: "Licenciatura en Administración de Emprsas", departmentId: $empresarialEconomiaId})
+  career24:career_insert(data: {name: "Técnico en Contaduría", departmentId: $empresarialEconomiaId})
+  career25:career_insert(data: {name: "Licenciatura en Contaduría Pública", departmentId: $empresarialEconomiaId})
+  career26:career_insert(data: {name: "Licenciatura en Economía", departmentId: $empresarialEconomiaId})
+  career27:career_insert(data: {name: "Licenciatura en Finanzas", departmentId: $empresarialEconomiaId})
+}
+

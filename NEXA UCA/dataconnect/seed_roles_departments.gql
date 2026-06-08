@@ -1,0 +1,13 @@
+mutation SeedDataRole @auth(level: NO_ACCESS) {
+    # Insert Roles
+    estudiante: role_insert(data: { name: "Estudiante" })
+    supervisor: role_insert(data: { name: "Supervisor" })
+    # Insert Departments
+    dep1: department_insert(data: { name: "Arquitectura e Ingenierías" })
+    dep2: department_insert(data: { name: "Ciencias y Humanidades" })
+    dep3: department_insert(data: { name: "Comunicaciones y Mercadeo" })
+    dep4: department_insert(data: { name: "Derecho" })
+    dep5: department_insert(data: { name: "Diseño" })
+    dep6: department_insert(data: { name: "Educación" })
+    dep7: department_insert(data: { name: "Gestión Empresarial y Economía" })
+}

@@ -1,0 +1,272 @@
+extend type Query {
+  """
+  ✨ Look up a single `Career` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  career(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Career_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Career_FirstRow
+  ): Career @fdc_generated(from: "Career", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Department` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  department(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Department_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Department_FirstRow
+  ): Department @fdc_generated(from: "Department", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Role` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  role(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Role_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Role_FirstRow
+  ): Role @fdc_generated(from: "Role", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Student` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  student(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Student_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Student_FirstRow
+  ): Student @fdc_generated(from: "Student", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `User` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  user(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Career` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  careers(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Career_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Career_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Career_Having
+  ): [Career!]! @fdc_generated(from: "Career", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Department` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  departments(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Department_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Department_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Department_Having
+  ): [Department!]! @fdc_generated(from: "Department", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Role` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  roles(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Role_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Role_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Role_Having
+  ): [Role!]! @fdc_generated(from: "Role", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Student` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  students(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Student_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Student_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Student_Having
+  ): [Student!]! @fdc_generated(from: "Student", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `User` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  users(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: User_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [User_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: User_Having
+  ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+}

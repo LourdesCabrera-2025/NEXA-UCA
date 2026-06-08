@@ -41,7 +41,7 @@ dependencies {
 
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
-
+    implementation(libs.firebase.dataconnect)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
@@ -60,7 +60,9 @@ dependencies {
     implementation(libs.androidx.material3.adaptive.navigation3)
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
 
+    implementation("androidx.appcompat:appcompat:1.7.1")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

@@ -1,0 +1,22 @@
+extend type Career {
+  """
+  ✨ Implicit foreign key field based on `Career`.`department`. It must match the value of `Department`.`id`. See `@ref` for how to customize it.
+  """
+  departmentId: UUID! @fdc_generated(from: "Career.department", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Student {
+  """
+  ✨ Implicit foreign key field based on `Student`.`career`. It must match the value of `Career`.`id`. See `@ref` for how to customize it.
+  """
+  careerId: UUID @fdc_generated(from: "Student.career", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Student`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: String! @fdc_generated(from: "Student.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type User {
+  """
+  ✨ Implicit foreign key field based on `User`.`role`. It must match the value of `Role`.`id`. See `@ref` for how to customize it.
+  """
+  roleId: UUID! @fdc_generated(from: "User.role", purpose: IMPLICIT_REF_FIELD)
+}

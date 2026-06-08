@@ -1,0 +1,572 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `Career` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  career_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Career_Data!
+  ): Career_KeyOutput! @fdc_generated(from: "Career", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Department` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  department_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Department_Data!
+  ): Department_KeyOutput! @fdc_generated(from: "Department", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Role` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  role_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Role_Data!
+  ): Role_KeyOutput! @fdc_generated(from: "Role", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Student` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  student_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Student_Data!
+  ): Student_KeyOutput! @fdc_generated(from: "Student", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `Career` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  career_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Career_Data!]!
+  ): [Career_KeyOutput!]! @fdc_generated(from: "Career", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Department` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  department_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Department_Data!]!
+  ): [Department_KeyOutput!]! @fdc_generated(from: "Department", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Role` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  role_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Role_Data!]!
+  ): [Role_KeyOutput!]! @fdc_generated(from: "Role", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Student` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  student_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Student_Data!]!
+  ): [Student_KeyOutput!]! @fdc_generated(from: "Student", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `Career` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Career`.
+  """
+  career_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Career_Data!
+  ): Career_KeyOutput! @fdc_generated(from: "Career", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Department` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Department`.
+  """
+  department_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Department_Data!
+  ): Department_KeyOutput! @fdc_generated(from: "Department", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Role` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Role`.
+  """
+  role_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Role_Data!
+  ): Role_KeyOutput! @fdc_generated(from: "Role", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Student` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Student`.
+  """
+  student_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Student_Data!
+  ): Student_KeyOutput! @fdc_generated(from: "Student", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `Career` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Career`.
+  """
+  career_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Career_Data!]!
+  ): [Career_KeyOutput!]! @fdc_generated(from: "Career", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Department` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Department`.
+  """
+  department_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Department_Data!]!
+  ): [Department_KeyOutput!]! @fdc_generated(from: "Department", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Role` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Role`.
+  """
+  role_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Role_Data!]!
+  ): [Role_KeyOutput!]! @fdc_generated(from: "Role", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Student` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Student`.
+  """
+  student_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Student_Data!]!
+  ): [Student_KeyOutput!]! @fdc_generated(from: "Student", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Career` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Career` or `null` if not found.
+  """
+  career_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Career_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Career_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Career_Data!
+  ): Career_KeyOutput @fdc_generated(from: "Career", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Department` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Department` or `null` if not found.
+  """
+  department_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Department_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Department_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Department_Data!
+  ): Department_KeyOutput @fdc_generated(from: "Department", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Role` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Role` or `null` if not found.
+  """
+  role_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Role_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Role_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Role_Data!
+  ): Role_KeyOutput @fdc_generated(from: "Role", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Student` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Student` or `null` if not found.
+  """
+  student_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Student_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Student_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Student_Data!
+  ): Student_KeyOutput @fdc_generated(from: "Student", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `Career` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  career_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Career_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Career_Data!
+  ): Int! @fdc_generated(from: "Career", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Department` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  department_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Department_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Department_Data!
+  ): Int! @fdc_generated(from: "Department", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Role` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  role_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Role_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Role_Data!
+  ): Int! @fdc_generated(from: "Role", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Student` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  student_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Student_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Student_Data!
+  ): Int! @fdc_generated(from: "Student", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `Career` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  career_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Career_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Career_FirstRow
+  ): Career_KeyOutput @fdc_generated(from: "Career", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Department` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  department_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Department_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Department_FirstRow
+  ): Department_KeyOutput @fdc_generated(from: "Department", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Role` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  role_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Role_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Role_FirstRow
+  ): Role_KeyOutput @fdc_generated(from: "Role", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Student` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  student_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Student_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Student_FirstRow
+  ): Student_KeyOutput @fdc_generated(from: "Student", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `Career` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  career_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Career_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Career", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Department` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  department_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Department_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Department", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Role` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  role_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Role_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Role", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Student` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  student_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Student_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Student", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+}
