@@ -28,6 +28,12 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val getDepartment: GetDepartmentQuery
   
+    public val getMyStudent: GetMyStudentQuery
+  
+    public val getRoleByName: GetRoleByNameQuery
+  
+    public val getRoles: GetRolesQuery
+  
     public val getUserById: GetUserByIdQuery
   
 
@@ -89,6 +95,18 @@ private class NexaConnectorImpl(
       GetDepartmentQueryImpl(this)
     }
   
+    override val getMyStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetMyStudentQueryImpl(this)
+    }
+  
+    override val getRoleByName by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetRoleByNameQueryImpl(this)
+    }
+  
+    override val getRoles by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetRolesQueryImpl(this)
+    }
+  
     override val getUserById by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetUserByIdQueryImpl(this)
     }
@@ -111,6 +129,9 @@ private class NexaConnectorImpl(
     listOf(
       getCareers,
         getDepartment,
+        getMyStudent,
+        getRoleByName,
+        getRoles,
         getUserById,
         
     )
@@ -304,6 +325,51 @@ private class GetDepartmentQueryImpl(
     GetDepartmentQuery.Companion.operationName,
     GetDepartmentQuery.Companion.dataDeserializer,
     GetDepartmentQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetMyStudentQueryImpl(
+  connector: NexaConnector
+):
+  GetMyStudentQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetMyStudentQuery.Data,
+      Unit
+  >(
+    connector,
+    GetMyStudentQuery.Companion.operationName,
+    GetMyStudentQuery.Companion.dataDeserializer,
+    GetMyStudentQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetRoleByNameQueryImpl(
+  connector: NexaConnector
+):
+  GetRoleByNameQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetRoleByNameQuery.Data,
+      GetRoleByNameQuery.Variables
+  >(
+    connector,
+    GetRoleByNameQuery.Companion.operationName,
+    GetRoleByNameQuery.Companion.dataDeserializer,
+    GetRoleByNameQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetRolesQueryImpl(
+  connector: NexaConnector
+):
+  GetRolesQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetRolesQuery.Data,
+      Unit
+  >(
+    connector,
+    GetRolesQuery.Companion.operationName,
+    GetRolesQuery.Companion.dataDeserializer,
+    GetRolesQuery.Companion.variablesSerializer,
   )
 
 

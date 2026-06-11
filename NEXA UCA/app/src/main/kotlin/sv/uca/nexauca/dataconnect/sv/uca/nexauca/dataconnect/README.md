@@ -80,9 +80,9 @@ val connector: NexaConnector = NexaConnector.getInstance(
 ### NexaConnector - Query and Mutation Properties
 
 The `nexa` Data Connect connector defines
-3 queries and
+6 queries and
 2 mutations,
-a total of 5 operations.
+a total of 8 operations.
 Each of these operations is exposed
 as a property of [NexaConnector].
 
@@ -189,14 +189,14 @@ println("GetCareers query returned: ${queryResult.data}")
 If a query has _required_ variables then they must be specified as
 arguments to the `execute()` method.
 
-For example, the "GetUserById" query has 1 required variable ("id")
-and can be executed via the [NexaConnector.getUserById]
+For example, the "GetRoleByName" query has 1 required variable ("name")
+and can be executed via the [NexaConnector.getRoleByName]
 property as follows:
 
 ```kotlin
 val connector = NexaConnector.instance
-val queryResult = connector.getUserById.execute(id="corge")
-println("GetUserById query returned: ${queryResult.data}")
+val queryResult = connector.getRoleByName.execute(name="waldo")
+println("GetRoleByName query returned: ${queryResult.data}")
 ```
 
 

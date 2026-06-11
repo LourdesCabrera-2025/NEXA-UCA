@@ -4,30 +4,33 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
-import sv.uca.nexauca.core.navigation.AppLoginRoute
-import sv.uca.nexauca.core.navigation.SplashRoute
-import sv.uca.nexauca.features.login.LoginScreen
-import sv.uca.nexauca.features.splash.SplashScreen
+import com.google.firebase.auth.FirebaseAuth
+import sv.uca.nexauca.presentation.core.navigation.AppLoginRoute
+import sv.uca.nexauca.presentation.core.navigation.MainDashboardRoute
+import sv.uca.nexauca.presentation.core.navigation.SplashRoute
+import sv.uca.nexauca.presentation.screens.login.LoginScreen
+import sv.uca.nexauca.presentation.screens.menu.MenuScreen
+import sv.uca.nexauca.presentation.screens.splash.SplashScreen
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val startRoute = remember {
+                if (FirebaseAuth.getInstance().currentUser != null) {
+                    MainDashboardRoute
+                } else {
+                    SplashRoute
+                }
+            }
             val backStack = remember {
-                mutableStateListOf<Any>(SplashRoute)
+                mutableStateListOf<Any>(startRoute)
             }
 
             NavDisplay(
@@ -41,15 +44,28 @@ class MainActivity : ComponentActivity() {
                     when(key) {
                         SplashRoute -> NavEntry(key) {
                             SplashScreen(
-                                onSplashFinished = {
+                                onNavigateLogin = {
                                     backStack.clear()
                                     backStack.add(AppLoginRoute)
+                                },
+                                onNavigateHome = {
+                                    backStack.clear()
+                                    backStack.add(MainDashboardRoute)
                                 }
                             )
                         }
 
                         AppLoginRoute -> NavEntry(key) {
-                            LoginScreen()
+                            LoginScreen(
+                                onNavigateHome = {
+                                    backStack.clear()
+                                    backStack.add(MainDashboardRoute)
+                                }
+                            )
+                        }
+
+                        MainDashboardRoute -> NavEntry(key) {
+                            MenuScreen()
                         }
                         else -> error("Ruta desconocida: $key")
                     }

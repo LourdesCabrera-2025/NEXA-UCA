@@ -3,7 +3,9 @@ package sv.uca.nexauca.data.services.auth
 import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.OAuthProvider
+import kotlinx.coroutines.tasks.await
 import sv.uca.nexauca.data.firebase.FirebaseAuthProvider
 
 
@@ -12,33 +14,49 @@ class AuthService  {
     private val firebaseAuth: FirebaseAuth = FirebaseAuthProvider.getInstance()
 
     private fun microsoftProvider(): OAuthProvider {
-        val  provider = OAuthProvider.newBuilder("microsoft.com")
-
-        provider.addCustomParameter("prompt", "consent")
-
-        return provider.build()
+        return OAuthProvider.newBuilder("microsoft.com")
+            .addCustomParameter("tenant", "6d77cef0-e8f4-4ed0-b160-3b15a8315327")
+            .addCustomParameter("prompt", "select_account")
+            .setScopes(
+                listOf(
+                    "openid",
+                    "profile",
+                    "email"
+                )
+            )
+            .build()
     }
 
-    fun loginWithMicrosoft(activity: Activity) {
-        Log.d("AUTH_MICROSOFT","Entre a AuthService")
-        val provider = microsoftProvider()
+    suspend fun loginWithMicrosoft(activity: Activity) : FirebaseUser {
 
-        firebaseAuth.startActivityForSignInWithProvider(
-            activity,
-            provider
-        )
+        val pendingResult = firebaseAuth.pendingAuthResult
 
-            .addOnSuccessListener { result ->
+        val result = if (pendingResult != null) {
+            pendingResult.await()
+        } else {
+            firebaseAuth
+                .startActivityForSignInWithProvider(
+                    activity,
+                    microsoftProvider()
+                )
+                .await()
+        }
 
-                val user = result.user
+        Log.d("NEXA_DEBUG", "LOGIN MICROSOFT OK")
+        Log.d("NEXA_DEBUG", "uid = ${result.user?.uid}")
+        Log.d("NEXA_DEBUG", "email=${result.user?.email}")
 
-                Log.d("AUTH_MICROSOFT", "Login exitoso")
-            }
-
-            .addOnFailureListener { exception ->
-                Log.e("AUTH_MICROSOFT", "Error en Microsoft OAUTH", exception)
-            }
+        return result.user ?: throw Exception("No se puede obtener el usuario autenticado")
     }
 
+    suspend fun getPendingMicrosoftUser(): FirebaseUser ? {
+        val pendingResult = firebaseAuth.pendingAuthResult ?:return null
+        val result = pendingResult.await()
+        return  result.user
+    }
+
+    fun currentUser() : FirebaseUser ? {
+        return  firebaseAuth.currentUser
+    }
 
 }

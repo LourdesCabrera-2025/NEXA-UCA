@@ -6,15 +6,19 @@ import com.google.firebase.dataconnect.FirebaseDataConnect
 import sv.uca.nexauca.dataconnect.NexaConnector
 import sv.uca.nexauca.dataconnect.instance
 
+
 class FirebaseAuthProvider private constructor() {
 
-    val dataConnect = NexaConnector.instance.dataConnect
+    val dataConnect = NexaConnector.instance
 
     init {
-        dataConnect.useEmulator("127.0.0.1", 9399)
+       // dataConnect.dataConnect.useEmulator("192.168.1.3" , 9399)
     }
-
     companion object {
+
+        private val provider : FirebaseAuthProvider by lazy {
+            FirebaseAuthProvider()
+        }
 
         @Volatile
         private var authProvider: FirebaseAuth? = null
@@ -28,6 +32,9 @@ class FirebaseAuthProvider private constructor() {
                 }
             }
             return authProvider !!
+        }
+        fun getDataConnect() : NexaConnector {
+            return provider.dataConnect
         }
     }
 
