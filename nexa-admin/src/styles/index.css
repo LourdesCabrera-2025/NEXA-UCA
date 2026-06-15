@@ -1,0 +1,112 @@
+@import  url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+
+/* Colors */
+
+:root{
+
+    --text-title: #022873;
+    --text-body: #AEAEBD;
+    --text-body-hover: #056CF2;
+    --text-badge-active: #12bf0a;
+    --herobar-section: #FAFBFB;
+    --hero-nav-section: #F2F2F2;
+    --button-login: #0043ff;
+    --button-login-hover: #056CF2;
+    --container-color: #0F1B3D;
+
+}
+
+.background {
+    background-color: var(--herobar-section);
+}
+
+.HeroSection {
+    background-color: var(--herobar-section);
+}
+
+.text-nav-links {
+    color: var(--text-body);
+}
+
+.nav-section {
+    border-bottom: 1px solid var(--text-body);
+}
+
+.text-uca {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--text-title);
+}
+
+.text-uca-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--text-body);
+}
+
+.text-uca-link:hover {
+    color: var(--text-body-hover);
+}
+
+.button-login {
+    background-color: var(--button-login);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.button-login:hover {
+    background-color: var(--button-login-hover);
+}
+
+.button-access {
+    background-color: transparent;
+    color: var(--text-body);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    border: 2px solid var(--text-body);
+    cursor: pointer;
+}
+
+.button-access:hover {
+    background-color: var(--text-body);
+    color: white;
+}
+
+.title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--text-title);
+}
+
+.text-sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+.material-icon-landing {
+    color: var(--text-body);
+}
+
+.table-icon-landing {
+    font-size: large;
+}
+
+.text-table {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+
+#Container {
+    background-color: var(--container-color);
+}
+
+#title-l

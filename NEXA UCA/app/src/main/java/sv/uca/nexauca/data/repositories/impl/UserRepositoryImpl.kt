@@ -4,11 +4,12 @@ import android.util.Log
 import com.google.firebase.dataconnect.LocalDate
 import sv.uca.nexauca.data.firebase.FirebaseAuthProvider
 import sv.uca.nexauca.data.repositories.api.UserApiRepository
+import sv.uca.nexauca.dataconnect.GetMyStudentQuery
 import sv.uca.nexauca.dataconnect.execute
 import sv.uca.nexauca.presentation.core.state.ResultState
 import java.util.UUID
 
-class UserRepositoryImpl : UserApiRepository{
+class UserRepositoryImpl : UserApiRepository {
 
 
     private val connector = FirebaseAuthProvider.getDataConnect()
@@ -24,10 +25,10 @@ class UserRepositoryImpl : UserApiRepository{
     }
 
     override suspend fun userExists(id: String): ResultState<Boolean> {
-        return  try {
+        return try {
             val result = connector.getUserById.execute(id = id)
             ResultState.Success(result.data.users.isNotEmpty())
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             ResultState.Error(
                 message = e.message ?: "Error al verificar usuario",
                 exception = e
@@ -60,14 +61,15 @@ class UserRepositoryImpl : UserApiRepository{
             Log.d("NEXA_DEBUG", result.data.toString())
 
             ResultState.Success(Unit)
-        }catch (e: Exception) {
-            Log.e("NEXA_DEBUG", "ERROR CREATE USER",e)
+        } catch (e: Exception) {
+            Log.e("NEXA_DEBUG", "ERROR CREATE USER", e)
 
             ResultState.Error(
                 e.message ?: "Error al crear usuario", e
             )
         }
     }
+
     override suspend fun createStudent(
         studentCode: String,
         phoneNumber: String?,
@@ -75,16 +77,16 @@ class UserRepositoryImpl : UserApiRepository{
         userId: String,
         careerId: UUID?
     ): ResultState<Unit> {
-        return  try {
+        return try {
             Log.d("NEXA_DEBUG", "=========== CREATE STUDENT =========")
             Log.d("NEXA_DEBUG", "studentCode = $studentCode")
             Log.d("NEXA_DEBUG", "userId= ${userId}")
 
             val result = connector.createStudent.execute(
                 studentCode = studentCode,
-                phoneNumber = phoneNumber?:"",
+                phoneNumber = phoneNumber ?: "",
                 userId = userId
-            ){
+            ) {
                 this.birthDate = birthDate?.toDataConnectLocalDate()
                 this.careerId = careerId
             }
@@ -98,6 +100,26 @@ class UserRepositoryImpl : UserApiRepository{
 
             ResultState.Error(
                 e.message ?: "Error al crear estudiante", e
+            )
+        }
+    }
+
+    override suspend fun getDataStudent(): ResultState<GetMyStudentQuery.Data.StudentsItem> {
+        return try {
+            val result = connector.getMyStudent.execute()
+
+            val student = result.data.students.firstOrNull()
+
+            if (student != null) {
+                ResultState.Success(student)
+            } else {
+                ResultState.Error("No existe un estudiante asociado")
+            }
+        } catch (e: Exception) {
+
+            ResultState.Error(
+                message = e.message ?:"Error obteniendo estudiante",
+                exception = e
             )
         }
     }

@@ -1,0 +1,9 @@
+query GetCareers @auth(level: USER){
+    careers {
+        id
+        name
+        department {
+            name
+        }
+    }
+}

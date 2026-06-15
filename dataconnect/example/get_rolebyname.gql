@@ -1,0 +1,7 @@
+query GetRoleByName($name : String!)
+@auth (level: USER) {
+    roles(where: {name: {eq: $name}}) {
+        id
+        name
+    }
+}
