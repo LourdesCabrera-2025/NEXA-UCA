@@ -12,7 +12,7 @@ export default function CardDonutChart({
 }: CardDonutCharts) {
 
     return (
-        <Card className='bg-white border border-gray-300/40 px-4 shadow-sm w-full h-full mt-3'
+        <Card className='bg-white border border-gray-300/40 px-4 shadow-sm w-full  mt-3'
             sx={{
                 borderRadius: '10px',
                 boxShadow: '0px 1px 3px rgba(16,24,40,0.1), 0px 1px 2px rgba(16,24,40,0.06)'

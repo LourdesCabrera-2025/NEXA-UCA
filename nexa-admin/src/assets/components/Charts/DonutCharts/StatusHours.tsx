@@ -93,7 +93,7 @@ export default function SocialHoursChart() {
     return (
       
         <div 
-            className="w-full h-[330px] cursor-pointer justify-center items-center"
+            className="w-full h-[310px] cursor-pointer justify-center items-center"
             onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
         >
             

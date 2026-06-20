@@ -17,6 +17,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import CardBarChart from '@/assets/components/Cards/CardBarchart';
 import CardDonutChart from '@/assets/components/Cards/CardDonutChart';
 import CardLineChart from '@/assets/components/Cards/CardLinechart';
+import TableActivity from '@/assets/components/Tables/TableCurrentActivity';
 export default function Dashboard() {
 
     const [isProfileOpen, setIsProfileOpen] = React.useState(false);
@@ -146,7 +147,7 @@ export default function Dashboard() {
                 </div>
             </header>
             <main className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 p-10'>
-                <div className='flex gap-2 justify-between'>
+                <div className='flex gap-2 justify-between '>
                     <div className='flex flex-col items-start justify-between'>
                         <span className='text-xs font-medium text-gray-400 tracking-tight uppercase pl-0.5' id='span-config'>OVERVIEW</span>
                         <span className='text-2xl font-bold text-gray-700 leading-snug' id='span-config'>Dashboard</span>
@@ -187,14 +188,49 @@ export default function Dashboard() {
                         />
                     </div>
                     <CardBarChart
-                        title='PROGRAMAS MÁS INSCRITOS'  />
+                        title='PROGRAMAS MÁS INSCRITOS' />
                     <div className='grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 mt-6 mb-6'>
-                    <CardDonutChart
-                        title='ESTADO DE SOLICITUDES' />
+                        <CardDonutChart
+                            title='ESTADO DE SOLICITUDES' />
                         <CardLineChart
-                        title='HORAS REGISTRADAS POR MES' />
+                            title='HORAS REGISTRADAS POR MES' />
+                    </div>
+
+                    <div className=' justify-start items-start pt-6'>
+                        <h4 className='text-2xl font-bold text-gray-700 leading-snug' id='span-config'>Registros  recientes</h4>
+                        <div className='mt-4 mb-6'>
+                            <TableActivity />
+                        </div>
                     </div>
                 </section>
+                <footer className='w-full bg-white py-40 border-t border-gray-200 relative overflow-hidden bg-gray-400 pt-20'>
+                    <div className='mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center gap-4'>
+                        <div className='w-18 h-18 bg-black'
+                            style={{
+                                WebkitMaskImage: 'url("/main_icon.png")',
+                                maskImage: 'url("/main_icon.png")',
+                                WebkitMaskSize: 'contain',
+                                maskSize: 'contain',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskPosition: 'center',
+                                maskPosition: 'center'
+                            }}
+                            aria-label='Logo Nexa UCA'
+                        />
+                        <div className="flex flex-col items-center gap-1.5">
+                            <span className='text-base font-black tracking-tight text-gray-900 leading-none'>
+                                NEXA <span className='text-gray-500'>UCA</span>
+                            </span>
+                            <span className='text-[15px] text-gray-400 font-normal mt-1'>
+                                Universidad Centroamericana José Simeón Cañas
+                            </span>
+                        </div>
+                        <div className='text-xs font-normal text-gray-400 mt-2'>
+                            &copy; {new window.Date().getFullYear()} Todos los derechos reservados.
+                        </div>
+                    </div>
+                </footer>
             </main>
         </>
     )
