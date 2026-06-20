@@ -1,5 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import MonthlyHoursChart from "../Charts/Linecharts/MonthlyHours";
 
 interface CardLineProps{
     title: string;
@@ -21,7 +22,7 @@ export default function CardLineChart({
                     <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500" id="span-config">{title}</h4>
                 </div>
                 <div className="items-center mt-4">
-                    
+                    <MonthlyHoursChart />
                 </div>
             </CardContent>
         </Card>

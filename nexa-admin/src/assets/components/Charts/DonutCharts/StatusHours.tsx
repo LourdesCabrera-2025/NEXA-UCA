@@ -14,14 +14,14 @@ interface PieDataNode {
 
 
 const dataGeneral: PieDataNode[] = [
-    { id: 0, value: 68, label: 'Completadas', color: 'rgba(37,99,235,0.86)', detalles: 'Estudiantes que finalizaron su proceso'},
+    { id: 0, value: 68, label: 'Completadas', color: 'rgba(2,132,199,0.86)', detalles: 'Estudiantes que finalizaron su proceso'},
     { id: 1, value: 22, label: 'En Progreso', color: 'rgba(234,179,8,0.86)', detalles: 'Estudiantes activos acumulando horas'},
     { id: 2, value: 10, label: 'Rechazadas', color: 'rgba(185,28,20,0.86)'}
 ];
 
 
 
-const totalDataMap = [...dataGeneral, ...dataGeneral].reduce((acc, item) => {
+const totalDataMap = [...dataGeneral].reduce((acc, item) => {
     acc[item.id] = item;
     return acc;
 }, {} as Record<number, PieDataNode>);
@@ -32,8 +32,8 @@ function CustomTooltipContent({ mousePos }: { mousePos: { x: number; y: number }
     const tooltipData = useItemTooltip();
 
 
-if (!tooltipData) {
-        return <div className="fixed pointer-events-none" style={{ top: mousePos.y, left: mousePos.x }} />;
+if (!tooltipData || mousePos.x <= 0 ||  mousePos.y === 0) {
+        return null
     }
 
     const { value, color, identifier } = tooltipData;
@@ -43,11 +43,10 @@ if (!tooltipData) {
 
     return (
         <div
-            className="fixed bg-white border border-gray-100 rounded-2xl shadow-xl p-4 min-w-[250px] pointer-events-none z-[9999]"
+            className="fixed bg-white border border-gray-100 rounded-2xl shadow-xl p-4 min-w-[250px] pointer-events-none z-[9999]  animate-zoom-in "
             style={{
                 top: mousePos.y + 12,
                 left: mousePos.x + 12,
-                transition: 'top 0.05s ease-out, left 0.05s ease-out',
                 willChange: 'top, left'
             }}
         >
@@ -131,7 +130,7 @@ export default function SocialHoursChart() {
                         '& .MuiChartsLegend-root text': {
                             fontFamily: 'sans-serif !important',
                             fontSize: '11px !important',
-                            fill: '#4B5563 !important',
+                            fill: '#0284c7 !important',
                             fontWeight: '500 !important'
                         }
                     }}

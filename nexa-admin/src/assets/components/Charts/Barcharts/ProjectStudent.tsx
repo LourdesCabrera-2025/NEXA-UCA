@@ -19,8 +19,8 @@ const datasetMock: ProyectoData[] = [
 function CustomTooltipContent({ mousePos }: { mousePos: { x: number; y: number } }) {
     const tooltipData = useItemTooltip();
 
-if (!tooltipData) {
-        return <div className="fixed pointer-events-none" style={{ top: mousePos.y, left: mousePos.x }} />;
+if (!tooltipData || mousePos.x <= 0 || mousePos.y <= 0) {
+        return null
     }
 
     const { label, value, color, identifier } = tooltipData;
@@ -36,12 +36,10 @@ if (!tooltipData) {
     return (
         <div 
            
-            className="fixed bg-white border border-gray-100 rounded-2xl shadow-xl p-4 min-w-[240px] pointer-events-none z-[9999]"
+            className="fixed bg-white border border-gray-100 rounded-2xl shadow-xl p-4 min-w-[240px] pointer-events-none z-[9999] animate-zoom-in "
             style={{
                 top: mousePos.y + 12,
                 left: mousePos.x + 12,
-        
-                transition: 'top 0.08s ease-out, left 0.08s ease-out',
                 willChange: 'top, left'
             }}
         >
@@ -106,7 +104,7 @@ const customBarChartStyles: Partial<BarChartProps> = {
 const valueFormatter = (value: number | null) => `${value} estudiantes`;
 
 export default function ProgramsChart() {
-    const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+    const [mousePos, setMousePos] = React.useState({ x: -1000, y: -1000 });
 
     return (
         <div
@@ -128,7 +126,7 @@ export default function ProgramsChart() {
                     {
                         dataKey: 'inscritos',
                         valueFormatter,
-                        color: 'rgba(0,60,255, 0.7)',
+                        color: 'rgba(2,132,199, 0.9)',
                         highlightScope: {
                             highlight: 'item',
                             fade: 'global'
