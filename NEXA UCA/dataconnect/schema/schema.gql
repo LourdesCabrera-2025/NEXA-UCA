@@ -46,7 +46,6 @@ type Project @table {
   description: String
   projectType: ProjectType!
   supervisor: User!
-  career: Career!
   startDate: Date!
   endDate: Date!
   latitude: Float!
@@ -57,6 +56,12 @@ type Project @table {
   totalRequiredHours: Int! @default(value: 600)
   isActive: Boolean! @default(value: true)
   createdAt: Date!  @default(expr:"request.time")
+}
+
+type PrjectCareer @table {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  career: Career!
 }
 
 type ProjectSchedule @table {
