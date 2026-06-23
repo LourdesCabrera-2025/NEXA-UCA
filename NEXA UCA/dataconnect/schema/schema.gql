@@ -58,7 +58,7 @@ type Project @table {
   createdAt: Date!  @default(expr:"request.time")
 }
 
-type PrjectCareer @table {
+type ProjectCareer @table {
   id: UUID! @default(expr: "uuidV4()")
   project: Project!
   career: Career!
@@ -66,7 +66,7 @@ type PrjectCareer @table {
 
 type ProjectSchedule @table {
   id: UUID!  @default(expr: "uuidV4()")
-  project: Project!
+  participant: Participant!
   dayOfWeek: Int!
   startHour: String!
   endHour: String!
