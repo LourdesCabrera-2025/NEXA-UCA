@@ -41,7 +41,7 @@ export default function DashboardLayout() {
                     <div className='flex items-center gap-8 h-full'>
                         <Link to="/Dashboard" className='flex items-center gap-2.5 shrink-0'>
                             <div className='bg-blue-600 rounded-xl w-10 h-10 flex items-center justify-center  text-white'>
-                                <img src="/public/main_icon.png" alt="" />
+                                <img src="/main_icon.png" alt="" />
                             </div>
                             <span className='font-bold text-gray-900 tracking-tight text-lg title-tab'>NEXA UCA</span>
                         </Link>

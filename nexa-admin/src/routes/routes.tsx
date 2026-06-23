@@ -2,7 +2,9 @@ import App from '@/App';
 import DashboardLayout from '@/assets/layout/DashboardLayout';
 import Dashboard from '@/pages/Dashboard/Dashboard';
 import Login from '@/pages/Login/Login';
+import DetalleProgram from '@/pages/Projects/Detalle';
 import Programs from '@/pages/Projects/Programs';
+import Alumns from '@/pages/Students/Participant';
 import { BrowserRouter, Route, Routes ,Navigate} from 'react-router-dom';
 
 
@@ -17,8 +19,10 @@ export default function NavManager() {
                 <Route path='/Dashboard' element={<DashboardLayout />} >
                     <Route index element={<Navigate to="/Dashboard/Inicio" replace />} />
                     <Route path='Inicio' element={<Dashboard/>}/>
-                    <Route index element={<Navigate to="/Dashboard/Programas" replace />}/>
+                    
                     <Route path='Programas' element={<Programs/>} />
+                   <Route path='/Dashboard/Programas/detalle-id' element={<DetalleProgram />} />
+                   <Route path='Estudiantes' element={<Alumns/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
