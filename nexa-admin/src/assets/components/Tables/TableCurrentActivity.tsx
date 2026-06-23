@@ -69,9 +69,7 @@ const columns: GridColDef[] = [
         field: 'col2',
         headerName: 'Proyecto',
         flex: 1,
-        minWidth: 180,
-        align: 'center',
-        headerAlign: 'center',
+        minWidth: 190,
         renderCell: (params) => {
             const programaActual = params.row.col2 || '';
 
@@ -129,8 +127,6 @@ const columns: GridColDef[] = [
         headerName: 'Descripción',
         flex: 3,
         minWidth: 140,
-        align: 'center',
-        headerAlign: 'center',
         renderCell: (params) => {
             return (
                 <span className='text-slate-500 text-[12px]' id='span-config'>{params.value}</span>
@@ -143,8 +139,7 @@ const columns: GridColDef[] = [
         headerName: 'Validación ',
         flex: 1.4,
         width: 130,
-        align: 'center',
-        headerAlign: 'center',
+
         renderCell: (params) => {
             const estadoActual = params.row.col6 || '';
 

@@ -19,8 +19,7 @@ import type { } from '@mui/x-date-pickers/themeAugmentation';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import Switch from '@mui/material/Switch';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
-import Slide from '@mui/material/Slide';
-import type { TransitionProps } from '@mui/material/transitions';
+
 
 interface ModalProps {
 

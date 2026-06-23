@@ -10,6 +10,7 @@ import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import MyLocationRoundedIcon from '@mui/icons-material/MyLocationRounded';
 import { TextField, Box } from '@mui/material';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import ModalEnrollStudent from '@/assets/components/modals/ModalEnrollmentStudent';
 export default function DetalleProgram() {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -129,6 +130,11 @@ export default function DetalleProgram() {
                 </Box>
                 <ParticipantsTable estudiantes={estudianteFiltrados} />
             </section>
+
+            <ModalEnrollStudent 
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            programTitle={programaData.title}/>
         </>
     )
 }
