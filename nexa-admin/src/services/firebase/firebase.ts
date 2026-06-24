@@ -1,16 +1,19 @@
 
 import {initializeApp} from 'firebase/app';
+import {getAuth, OAuthProvider} from 'firebase/auth';
 
 
 const firebaseConfig = {
 
-    apiKey : "AIzaSyAMLIAaTswbRtYt6D8yEyS36D2cQfCPzYI",
-    authDomain : "nexa-uca.firebaseapp.com",
-    projectId : "nexa-uca",
-    storageBucket: "nexa-uca.firebasestorage.app",
-    messagingSenderId: "291022681272",
-    appId: "1:291022681272:web:96c3b2a826720f5fd9704d",
-    measurementId: "G-BBNZWCH202"
+    apiKey : import.meta.env.VITE_FIREBASE_APIKEY,
+    authDomain : import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId : import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const microsoftProvider = new OAuthProvider('microsoft.com')

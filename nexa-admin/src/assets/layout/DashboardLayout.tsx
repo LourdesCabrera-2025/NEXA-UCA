@@ -8,6 +8,8 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import { authService } from '@/services/firebase/authService';
+import { useIdleTimeout } from '@/hooks/useIdleTimeout';
 
 
 export default function DashboardLayout() {
@@ -34,6 +36,47 @@ export default function DashboardLayout() {
     ]
     const [isDarkMode, setIsDarkMode] = React.useState(false);
 
+    const [userData, setUserData] = React.useState<{
+        name: string;
+        email: string;
+        photoUrl: string;
+        role: string;
+        isActive: boolean;
+    } | null>(null);
+
+    React.useEffect(() => {
+        const fetchUserAndRole = async () => {
+            const pgUser = await authService.getCurrentPostgressUser();
+
+            if (pgUser) {
+                setUserData({
+                    name: pgUser.fullname || 'Usuario Nexa',
+                    email: pgUser.email || '',
+                    photoUrl: pgUser.photoUrl || 'https://i.pinimg.com/1200x/85/e9/7e/85e97e277d8511dc4c68086c6e45041a.jpg',
+                    role: pgUser.role?.name || 'Supervisor',
+                    isActive: pgUser.isActive! == undefined ? pgUser.isActive : true
+                })
+            }
+        };
+        fetchUserAndRole();
+    }, [navigate]);
+
+
+    const handleLogout = async () => {
+
+        try {
+            await authService.logout();
+            navigate('/');
+        } catch (error) {
+            console.error("NEXA_DEBUG: Error al cerrar sesión", error)
+        }
+    };;
+
+    useIdleTimeout({
+        onTimeout: handleLogout,
+        timeoutInMinutes: 5
+    });
+
     return (
         <>
             <header className='w-full bg-white border-b border-gray-200 flex flex-col z-40 sticky top-0 shadow-md'>
@@ -54,8 +97,8 @@ export default function DashboardLayout() {
                                         key={tab.name}
                                         onClick={() => navigate(tab.path)}
                                         className={`h-full px-3 text-sm font-semibold border-b-2 transition-all items-center nav-tabs cursor-pointer ${isActive
-                                                ? 'border-blue-600 text-blue-600'
-                                                : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-200'
+                                            ? 'border-blue-600 text-blue-600'
+                                            : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-200'
                                             }`}
                                     >
                                         {tab.name}
@@ -87,7 +130,7 @@ export default function DashboardLayout() {
                                     setIsHelpOpen(false);
                                 }} className='flex items-center focus:outline-none rounded-full ring-2 ring-transparent hover:ring-blue-500 p-0.5 transition-all cursor-pointer'>
                                 <div className="relative">
-                                    <img src="https://i.pinimg.com/1200x/85/e9/7e/85e97e277d8511dc4c68086c6e45041a.jpg" alt="Avatar de usuario" className='w-9 h-9 rounded-full object-cover ring-transparent group-hover:ring-blue-200 transition-all' />
+                                    <img src={userData?.photoUrl} alt="Avatar de usuario" className='w-9 h-9 rounded-full object-cover ring-transparent group-hover:ring-blue-200 transition-all' />
                                 </div>
                                 <KeyboardArrowDownRoundedIcon className={`text-gray-400 transition-transform duration-200 ease-in-out   ${isProfileOpen ? 'animate-rotate-180 text-gray-700' : ' group-hover:text-gray-600'}`} sx={{ fontSize: 20 }} />
                             </button>
@@ -98,12 +141,13 @@ export default function DashboardLayout() {
                                         <div className='px-4 py-3 border border-gray-100 flex flex-col '>
                                             <div className='flex items-center  gap-4 h-full'>
                                                 <div className="relative shrink-0">
-                                                    <img src="https://i.pinimg.com/1200x/85/e9/7e/85e97e277d8511dc4c68086c6e45041a.jpg" className='rounded-full object-cover w-10 h-10' alt="Profile" />
-                                                    <span className='absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white '></span>
+                                                    <img src={userData?.photoUrl} className='rounded-full object-cover w-10 h-10' alt="Profile" />
+                                                    <span className={`absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white ${userData?.isActive ? 'bg-green-500' : 'bg-gray-400'
+                                                        }`}></span>
                                                 </div>
                                                 <div className="items-start flex flex-col">
-                                                    <span className='text-sm font-bold text-gray-900 ' id='span-config'>Supervisora UCA</span>
-                                                    <span className='text-xs text-gray-500 truncate' id='span-config'>olivia.rhye@nexa-social.site</span>
+                                                    <span className='text-sm font-bold text-gray-900 ' id='span-config'>{userData?.role} UCA</span>
+                                                    <span className='text-xs text-gray-500 truncate text-[10px]' id='span-config'>{userData?.email}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,12 +185,12 @@ export default function DashboardLayout() {
                                                 </button>
                                             </div>
                                             <div className='p-1'>
-                                                <Link to={"/Login"} className='w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50/50 rounded-md font-semibold '>
+                                                <button onClick={handleLogout} className='w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50/50 rounded-md font-semibold cursor-pointer'>
                                                     <div className='flex items-center gap-2 pl-3'>
                                                         <LogoutRoundedIcon sx={{ fontSize: 22 }} />
                                                         <span id='span-config'>Cerrar Sesión</span>
                                                     </div>
-                                                </Link>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

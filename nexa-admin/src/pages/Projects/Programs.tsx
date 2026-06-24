@@ -18,8 +18,8 @@ export default function Programs() {
         <>
             <div className="flex gap-2 justify-between">
                 <div className="flex flex-col items-start justify-between">
-                    <span className="text-xs font-medium text-gray-400 tracking-tight uppercar pl-0.5" id='span-config'>Registro</span>
                     <span className='text-2xl font-bold text-gray-700 leading-snug' id='span-config'>Programas de servicio social</span>
+                    <p className='text-xs text-zinc-400 mt-0.5' id='span-config'>Registra tus programas de servicio social y visualiza los detalles de cada uno</p>
                     <span className='w-full border border-gray-200 mt-2' />
                 </div>
                 <button className='flex items-center justify-center gap-2 border-blue-400 bg-[#056CF2] hover:bg-[#0597F2] activate:scale-[0.98] text-white text-sm font-semibold h-10 px-4 rounded-lg shadow-sm transition-all duration-150  cursor-pointer select-none'>

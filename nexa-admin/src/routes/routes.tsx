@@ -1,6 +1,7 @@
 import App from '@/App';
 import DashboardLayout from '@/assets/layout/DashboardLayout';
 import Dashboard from '@/pages/Dashboard/Dashboard';
+import UnauthorizedPage from '@/pages/Error/Unauthorized';
 import Login from '@/pages/Login/Login';
 import DetalleProgram from '@/pages/Projects/Detalle';
 import Programs from '@/pages/Projects/Programs';
@@ -16,6 +17,7 @@ export default function NavManager() {
             <Routes>
                 <Route path='/' element={<App />} />
                 <Route path='/Login' element={<Login />} />
+                <Route path='/Unauthorized' element={<UnauthorizedPage />} />
                 <Route path='/Dashboard' element={<DashboardLayout />} >
                     <Route index element={<Navigate to="/Dashboard/Inicio" replace />} />
                     <Route path='Inicio' element={<Dashboard/>}/>

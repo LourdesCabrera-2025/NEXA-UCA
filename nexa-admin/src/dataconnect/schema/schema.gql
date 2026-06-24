@@ -35,6 +35,7 @@ type Student @table {
   career: Career
 }
 
+
 type ProjectType @table {
   id: UUID! @default(expr: "uuidV4()")
   name: String! @unique
