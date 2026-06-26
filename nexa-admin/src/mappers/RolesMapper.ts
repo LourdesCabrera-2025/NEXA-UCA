@@ -1,4 +1,4 @@
-import type {Role_Key as FirebaseRole} from '@dataconnect-generated/'
+import type {Role_Key as FirebaseRole} from '@/dataconnect-generated'
 import type {Roles} from '@models/Roles';
 
 

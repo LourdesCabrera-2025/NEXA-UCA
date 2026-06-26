@@ -36,6 +36,8 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val getUserById: GetUserByIdQuery
   
+    public val seedProjectType: SeedProjectTypeMutation
+  
 
   public companion object {
     @Suppress("MemberVisibilityCanBePrivate")
@@ -111,6 +113,10 @@ private class NexaConnectorImpl(
       GetUserByIdQueryImpl(this)
     }
   
+    override val seedProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      SeedProjectTypeMutationImpl(this)
+    }
+  
 
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun operations(): List<com.google.firebase.dataconnect.generated.GeneratedOperation<NexaConnector, *, *>> =
@@ -121,6 +127,7 @@ private class NexaConnectorImpl(
     listOf(
       createStudent,
         createUser,
+        seedProjectType,
         
     )
 
@@ -385,6 +392,21 @@ private class GetUserByIdQueryImpl(
     GetUserByIdQuery.Companion.operationName,
     GetUserByIdQuery.Companion.dataDeserializer,
     GetUserByIdQuery.Companion.variablesSerializer,
+  )
+
+
+private class SeedProjectTypeMutationImpl(
+  connector: NexaConnector
+):
+  SeedProjectTypeMutation,
+  NexaConnectorGeneratedMutationImpl<
+      SeedProjectTypeMutation.Data,
+      Unit
+  >(
+    connector,
+    SeedProjectTypeMutation.Companion.operationName,
+    SeedProjectTypeMutation.Companion.dataDeserializer,
+    SeedProjectTypeMutation.Companion.variablesSerializer,
   )
 
 

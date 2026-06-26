@@ -12,7 +12,6 @@ import CorporateFareRoundedIcon from '@mui/icons-material/CorporateFareRounded';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-
 import { useNavigate } from 'react-router-dom';
 import { authService } from '@/services/firebase/authService';
 
@@ -33,12 +32,12 @@ export default function Login() {
 
             navigate('/Dashboard');
         } catch (error: any) {
-            console.log("NEXA_DEBUG: Erro capturado en vista login", error.message);
+            console.log("NEXA_DEBUG: Error capturado en vista login", error.message);
 
-            if (error.message?.includes('ACCESO_DENEGGADO')) {
+            if (error.message?.includes('ACCESO_DENEGADO')) {
                 navigate('/Unauthorized');
             } else {
-                alert('No se pudo completar la autenticación insitucional');
+                alert('No se pudo completar la autenticación institucional');
             }
         } finally {
             setIsLoading(false)

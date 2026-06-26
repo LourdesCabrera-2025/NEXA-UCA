@@ -23,7 +23,7 @@ export default function NavManager() {
                     <Route path='Inicio' element={<Dashboard/>}/>
                     
                     <Route path='Programas' element={<Programs/>} />
-                   <Route path='/Dashboard/Programas/detalle-id' element={<DetalleProgram />} />
+                   <Route path='/Dashboard/Programas/:id' element={<DetalleProgram />} />
                    <Route path='Estudiantes' element={<Alumns/>}/>
                 </Route>
             </Routes>

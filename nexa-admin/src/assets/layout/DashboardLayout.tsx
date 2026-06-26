@@ -2,7 +2,6 @@ import '../../styles/index.css';
 import * as React from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
@@ -10,11 +9,13 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { authService } from '@/services/firebase/authService';
 import { useIdleTimeout } from '@/hooks/useIdleTimeout';
+import { IdleTimeoutDialog } from '../components/Alerts/IdleTimeoutDialog';
 
 
 export default function DashboardLayout() {
     const [isProfileOpen, setIsProfileOpen] = React.useState(false);
     const [isHelpOpen, setIsHelpOpen] = React.useState(false);
+    const [isExpirationModalOpen, setIsExpiredModalOpen] = React.useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -70,12 +71,26 @@ export default function DashboardLayout() {
         } catch (error) {
             console.error("NEXA_DEBUG: Error al cerrar sesión", error)
         }
-    };;
+    };
+
+
+
+    const handleAlert = async () => {
+        try {
+            console.log("NEXA_DEBUG: Inactividad detectada. Cerrando sesión en Firebase")
+            await authService.logout();
+        } catch(error) {
+            console.error("Error al cerrar sesión", error);
+        }finally {
+            setIsExpiredModalOpen(true);
+        }
+    };
 
     useIdleTimeout({
-        onTimeout: handleLogout,
+        onTimeout: handleAlert,
         timeoutInMinutes: 5
     });
+
 
     return (
         <>
@@ -159,12 +174,6 @@ export default function DashboardLayout() {
                                                     <span className='text-start' id='span-config'>Mi perfil</span>
                                                 </div>
                                             </button>
-                                            <button className='w-full flex items-center justify-start px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md text-left  font-medium cursor-pointer'>
-                                                <div className='flex  items-center gap-2 pl-3'>
-                                                    <SettingsOutlinedIcon className='text-gray-400' sx={{ fontSize: 22 }} />
-                                                    <span className='text-start' id='span-config' >Configuración</span>
-                                                </div>
-                                            </button>
                                             <div className='w-full flex items-center justify-start px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md text-left font-medium cursor-pointer'>
                                                 <button onClick={() => setIsDarkMode(!isDarkMode)}
                                                     className={`w-full flex items-center justify-between px-3 py-2 text-sm rounded-md font-medium transition-all duration-150 select-none cursor-pointer
@@ -235,6 +244,11 @@ export default function DashboardLayout() {
                     </div>
                 </div>
             </footer>
+
+            <IdleTimeoutDialog isOpen={isExpirationModalOpen} onConfirm={() => {
+                setIsExpiredModalOpen(false);
+                navigate('/Login');
+            }}  />
         </>
     )
 }

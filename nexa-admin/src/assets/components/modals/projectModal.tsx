@@ -19,6 +19,7 @@ import type { } from '@mui/x-date-pickers/themeAugmentation';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import Switch from '@mui/material/Switch';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
+import ModalMap from './mapContent';
 
 
 interface ModalProps {
@@ -42,6 +43,7 @@ const career = [
 export default function ModalProject({ isOpen, onClose }: ModalProps) {
     const [startDate, setStartDate] = useState<Dayjs | null>(null);
     const [endDate, setEndDate] = useState<Dayjs | null>(null);
+    const [modalOpenMap, setmodalOpenMap] = useState(false);
 
     const datePickerTheme = createTheme({
         typography: {
@@ -147,6 +149,7 @@ export default function ModalProject({ isOpen, onClose }: ModalProps) {
     if (!isOpen) return null;
 
     return (
+        <>
         <ThemeProvider theme={datePickerTheme}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Dialog
@@ -481,9 +484,12 @@ export default function ModalProject({ isOpen, onClose }: ModalProps) {
                                     GEOLOCALIZACIÓN
                                 </span>
                                 <div className='ml-4 h-6 border-l border-zinc-300'></div>
-                                <div className='flex items-center gap-3  w-full'>
-                                    <span className='ml-4 px-2.5 py-1 text-xs font-bold tracking-wide rounded-md bg-blue-300 text-zinc-600 border border-zinc-200 uppercase'
-                                        style={{ fontFamily: '"Inter", sans-serif' }}>VALIDACIÓN GPS</span>
+                                <div className='flex items-center gap-3  w-full '>
+                                    <span className='flex items-center ml-4 px-2.5 py-1 text-xs  font-bold tracking-wide rounded-md bg-blue-600 text-white border border-zinc-200 uppercase'
+                                        style={{ fontFamily: '"Inter", sans-serif' }}>
+                                           <ShareLocationIcon sx={{fontSize: 20}}/>
+                                           VALIDACIÓN GPS</span>
+                                           
                                 </div>
                             </div>
                             <div className='grid grid-cols-3 gap-6 w-full  items-end mt-5'>
@@ -497,7 +503,7 @@ export default function ModalProject({ isOpen, onClose }: ModalProps) {
                                     />
                                 </div>
                                 <div className='flex flex-col gap-2 w-full'>
-                                    <button type='button' className='flex items-center justify-center  w-full h-[40px] bg-[#031B3F] hover:bg-[#01388A] rounded-md text-white cursor-pointer transition-all'>
+                                    <button type='button' onClick={() => setmodalOpenMap(true)} className='flex items-center justify-center  w-full h-[40px] bg-[#031B3F] hover:bg-[#01388A] rounded-md text-white cursor-pointer transition-all'>
                                         <ShareLocationIcon style={{ fontSize: 22 }} />
                                         <span className='px-4 text-[12px]' style={{ fontFamily: '"Inter", sans-serif' }}>Usar ubicación</span>
                                     </button>
@@ -559,5 +565,9 @@ export default function ModalProject({ isOpen, onClose }: ModalProps) {
                 </Dialog>
             </LocalizationProvider>
         </ThemeProvider>
+
+        <ModalMap open={modalOpenMap} onClose={() => setmodalOpenMap(false)}/>
+
+        </>
     );
 }

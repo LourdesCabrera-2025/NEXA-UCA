@@ -39,18 +39,22 @@ export default function Alumns() {
                 </button>
             </div>
             <StudentStats />
-            <div className='flex flex-col md:flex-row gap-5 items-center'>
-                <StudentTable
-                    students={listaEstudiantes}
-                    onSelectStudent={(student) => setSelectedStudent(student)}
-                    selectedId={selectedStudent?.id}
-                />
-                {selectedStudent && (
-                    <StudentDetailSide
-                        student={selectedStudent}
-                        onClose={() => setSelectedStudent(null)}
+            <div className='relative w-full flex items-start overflow-hidden mt-6'>
+                <div className='w-full grow'>
+                    <StudentTable
+                        students={listaEstudiantes}
+                        onSelectStudent={(student) => setSelectedStudent(student)}
+                        selectedId={selectedStudent?.id}
                     />
-                )}
+                    {selectedStudent && (
+                        <div className='absolute right-4 top-4 z-20 shadow-2xl rounded-2xl bg-white max-h-[calc(100vh-100px)] overflow-y-auto border border-zinc-100 ring-1 ring-black/5 animate-fade-in  animate-slide-in-right-5 duration-200'>
+                        <StudentDetailSide
+                            student={selectedStudent}
+                            onClose={() => setSelectedStudent(null)}
+                        />
+                        </div>
+                    )}
+                </div>
             </div>
         </>
     )
