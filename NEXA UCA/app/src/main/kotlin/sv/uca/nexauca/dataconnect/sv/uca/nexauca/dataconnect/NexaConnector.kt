@@ -20,6 +20,8 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 
   
+    public val createProject: CreateProjectMutation
+  
     public val createStudent: CreateStudentMutation
   
     public val createUser: CreateUserMutation
@@ -29,6 +31,8 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
     public val getDepartment: GetDepartmentQuery
   
     public val getMyStudent: GetMyStudentQuery
+  
+    public val getProjectType: GetProjectTypeQuery
   
     public val getRoleByName: GetRoleByNameQuery
   
@@ -81,6 +85,10 @@ private class NexaConnectorImpl(
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 ) : NexaConnector {
   
+    override val createProject by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateProjectMutationImpl(this)
+    }
+  
     override val createStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
       CreateStudentMutationImpl(this)
     }
@@ -99,6 +107,10 @@ private class NexaConnectorImpl(
   
     override val getMyStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetMyStudentQueryImpl(this)
+    }
+  
+    override val getProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectTypeQueryImpl(this)
     }
   
     override val getRoleByName by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -125,7 +137,8 @@ private class NexaConnectorImpl(
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun mutations(): List<com.google.firebase.dataconnect.generated.GeneratedMutation<NexaConnector, *, *>> =
     listOf(
-      createStudent,
+      createProject,
+        createStudent,
         createUser,
         seedProjectType,
         
@@ -137,6 +150,7 @@ private class NexaConnectorImpl(
       getCareers,
         getDepartment,
         getMyStudent,
+        getProjectType,
         getRoleByName,
         getRoles,
         getUserById,
@@ -275,6 +289,21 @@ private open class NexaConnectorGeneratedMutationImpl<Data, Variables>(
 
 
 
+private class CreateProjectMutationImpl(
+  connector: NexaConnector
+):
+  CreateProjectMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateProjectMutation.Data,
+      CreateProjectMutation.Variables
+  >(
+    connector,
+    CreateProjectMutation.Companion.operationName,
+    CreateProjectMutation.Companion.dataDeserializer,
+    CreateProjectMutation.Companion.variablesSerializer,
+  )
+
+
 private class CreateStudentMutationImpl(
   connector: NexaConnector
 ):
@@ -347,6 +376,21 @@ private class GetMyStudentQueryImpl(
     GetMyStudentQuery.Companion.operationName,
     GetMyStudentQuery.Companion.dataDeserializer,
     GetMyStudentQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectTypeQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectTypeQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectTypeQuery.Data,
+      Unit
+  >(
+    connector,
+    GetProjectTypeQuery.Companion.operationName,
+    GetProjectTypeQuery.Companion.dataDeserializer,
+    GetProjectTypeQuery.Companion.variablesSerializer,
   )
 
 

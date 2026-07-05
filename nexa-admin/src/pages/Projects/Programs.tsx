@@ -5,6 +5,9 @@ import { useState } from 'react';
 import CardProgramResult from '@/assets/components/Cards/CardPrograms';
 import * as React from 'react';
 import { Link, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import type { GetProjectsData } from '@/dataconnect-generated';
+import { ProgramService } from '@/services/firebase/programService';
+import { GeneralAlert } from '@/assets/components/Alerts/Alerts';
 
 export default function Programs() {
 
@@ -13,6 +16,24 @@ export default function Programs() {
     const handleCardClick = () => {
         navigate('/Dashboard/Programas/detalle-id')
     }
+    const [program, setProgram] = useState<GetProjectsData['projects']>([]);
+    const [alertOpen, setIsAlertOpen] = useState<boolean>(false);
+    const [alertConfig, setAlertConfig] = useState({ type: 'success' as 'success' | 'error', title: '', message: '' });
+
+    
+
+    React.useEffect(() => {
+        const fetchPrograms = async () => {
+            try {
+                const data = await ProgramService.getAllProjects();
+                setProgram(data);
+            } catch (error) {
+                setAlertConfig({ type: 'error', title: 'Error', message: 'Ocurrió un error al registrar el programa. ' });
+                setIsAlertOpen(true);
+            }
+        };
+        fetchPrograms();
+    }, [isModalOpen]);
 
     return (
         <>
@@ -29,24 +50,29 @@ export default function Programs() {
             </div>
             <section className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-2  mt-20 mb-16'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-
-                    <CardProgramResult
-                        title='Biblioteca de Teología'
-                        type='Servicio social'
-                        description='Catalogación y organización del fondo bibliográfico del área de teología'
-                        currentStudents={10}
-                        maxStudents={40}
-                        totalHours={300}
-                        distance={100}
-                        progress={78}
-                        status='Activo' 
-                        onClick={handleCardClick}/>
-
-
-
+                    {program.map((p) => (
+                        <CardProgramResult
+                            key={p.id}
+                            title={p.name}
+                            type={p.projectType.name}
+                            description={p.description || "Sin descripción"}
+                            currentStudents={0} 
+                            maxStudents={p.maxStudents}
+                            totalHours={p.totalRequiredHours}
+                            distance={p.allowedRadius}
+                            progress={0}
+                            status={p.isActive ? 'Activo' : 'Inactivo'}
+                            onClick={handleCardClick}
+                        />
+                    ))}
                 </div>
             </section>
             <ModalProject isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <GeneralAlert
+                isOpenAlert={alertOpen}
+                onClose={() => setIsAlertOpen(false)}
+                {...alertConfig}
+            />
         </>
     )
 }

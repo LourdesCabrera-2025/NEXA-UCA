@@ -1,5 +1,43 @@
 extend type Query {
   """
+  ✨ Look up a single `Activity` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  activity(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Activity_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Activity_FirstRow
+  ): Activity @fdc_generated(from: "Activity", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Attendance` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  attendance(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Attendance_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Attendance_FirstRow
+  ): Attendance @fdc_generated(from: "Attendance", purpose: QUERY_SINGLE)
+  """
   ✨ Look up a single `Career` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
   """
   career(
@@ -37,6 +75,96 @@ extend type Query {
     """
     first: Department_FirstRow
   ): Department @fdc_generated(from: "Department", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Participant` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  participant(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Participant_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Participant_FirstRow
+  ): Participant @fdc_generated(from: "Participant", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Project` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  project(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Project_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Project_FirstRow
+  ): Project @fdc_generated(from: "Project", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `ProjectCareer` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  projectCareer(
+    """
+    The key used to identify the object.
+    """
+    key: ProjectCareer_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectCareer_FirstRow
+  ): ProjectCareer @fdc_generated(from: "ProjectCareer", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `ProjectSchedule` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  projectSchedule(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectSchedule_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectSchedule_FirstRow
+  ): ProjectSchedule @fdc_generated(from: "ProjectSchedule", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `ProjectType` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  projectType(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectType_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectType_FirstRow
+  ): ProjectType @fdc_generated(from: "ProjectType", purpose: QUERY_SINGLE)
   """
   ✨ Look up a single `Role` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
   """
@@ -99,6 +227,74 @@ extend type Query {
     """
     first: User_FirstRow
   ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Activity` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  activities(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Activity_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Activity_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Activity_Having
+  ): [Activity!]! @fdc_generated(from: "Activity", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Attendance` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  attendances(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Attendance_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Attendance_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Attendance_Having
+  ): [Attendance!]! @fdc_generated(from: "Attendance", purpose: QUERY_MULTIPLE)
   """
   ✨ List `Career` objects in the table and return selected fields, optionally filtered by `where` conditions
   """
@@ -167,6 +363,176 @@ extend type Query {
     """
     having: Department_Having
   ): [Department!]! @fdc_generated(from: "Department", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Participant` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  participants(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Participant_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Participant_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Participant_Having
+  ): [Participant!]! @fdc_generated(from: "Participant", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Project` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  projects(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Project_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Project_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Project_Having
+  ): [Project!]! @fdc_generated(from: "Project", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `ProjectCareer` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  projectCareers(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectCareer_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectCareer_Having
+  ): [ProjectCareer!]! @fdc_generated(from: "ProjectCareer", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `ProjectSchedule` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  projectSchedules(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectSchedule_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectSchedule_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectSchedule_Having
+  ): [ProjectSchedule!]! @fdc_generated(from: "ProjectSchedule", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `ProjectType` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  projectTypes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectType_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectType_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectType_Having
+  ): [ProjectType!]! @fdc_generated(from: "ProjectType", purpose: QUERY_MULTIPLE)
   """
   ✨ List `Role` objects in the table and return selected fields, optionally filtered by `where` conditions
   """

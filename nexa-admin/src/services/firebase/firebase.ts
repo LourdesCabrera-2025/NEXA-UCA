@@ -1,4 +1,5 @@
-
+import { getDataConnect } from 'firebase/data-connect';
+import { connectorConfig } from '@/dataconnect-generated';
 import {initializeApp} from 'firebase/app';
 import {getAuth, OAuthProvider} from 'firebase/auth';
 
@@ -16,4 +17,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const microsoftProvider = new OAuthProvider('microsoft.com')
+export const microsoftProvider = new OAuthProvider('microsoft.com');
+export const dataConnect = getDataConnect(app, connectorConfig);

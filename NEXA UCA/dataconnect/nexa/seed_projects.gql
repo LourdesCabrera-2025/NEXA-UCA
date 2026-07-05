@@ -1,0 +1,27 @@
+mutation CreateProject(
+    $name: String!
+    $description: String!
+    $projectTypeId: UUID!
+    $supervisorId: String!
+    $startDate: Date!
+    $endDate: Date!
+    $latitude: Float!
+    $longitude:  Float!
+    $allowedRadius: Float!
+    $maxStudents: Int!
+    $totalRequiredHours: Int!
+) @auth(level: USER){
+    project_insert(data: {
+        name: $name
+        description: $description
+        projectTypeId: $projectTypeId
+        supervisorId: $supervisorId
+        startDate: $startDate
+        endDate: $endDate
+        latitude: $latitude
+        longitude: $longitude
+        allowedRadius: $allowedRadius
+        maxStudents: $maxStudents
+        totalRequiredHours: $totalRequiredHours
+    })
+}

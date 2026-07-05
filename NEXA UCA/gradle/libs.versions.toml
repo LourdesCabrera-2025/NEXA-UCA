@@ -17,6 +17,7 @@ googleGmsGoogleServices = "4.4.4"
 firebaseBom = "34.13.0"
 sonner = "0.3.9"
 coil = "2.6.0"
+vico = "3.2.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +48,12 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage" }
 firebase-dataconnect = { group = "com.google.firebase", name = "firebase-dataconnect" }
 compose-sonner = {module = "io.github.dokar3:sonner", name = "compose-sonner", version.ref="sonner"}
+
+#Vico Libraries from Charts
+vico-compose = {group = "com.patrykandpatrick.vico", name="compose", version.ref="vico"}
+vico-compose-m2 = {group = "com.patrykandpatrick.vico", name="compose-m2", version.ref="vico"}
+vico-compose-m3 = {group = "com.patrykandpatrick.vico", name="compose-m3", version.ref="vico"}
+vico-compose-glance = {group = "com.patrykandpatrick.vico", name="compose-glance", version.ref="vico"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -20,7 +20,6 @@ export default function DashboardLayout() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [activeTab, setActiveTab] = React.useState('Dashboard');
     const navTabs = [
         {
             name: 'Dashboard', path: '/Dashboard/Inicio'

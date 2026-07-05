@@ -1,0 +1,26 @@
+query GetProjects @auth(level:USER) {
+    projects {
+        id
+        name
+        description
+        projectType {
+            id
+            name
+        }
+        supervisor {
+            id
+            fullName
+        }
+
+        startDate
+        endDate
+        latitude
+        longitude
+        allowedRadius
+        maxStudents
+        maxHoursPerDay
+        totalRequiredHours
+        isActive
+        createdAt
+    }
+}

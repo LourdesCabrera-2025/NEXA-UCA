@@ -10,7 +10,6 @@ interface IdleTimeoutDialogProps {
 
 export function IdleTimeoutDialog({ isOpen, onConfirm }: IdleTimeoutDialogProps) {
     return (
-        /* 🎯 CONTEXTO v3: Volvemos a 'open' si es nativo o dejamos las props base limpias */
         <AlertDialog 
             isOpen={isOpen} 
             onOpenChange={onConfirm}
