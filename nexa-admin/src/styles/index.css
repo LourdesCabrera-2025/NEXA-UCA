@@ -1,6 +1,6 @@
 @import  url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
-
+@import "tailwind-animations";
 
 /* Colors */
 
@@ -109,4 +109,14 @@
     background-color: var(--container-color);
 }
 
-#title-l
+#title-login, #span-item, #paragraph, #span-title-logo {
+    font-family: 'Inter', sans-serif;
+}
+
+.nav-tabs {
+    font-family: 'Inter', sans-serif;
+}
+
+#title-tab, #span-config, #span-breadcrumb{
+     font-family: 'Inter', sans-serif;
+}
