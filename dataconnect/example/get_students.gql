@@ -1,0 +1,26 @@
+query GetMyStudent @auth(level: USER) {
+    students(where: { userId: { eq_expr: "auth.uid" } }) {
+        id
+        studentCode
+        phoneNumber
+        user {
+            id
+            email
+            fullName
+            photoUrl
+            isActive
+            role {
+                id
+                name
+            }
+        }
+        career {
+            id
+            name
+            department {
+                id
+                name
+            }
+        }
+    }
+}

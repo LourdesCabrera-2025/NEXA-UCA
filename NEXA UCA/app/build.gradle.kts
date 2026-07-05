@@ -64,7 +64,9 @@ dependencies {
     implementation(libs.compose.sonner)
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+    implementation(libs.coil.compose)
 
+    implementation("androidx.graphics:graphics-shapes-android:1.1.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
