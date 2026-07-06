@@ -4,6 +4,3 @@ generate:
   kotlinSdk:
     outputDir: "../../app/src/main/kotlin/sv/uca/nexauca/dataconnect"
     package: "sv.uca.nexauca.dataconnect"
-# para el proyecto web
-javascriptSdk:
-  outputDir: "../../../nexa-admin/src/generated/dataconnect-generated"

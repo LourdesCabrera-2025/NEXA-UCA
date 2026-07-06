@@ -1,5 +1,23 @@
 extend type Mutation {
   """
+  ✨ Insert a single `Activity` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  activity_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Activity_Data!
+  ): Activity_KeyOutput! @fdc_generated(from: "Activity", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Attendance` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  attendance_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Attendance_Data!
+  ): Attendance_KeyOutput! @fdc_generated(from: "Attendance", purpose: INSERT_SINGLE)
+  """
   ✨ Insert a single `Career` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   career_insert(
@@ -17,6 +35,51 @@ extend type Mutation {
     """
     data: Department_Data!
   ): Department_KeyOutput! @fdc_generated(from: "Department", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Participant` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  participant_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Participant_Data!
+  ): Participant_KeyOutput! @fdc_generated(from: "Participant", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Project` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  project_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput! @fdc_generated(from: "Project", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `ProjectCareer` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectCareer_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: ProjectCareer_Data!
+  ): ProjectCareer_KeyOutput! @fdc_generated(from: "ProjectCareer", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `ProjectSchedule` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectSchedule_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: ProjectSchedule_Data!
+  ): ProjectSchedule_KeyOutput! @fdc_generated(from: "ProjectSchedule", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `ProjectType` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectType_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: ProjectType_Data!
+  ): ProjectType_KeyOutput! @fdc_generated(from: "ProjectType", purpose: INSERT_SINGLE)
   """
   ✨ Insert a single `Role` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -45,6 +108,24 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
   """
+  ✨ Insert `Activity` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  activity_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Activity_Data!]!
+  ): [Activity_KeyOutput!]! @fdc_generated(from: "Activity", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Attendance` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  attendance_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Attendance_Data!]!
+  ): [Attendance_KeyOutput!]! @fdc_generated(from: "Attendance", purpose: INSERT_MULTIPLE)
+  """
   ✨ Insert `Career` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   career_insertMany(
@@ -62,6 +143,51 @@ extend type Mutation {
     """
     data: [Department_Data!]!
   ): [Department_KeyOutput!]! @fdc_generated(from: "Department", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Participant` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  participant_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Participant_Data!]!
+  ): [Participant_KeyOutput!]! @fdc_generated(from: "Participant", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Project` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  project_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Project_Data!]!
+  ): [Project_KeyOutput!]! @fdc_generated(from: "Project", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `ProjectCareer` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectCareer_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [ProjectCareer_Data!]!
+  ): [ProjectCareer_KeyOutput!]! @fdc_generated(from: "ProjectCareer", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `ProjectSchedule` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectSchedule_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [ProjectSchedule_Data!]!
+  ): [ProjectSchedule_KeyOutput!]! @fdc_generated(from: "ProjectSchedule", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `ProjectType` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  projectType_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [ProjectType_Data!]!
+  ): [ProjectType_KeyOutput!]! @fdc_generated(from: "ProjectType", purpose: INSERT_MULTIPLE)
   """
   ✨ Insert `Role` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
@@ -90,6 +216,24 @@ extend type Mutation {
     data: [User_Data!]!
   ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
   """
+  ✨ Insert or update a single `Activity` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Activity`.
+  """
+  activity_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Activity_Data!
+  ): Activity_KeyOutput! @fdc_generated(from: "Activity", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Attendance` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Attendance`.
+  """
+  attendance_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Attendance_Data!
+  ): Attendance_KeyOutput! @fdc_generated(from: "Attendance", purpose: UPSERT_SINGLE)
+  """
   ✨ Insert or update a single `Career` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Career`.
   """
   career_upsert(
@@ -107,6 +251,51 @@ extend type Mutation {
     """
     data: Department_Data!
   ): Department_KeyOutput! @fdc_generated(from: "Department", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Participant` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Participant`.
+  """
+  participant_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Participant_Data!
+  ): Participant_KeyOutput! @fdc_generated(from: "Participant", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Project` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Project`.
+  """
+  project_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput! @fdc_generated(from: "Project", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `ProjectCareer` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectCareer`.
+  """
+  projectCareer_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: ProjectCareer_Data!
+  ): ProjectCareer_KeyOutput! @fdc_generated(from: "ProjectCareer", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `ProjectSchedule` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectSchedule`.
+  """
+  projectSchedule_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: ProjectSchedule_Data!
+  ): ProjectSchedule_KeyOutput! @fdc_generated(from: "ProjectSchedule", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `ProjectType` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectType`.
+  """
+  projectType_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: ProjectType_Data!
+  ): ProjectType_KeyOutput! @fdc_generated(from: "ProjectType", purpose: UPSERT_SINGLE)
   """
   ✨ Insert or update a single `Role` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Role`.
   """
@@ -135,6 +324,24 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
   """
+  ✨ Insert or update `Activity` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Activity`.
+  """
+  activity_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Activity_Data!]!
+  ): [Activity_KeyOutput!]! @fdc_generated(from: "Activity", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Attendance` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Attendance`.
+  """
+  attendance_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Attendance_Data!]!
+  ): [Attendance_KeyOutput!]! @fdc_generated(from: "Attendance", purpose: UPSERT_MULTIPLE)
+  """
   ✨ Insert or update `Career` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Career`.
   """
   career_upsertMany(
@@ -152,6 +359,51 @@ extend type Mutation {
     """
     data: [Department_Data!]!
   ): [Department_KeyOutput!]! @fdc_generated(from: "Department", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Participant` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Participant`.
+  """
+  participant_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Participant_Data!]!
+  ): [Participant_KeyOutput!]! @fdc_generated(from: "Participant", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Project` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Project`.
+  """
+  project_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Project_Data!]!
+  ): [Project_KeyOutput!]! @fdc_generated(from: "Project", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `ProjectCareer` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectCareer`.
+  """
+  projectCareer_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [ProjectCareer_Data!]!
+  ): [ProjectCareer_KeyOutput!]! @fdc_generated(from: "ProjectCareer", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `ProjectSchedule` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectSchedule`.
+  """
+  projectSchedule_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [ProjectSchedule_Data!]!
+  ): [ProjectSchedule_KeyOutput!]! @fdc_generated(from: "ProjectSchedule", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `ProjectType` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ProjectType`.
+  """
+  projectType_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [ProjectType_Data!]!
+  ): [ProjectType_KeyOutput!]! @fdc_generated(from: "ProjectType", purpose: UPSERT_MULTIPLE)
   """
   ✨ Insert or update `Role` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Role`.
   """
@@ -179,6 +431,54 @@ extend type Mutation {
     """
     data: [User_Data!]!
   ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Activity` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Activity` or `null` if not found.
+  """
+  activity_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Activity_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Activity_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Activity_Data!
+  ): Activity_KeyOutput @fdc_generated(from: "Activity", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Attendance` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Attendance` or `null` if not found.
+  """
+  attendance_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Attendance_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Attendance_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Attendance_Data!
+  ): Attendance_KeyOutput @fdc_generated(from: "Attendance", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Career` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Career` or `null` if not found.
   """
@@ -227,6 +527,121 @@ extend type Mutation {
     """
     data: Department_Data!
   ): Department_KeyOutput @fdc_generated(from: "Department", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Participant` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Participant` or `null` if not found.
+  """
+  participant_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Participant_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Participant_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Participant_Data!
+  ): Participant_KeyOutput @fdc_generated(from: "Participant", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Project` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Project` or `null` if not found.
+  """
+  project_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Project_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Project_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Project_Data!
+  ): Project_KeyOutput @fdc_generated(from: "Project", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `ProjectCareer` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `ProjectCareer` or `null` if not found.
+  """
+  projectCareer_update(
+    """
+    The key used to identify the object.
+    """
+    key: ProjectCareer_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectCareer_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: ProjectCareer_Data!
+  ): ProjectCareer_KeyOutput @fdc_generated(from: "ProjectCareer", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `ProjectSchedule` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `ProjectSchedule` or `null` if not found.
+  """
+  projectSchedule_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectSchedule_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectSchedule_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: ProjectSchedule_Data!
+  ): ProjectSchedule_KeyOutput @fdc_generated(from: "ProjectSchedule", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `ProjectType` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `ProjectType` or `null` if not found.
+  """
+  projectType_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectType_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectType_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: ProjectType_Data!
+  ): ProjectType_KeyOutput @fdc_generated(from: "ProjectType", purpose: UPDATE_SINGLE)
   """
   ✨ Update a single `Role` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Role` or `null` if not found.
   """
@@ -305,6 +720,44 @@ extend type Mutation {
     data: User_Data!
   ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
   """
+  ✨ Update `Activity` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  activity_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Activity_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Activity_Data!
+  ): Int! @fdc_generated(from: "Activity", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Attendance` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  attendance_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Attendance_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Attendance_Data!
+  ): Int! @fdc_generated(from: "Attendance", purpose: UPDATE_MULTIPLE)
+  """
   ✨ Update `Career` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   career_updateMany(
@@ -342,6 +795,101 @@ extend type Mutation {
     """
     data: Department_Data!
   ): Int! @fdc_generated(from: "Department", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Participant` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  participant_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Participant_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Participant_Data!
+  ): Int! @fdc_generated(from: "Participant", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Project` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  project_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Project_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Project_Data!
+  ): Int! @fdc_generated(from: "Project", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `ProjectCareer` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  projectCareer_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: ProjectCareer_Data!
+  ): Int! @fdc_generated(from: "ProjectCareer", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `ProjectSchedule` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  projectSchedule_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: ProjectSchedule_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: ProjectSchedule_Data!
+  ): Int! @fdc_generated(from: "ProjectSchedule", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `ProjectType` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  projectType_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: ProjectType_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: ProjectType_Data!
+  ): Int! @fdc_generated(from: "ProjectType", purpose: UPDATE_MULTIPLE)
   """
   ✨ Update `Role` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
@@ -400,6 +948,44 @@ extend type Mutation {
     data: User_Data!
   ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
   """
+  ✨ Delete a single `Activity` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  activity_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Activity_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Activity_FirstRow
+  ): Activity_KeyOutput @fdc_generated(from: "Activity", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Attendance` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  attendance_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Attendance_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Attendance_FirstRow
+  ): Attendance_KeyOutput @fdc_generated(from: "Attendance", purpose: DELETE_SINGLE)
+  """
   ✨ Delete a single `Career` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
   career_delete(
@@ -437,6 +1023,96 @@ extend type Mutation {
     """
     first: Department_FirstRow
   ): Department_KeyOutput @fdc_generated(from: "Department", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Participant` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  participant_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Participant_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Participant_FirstRow
+  ): Participant_KeyOutput @fdc_generated(from: "Participant", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Project` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  project_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Project_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Project_FirstRow
+  ): Project_KeyOutput @fdc_generated(from: "Project", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `ProjectCareer` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  projectCareer_delete(
+    """
+    The key used to identify the object.
+    """
+    key: ProjectCareer_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectCareer_FirstRow
+  ): ProjectCareer_KeyOutput @fdc_generated(from: "ProjectCareer", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `ProjectSchedule` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  projectSchedule_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectSchedule_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectSchedule_FirstRow
+  ): ProjectSchedule_KeyOutput @fdc_generated(from: "ProjectSchedule", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `ProjectType` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  projectType_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: ProjectType_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ProjectType_FirstRow
+  ): ProjectType_KeyOutput @fdc_generated(from: "ProjectType", purpose: DELETE_SINGLE)
   """
   ✨ Delete a single `Role` based on `id`, `key` or `first` and return its key (or `null` if not found).
   """
@@ -500,6 +1176,34 @@ extend type Mutation {
     first: User_FirstRow
   ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
   """
+  ✨ Delete `Activity` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  activity_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Activity_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Activity", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Attendance` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  attendance_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Attendance_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance", purpose: DELETE_MULTIPLE)
+  """
   ✨ Delete `Career` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
   career_deleteMany(
@@ -527,6 +1231,76 @@ extend type Mutation {
     """
     all: Boolean = false
   ): Int! @fdc_generated(from: "Department", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Participant` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  participant_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Participant_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Participant", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Project` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  project_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Project_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Project", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `ProjectCareer` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  projectCareer_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectCareer", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `ProjectSchedule` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  projectSchedule_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: ProjectSchedule_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `ProjectType` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  projectType_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: ProjectType_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectType", purpose: DELETE_MULTIPLE)
   """
   ✨ Delete `Role` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """

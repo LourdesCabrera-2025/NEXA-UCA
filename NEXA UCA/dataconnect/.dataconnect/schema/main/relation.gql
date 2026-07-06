@@ -1,4 +1,293 @@
+extend type Activity {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Activity", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Activity` table.
+  """
+  _count: Int! @fdc_generated(from: "Activity.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `approved` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  approved_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.approved", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `attendanceId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  attendanceId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.attendanceId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Activity` table where the `title` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  title_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Activity.title", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Activity` table.
+  """
+  createdAt_min: Date @fdc_generated(from: "Activity.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Activity` table.
+  """
+  createdAt_max: Date @fdc_generated(from: "Activity.createdAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Activity.id", purpose: ENTITY_ID)
+}
+extend type Attendance {
+  """
+  ✨ List `Activity` objects in a one-to-many relationship (where `Activity`.`attendance` is this object).
+  """
+  activities_on_attendance(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Activity_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Activity_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Activity_Having
+  ): [Activity!]! @fdc_generated(from: "Activity.attendance", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Attendance", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Attendance` table.
+  """
+  _count: Int! @fdc_generated(from: "Attendance.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `checkIn` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  checkIn_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.checkIn", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `checkOut` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  checkOut_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.checkOut", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `latitude` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  latitude_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.latitude", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `longitude` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  longitude_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.longitude", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `participantId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  participantId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.participantId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Attendance` table where the `status` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  status_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Attendance.status", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `latitude` field in the `Attendance` table.
+  """
+  latitude_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Attendance.latitude", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `longitude` field in the `Attendance` table.
+  """
+  longitude_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Attendance.longitude", purpose: QUERY_SUM)
+  """
+  ✨ Average the `latitude` field in the `Attendance` table.
+  """
+  latitude_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Attendance.latitude", purpose: QUERY_AVG)
+  """
+  ✨ Average the `longitude` field in the `Attendance` table.
+  """
+  longitude_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Attendance.longitude", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `checkIn` field in the `Attendance` table.
+  """
+  checkIn_min: Timestamp @fdc_generated(from: "Attendance.checkIn", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `checkOut` field in the `Attendance` table.
+  """
+  checkOut_min: Timestamp @fdc_generated(from: "Attendance.checkOut", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `latitude` field in the `Attendance` table.
+  """
+  latitude_min: Float @fdc_generated(from: "Attendance.latitude", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `longitude` field in the `Attendance` table.
+  """
+  longitude_min: Float @fdc_generated(from: "Attendance.longitude", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `checkIn` field in the `Attendance` table.
+  """
+  checkIn_max: Timestamp @fdc_generated(from: "Attendance.checkIn", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `checkOut` field in the `Attendance` table.
+  """
+  checkOut_max: Timestamp @fdc_generated(from: "Attendance.checkOut", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `latitude` field in the `Attendance` table.
+  """
+  latitude_max: Float @fdc_generated(from: "Attendance.latitude", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `longitude` field in the `Attendance` table.
+  """
+  longitude_max: Float @fdc_generated(from: "Attendance.longitude", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Attendance.id", purpose: ENTITY_ID)
+}
 extend type Career {
+  """
+  ✨ List `ProjectCareer` objects in a one-to-many relationship (where `ProjectCareer`.`career` is this object).
+  """
+  projectCareers_on_career(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectCareer_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectCareer_Having
+  ): [ProjectCareer!]! @fdc_generated(from: "ProjectCareer.career", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
   """
   ✨ List `Student` objects in a one-to-many relationship (where `Student`.`career` is this object).
   """
@@ -33,6 +322,40 @@ extend type Career {
     """
     having: Student_Having
   ): [Student!]! @fdc_generated(from: "Student.career", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Project` objects using `ProjectCareer` as the join table (a `ProjectCareer` object exists where its `career` is this and its `project` is that).
+  """
+  projects_via_ProjectCareer(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectCareer_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectCareer_Having
+  ): [Project!]! @fdc_generated(from: "ProjectCareer", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
   """
   Implicit metadata field that cannot be written. It provides extra information about query results.
   """
@@ -139,6 +462,790 @@ extend type Department {
   """
   _id: ID! @fdc_generated(from: "Department.id", purpose: ENTITY_ID)
 }
+extend type Participant {
+  """
+  ✨ List `Attendance` objects in a one-to-many relationship (where `Attendance`.`participant` is this object).
+  """
+  attendances_on_participant(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Attendance_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Attendance_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Attendance_Having
+  ): [Attendance!]! @fdc_generated(from: "Attendance.participant", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `ProjectSchedule` objects in a one-to-many relationship (where `ProjectSchedule`.`participant` is this object).
+  """
+  projectSchedules_on_participant(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectSchedule_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectSchedule_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectSchedule_Having
+  ): [ProjectSchedule!]! @fdc_generated(from: "ProjectSchedule.participant", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Participant", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Participant` table.
+  """
+  _count: Int! @fdc_generated(from: "Participant.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `accumulateHours` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  accumulateHours_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.accumulateHours", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `projectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  projectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.projectId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `registeredAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  registeredAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.registeredAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `status` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  status_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.status", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Participant` table where the `studentId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  studentId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Participant.studentId", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `accumulateHours` field in the `Participant` table.
+  """
+  accumulateHours_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Participant.accumulateHours", purpose: QUERY_SUM)
+  """
+  ✨ Average the `accumulateHours` field in the `Participant` table.
+  """
+  accumulateHours_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Participant.accumulateHours", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `accumulateHours` field in the `Participant` table.
+  """
+  accumulateHours_min: Float @fdc_generated(from: "Participant.accumulateHours", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `registeredAt` field in the `Participant` table.
+  """
+  registeredAt_min: Date @fdc_generated(from: "Participant.registeredAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `accumulateHours` field in the `Participant` table.
+  """
+  accumulateHours_max: Float @fdc_generated(from: "Participant.accumulateHours", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `registeredAt` field in the `Participant` table.
+  """
+  registeredAt_max: Date @fdc_generated(from: "Participant.registeredAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Participant.id", purpose: ENTITY_ID)
+}
+extend type Project {
+  """
+  ✨ List `Participant` objects in a one-to-many relationship (where `Participant`.`project` is this object).
+  """
+  participants_on_project(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Participant_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Participant_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Participant_Having
+  ): [Participant!]! @fdc_generated(from: "Participant.project", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `ProjectCareer` objects in a one-to-many relationship (where `ProjectCareer`.`project` is this object).
+  """
+  projectCareers_on_project(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectCareer_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectCareer_Having
+  ): [ProjectCareer!]! @fdc_generated(from: "ProjectCareer.project", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Career` objects using `ProjectCareer` as the join table (a `ProjectCareer` object exists where its `project` is this and its `career` is that).
+  """
+  careers_via_ProjectCareer(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ProjectCareer_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ProjectCareer_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ProjectCareer_Having
+  ): [Career!]! @fdc_generated(from: "ProjectCareer", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Project", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Project` table.
+  """
+  _count: Int! @fdc_generated(from: "Project.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `allowedRadius` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  allowedRadius_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.allowedRadius", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `endDate` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  endDate_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.endDate", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `isActive` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  isActive_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.isActive", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `latitude` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  latitude_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.latitude", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `longitude` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  longitude_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.longitude", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `maxHoursPerDay` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  maxHoursPerDay_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.maxHoursPerDay", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `maxStudents` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  maxStudents_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.maxStudents", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `projectTypeId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  projectTypeId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.projectTypeId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `startDate` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  startDate_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.startDate", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `supervisorId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  supervisorId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.supervisorId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Project` table where the `totalRequiredHours` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  totalRequiredHours_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Project.totalRequiredHours", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `allowedRadius` field in the `Project` table.
+  """
+  allowedRadius_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.allowedRadius", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `latitude` field in the `Project` table.
+  """
+  latitude_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.latitude", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `longitude` field in the `Project` table.
+  """
+  longitude_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.longitude", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `maxHoursPerDay` field in the `Project` table.
+  """
+  maxHoursPerDay_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Project.maxHoursPerDay", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `maxStudents` field in the `Project` table.
+  """
+  maxStudents_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Project.maxStudents", purpose: QUERY_SUM)
+  """
+  ✨ Sum the `totalRequiredHours` field in the `Project` table.
+  """
+  totalRequiredHours_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Project.totalRequiredHours", purpose: QUERY_SUM)
+  """
+  ✨ Average the `allowedRadius` field in the `Project` table.
+  """
+  allowedRadius_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.allowedRadius", purpose: QUERY_AVG)
+  """
+  ✨ Average the `latitude` field in the `Project` table.
+  """
+  latitude_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.latitude", purpose: QUERY_AVG)
+  """
+  ✨ Average the `longitude` field in the `Project` table.
+  """
+  longitude_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.longitude", purpose: QUERY_AVG)
+  """
+  ✨ Average the `maxHoursPerDay` field in the `Project` table.
+  """
+  maxHoursPerDay_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.maxHoursPerDay", purpose: QUERY_AVG)
+  """
+  ✨ Average the `maxStudents` field in the `Project` table.
+  """
+  maxStudents_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.maxStudents", purpose: QUERY_AVG)
+  """
+  ✨ Average the `totalRequiredHours` field in the `Project` table.
+  """
+  totalRequiredHours_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Project.totalRequiredHours", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `allowedRadius` field in the `Project` table.
+  """
+  allowedRadius_min: Float @fdc_generated(from: "Project.allowedRadius", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `createdAt` field in the `Project` table.
+  """
+  createdAt_min: Date @fdc_generated(from: "Project.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `endDate` field in the `Project` table.
+  """
+  endDate_min: Date @fdc_generated(from: "Project.endDate", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `latitude` field in the `Project` table.
+  """
+  latitude_min: Float @fdc_generated(from: "Project.latitude", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `longitude` field in the `Project` table.
+  """
+  longitude_min: Float @fdc_generated(from: "Project.longitude", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `maxHoursPerDay` field in the `Project` table.
+  """
+  maxHoursPerDay_min: Int @fdc_generated(from: "Project.maxHoursPerDay", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `maxStudents` field in the `Project` table.
+  """
+  maxStudents_min: Int @fdc_generated(from: "Project.maxStudents", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `startDate` field in the `Project` table.
+  """
+  startDate_min: Date @fdc_generated(from: "Project.startDate", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `totalRequiredHours` field in the `Project` table.
+  """
+  totalRequiredHours_min: Int @fdc_generated(from: "Project.totalRequiredHours", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `allowedRadius` field in the `Project` table.
+  """
+  allowedRadius_max: Float @fdc_generated(from: "Project.allowedRadius", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `createdAt` field in the `Project` table.
+  """
+  createdAt_max: Date @fdc_generated(from: "Project.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `endDate` field in the `Project` table.
+  """
+  endDate_max: Date @fdc_generated(from: "Project.endDate", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `latitude` field in the `Project` table.
+  """
+  latitude_max: Float @fdc_generated(from: "Project.latitude", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `longitude` field in the `Project` table.
+  """
+  longitude_max: Float @fdc_generated(from: "Project.longitude", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `maxHoursPerDay` field in the `Project` table.
+  """
+  maxHoursPerDay_max: Int @fdc_generated(from: "Project.maxHoursPerDay", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `maxStudents` field in the `Project` table.
+  """
+  maxStudents_max: Int @fdc_generated(from: "Project.maxStudents", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `startDate` field in the `Project` table.
+  """
+  startDate_max: Date @fdc_generated(from: "Project.startDate", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `totalRequiredHours` field in the `Project` table.
+  """
+  totalRequiredHours_max: Int @fdc_generated(from: "Project.totalRequiredHours", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Project.id", purpose: ENTITY_ID)
+}
+extend type ProjectCareer {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ProjectCareer", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ProjectCareer` table.
+  """
+  _count: Int! @fdc_generated(from: "ProjectCareer.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectCareer` table where the `careerId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  careerId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectCareer.careerId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectCareer` table where the `projectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  projectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectCareer.projectId", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "ProjectCareer.projectId,careerId", purpose: ENTITY_ID)
+}
+extend type ProjectSchedule {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ProjectSchedule", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table.
+  """
+  _count: Int! @fdc_generated(from: "ProjectSchedule.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table where the `dayOfWeek` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  dayOfWeek_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule.dayOfWeek", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table where the `endHour` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  endHour_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule.endHour", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table where the `participantId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  participantId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule.participantId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectSchedule` table where the `startHour` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  startHour_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectSchedule.startHour", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `dayOfWeek` field in the `ProjectSchedule` table.
+  """
+  dayOfWeek_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "ProjectSchedule.dayOfWeek", purpose: QUERY_SUM)
+  """
+  ✨ Average the `dayOfWeek` field in the `ProjectSchedule` table.
+  """
+  dayOfWeek_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "ProjectSchedule.dayOfWeek", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `dayOfWeek` field in the `ProjectSchedule` table.
+  """
+  dayOfWeek_min: Int @fdc_generated(from: "ProjectSchedule.dayOfWeek", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `dayOfWeek` field in the `ProjectSchedule` table.
+  """
+  dayOfWeek_max: Int @fdc_generated(from: "ProjectSchedule.dayOfWeek", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "ProjectSchedule.id", purpose: ENTITY_ID)
+}
+extend type ProjectType {
+  """
+  ✨ List `Project` objects in a one-to-many relationship (where `Project`.`projectType` is this object).
+  """
+  projects_on_projectType(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Project_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Project_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Project_Having
+  ): [Project!]! @fdc_generated(from: "Project.projectType", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ProjectType", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ProjectType` table.
+  """
+  _count: Int! @fdc_generated(from: "ProjectType.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectType` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectType.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ProjectType` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ProjectType.name", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "ProjectType.id", purpose: ENTITY_ID)
+}
 extend type Role {
   """
   ✨ List `User` objects in a one-to-many relationship (where `User`.`role` is this object).
@@ -206,6 +1313,40 @@ extend type Role {
   _id: ID! @fdc_generated(from: "Role.id", purpose: ENTITY_ID)
 }
 extend type Student {
+  """
+  ✨ List `Participant` objects in a one-to-many relationship (where `Participant`.`student` is this object).
+  """
+  participants_on_student(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Participant_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Participant_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Participant_Having
+  ): [Participant!]! @fdc_generated(from: "Participant.student", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
   """
   Implicit metadata field that cannot be written. It provides extra information about query results.
   """
@@ -282,6 +1423,40 @@ extend type Student {
   _id: ID! @fdc_generated(from: "Student.id", purpose: ENTITY_ID)
 }
 extend type User {
+  """
+  ✨ List `Project` objects in a one-to-many relationship (where `Project`.`supervisor` is this object).
+  """
+  projects_on_supervisor(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Project_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Project_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Project_Having
+  ): [Project!]! @fdc_generated(from: "Project.supervisor", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
   """
   ✨ List `Student` objects in a one-to-one relationship (where `Student`.`user` is this object).
   """

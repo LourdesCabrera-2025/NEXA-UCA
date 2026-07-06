@@ -80,9 +80,9 @@ val connector: NexaConnector = NexaConnector.getInstance(
 ### NexaConnector - Query and Mutation Properties
 
 The `nexa` Data Connect connector defines
-6 queries and
-2 mutations,
-a total of 8 operations.
+7 queries and
+4 mutations,
+a total of 11 operations.
 Each of these operations is exposed
 as a property of [NexaConnector].
 
@@ -93,8 +93,8 @@ which can be accessed via the [NexaConnector.getCareers] property.
 
 
 An example of the property for a mutation
-is the mutation named "CreateStudent",
-which can be accessed via the [NexaConnector.createStudent] property.
+is the mutation named "CreateProject",
+which can be accessed via the [NexaConnector.createProject] property.
 
 
 ### NexaConnector - The `dataConnect` Property
@@ -215,20 +215,36 @@ _Optional_ variables are specified in a Kotlin DSL block as the
 last argument of the `execute()` method.
 
 
+### Executing Mutations with No Variables
+
+If a mutation has no variables then it can be easily executed
+by calling the `execute()` method with no arguments.
+
+For example, the "SeedProjectType" mutation has no variables
+and can be executed via the
+[NexaConnector.seedProjectType]
+property as follows:
+
+```kotlin
+val connector = NexaConnector.instance
+val mutationResult = connector.seedProjectType.execute()
+println("SeedProjectType mutation returned: ${mutationResult.data}")
+```
+
 
 ### Executing Mutations with Required Variables
 
 If a mutation has _required_ variables then they must be specified as
 arguments to the `execute()` method.
 
-For example, the "CreateUser" mutation has 5 required variables ("id", "email", "fullName", "photoUrl", and "roleId")
-and can be executed via the [NexaConnector.createUser]
+For example, the "CreateProject" mutation has 11 required variables ("name", "description", "projectTypeId", "supervisorId", "startDate", "endDate", "latitude", "longitude", "allowedRadius", "maxStudents", and "totalRequiredHours")
+and can be executed via the [NexaConnector.createProject]
 property as follows:
 
 ```kotlin
 val connector = NexaConnector.instance
-val mutationResult = connector.createUser.execute(id="corge", email="qux", fullName="grault", photoUrl="qux", roleId=java.util.UUID.randomUUID())
-println("CreateUser mutation returned: ${mutationResult.data}")
+val mutationResult = connector.createProject.execute(name="waldo", description="baz", projectTypeId=java.util.UUID.randomUUID(), supervisorId="corge", startDate=LocalDate(1868, 6, 25), endDate=LocalDate(1844, 2, 7), latitude=2123.44, longitude=7064.60, allowedRadius=3376.46, maxStudents=1697, totalRequiredHours=8980)
+println("CreateProject mutation returned: ${mutationResult.data}")
 ```
 
 

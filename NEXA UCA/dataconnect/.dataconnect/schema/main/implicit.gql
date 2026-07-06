@@ -1,8 +1,56 @@
+extend type Activity {
+  """
+  ✨ Implicit foreign key field based on `Activity`.`attendance`. It must match the value of `Attendance`.`id`. See `@ref` for how to customize it.
+  """
+  attendanceId: UUID! @fdc_generated(from: "Activity.attendance", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Attendance {
+  """
+  ✨ Implicit foreign key field based on `Attendance`.`participant`. It must match the value of `Participant`.`id`. See `@ref` for how to customize it.
+  """
+  participantId: UUID! @fdc_generated(from: "Attendance.participant", purpose: IMPLICIT_REF_FIELD)
+}
 extend type Career {
   """
   ✨ Implicit foreign key field based on `Career`.`department`. It must match the value of `Department`.`id`. See `@ref` for how to customize it.
   """
   departmentId: UUID! @fdc_generated(from: "Career.department", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Participant {
+  """
+  ✨ Implicit foreign key field based on `Participant`.`project`. It must match the value of `Project`.`id`. See `@ref` for how to customize it.
+  """
+  projectId: UUID! @fdc_generated(from: "Participant.project", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Participant`.`student`. It must match the value of `Student`.`id`. See `@ref` for how to customize it.
+  """
+  studentId: UUID! @fdc_generated(from: "Participant.student", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Project {
+  """
+  ✨ Implicit foreign key field based on `Project`.`projectType`. It must match the value of `ProjectType`.`id`. See `@ref` for how to customize it.
+  """
+  projectTypeId: UUID! @fdc_generated(from: "Project.projectType", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Project`.`supervisor`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  supervisorId: String! @fdc_generated(from: "Project.supervisor", purpose: IMPLICIT_REF_FIELD)
+}
+extend type ProjectCareer {
+  """
+  ✨ Implicit foreign key field based on `ProjectCareer`.`project`. It must match the value of `Project`.`id`. See `@ref` for how to customize it.
+  """
+  projectId: UUID! @fdc_generated(from: "ProjectCareer.project", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `ProjectCareer`.`career`. It must match the value of `Career`.`id`. See `@ref` for how to customize it.
+  """
+  careerId: UUID! @fdc_generated(from: "ProjectCareer.career", purpose: IMPLICIT_REF_FIELD)
+}
+extend type ProjectSchedule {
+  """
+  ✨ Implicit foreign key field based on `ProjectSchedule`.`participant`. It must match the value of `Participant`.`id`. See `@ref` for how to customize it.
+  """
+  participantId: UUID! @fdc_generated(from: "ProjectSchedule.participant", purpose: IMPLICIT_REF_FIELD)
 }
 extend type Student {
   """

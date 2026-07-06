@@ -34,7 +34,7 @@
         "./src/context/*"
       ],
       "@dataconnect-generated/*": [
-        "./src/dataconnect-generated/*"
+        "./src/dataconnect-generated"
       ],
       "@hooks/*": [
         "./src/hooks/*"

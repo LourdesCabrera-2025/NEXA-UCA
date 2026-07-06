@@ -10,10 +10,40 @@ import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import WindowRoundedIcon from '@mui/icons-material/WindowRounded';
 import CorporateFareRoundedIcon from '@mui/icons-material/CorporateFareRounded';
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '@/services/firebase/authService';
 
 export default function Login() {
     const [selectedRole, setSelectedRole] = useState<'Supervisor' | 'Coordinador'>('Supervisor');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    const handleMicrosoftLogin = async () => {
+        setIsLoading(true);
+
+        try {
+            console.log("NEXA_DEBUG: Iniciando flujo con Microsoft.....")
+
+            const supervisorUser = await authService.loginWithMicrosoft();
+
+            console.log("NEXA_DEBUG: Acceso autorizado para supervisor:", supervisorUser);
+
+            navigate('/Dashboard');
+        } catch (error: any) {
+            console.log("NEXA_DEBUG: Error capturado en vista login", error.message);
+
+            if (error.message?.includes('ACCESO_DENEGADO')) {
+                navigate('/Unauthorized');
+            } else {
+                alert('No se pudo completar la autenticación institucional');
+            }
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     return (
         <main className='min-h-screen w-full flex flex-col lg:flex-row bg-white'>
             <div className='flex flex-col flex-1 items-center justify-center px-6 py-12 sm:px-12 lg:flex-none lg:w-1/2' id='Container'>
@@ -113,9 +143,25 @@ export default function Login() {
                         </div>
                     </div>
                     <div className='pt-2'>
-                        <Link to={"/Dashboard"} className='w-full flex items-center justify-center gap-3  text-gray-400 border border-gray-400 rounded-xl p-3 hover:bg-[#3B82F6]/4 hover:text-white hover:transition-all hover:shrink-0 cursor-pointer'>
-                            <WindowRoundedIcon sx={{ fontSize: 18 }} />
-                            <span id='span-item'>Continuar con Microsoft 365</span>
+                        <Link
+                            to={"/Dashboard"}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (!isLoading) {
+                                    handleMicrosoftLogin();
+                                }
+                            }}
+                            className={`w-full flex items-center justify-center gap-3 text-gray-400 border border-gray-400 rounded-xl p-3 hover:bg-[#3B82F6]/4 hover:text-white hover:transition-all hover:shrink-0 cursor-pointer ${isLoading ? 'opacity-40 cursor-not-allowed pointer-events-none' : ''
+                                }`}
+                        >
+                            {isLoading ? (
+                                <CircularProgress size={18} color="inherit" />
+                            ) : (
+                                <WindowRoundedIcon sx={{ fontSize: 18 }} />
+                            )}
+                            <span id='span-item'>
+                                {isLoading ? 'Autenticando...' : 'Continuar con Microsoft 365'}
+                            </span>
                         </Link>
                     </div>
                     <div className="border-t border-gray-700/60 pt-6 flex items-center gap-3 text-gray-400">

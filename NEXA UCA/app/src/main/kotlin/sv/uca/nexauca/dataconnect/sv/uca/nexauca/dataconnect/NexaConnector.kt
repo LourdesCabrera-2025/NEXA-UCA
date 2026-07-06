@@ -20,6 +20,8 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 
   
+    public val createProject: CreateProjectMutation
+  
     public val createStudent: CreateStudentMutation
   
     public val createUser: CreateUserMutation
@@ -30,11 +32,15 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val getMyStudent: GetMyStudentQuery
   
+    public val getProjectType: GetProjectTypeQuery
+  
     public val getRoleByName: GetRoleByNameQuery
   
     public val getRoles: GetRolesQuery
   
     public val getUserById: GetUserByIdQuery
+  
+    public val seedProjectType: SeedProjectTypeMutation
   
 
   public companion object {
@@ -79,6 +85,10 @@ private class NexaConnectorImpl(
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 ) : NexaConnector {
   
+    override val createProject by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateProjectMutationImpl(this)
+    }
+  
     override val createStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
       CreateStudentMutationImpl(this)
     }
@@ -99,6 +109,10 @@ private class NexaConnectorImpl(
       GetMyStudentQueryImpl(this)
     }
   
+    override val getProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectTypeQueryImpl(this)
+    }
+  
     override val getRoleByName by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetRoleByNameQueryImpl(this)
     }
@@ -111,6 +125,10 @@ private class NexaConnectorImpl(
       GetUserByIdQueryImpl(this)
     }
   
+    override val seedProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      SeedProjectTypeMutationImpl(this)
+    }
+  
 
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun operations(): List<com.google.firebase.dataconnect.generated.GeneratedOperation<NexaConnector, *, *>> =
@@ -119,8 +137,10 @@ private class NexaConnectorImpl(
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun mutations(): List<com.google.firebase.dataconnect.generated.GeneratedMutation<NexaConnector, *, *>> =
     listOf(
-      createStudent,
+      createProject,
+        createStudent,
         createUser,
+        seedProjectType,
         
     )
 
@@ -130,6 +150,7 @@ private class NexaConnectorImpl(
       getCareers,
         getDepartment,
         getMyStudent,
+        getProjectType,
         getRoleByName,
         getRoles,
         getUserById,
@@ -268,6 +289,21 @@ private open class NexaConnectorGeneratedMutationImpl<Data, Variables>(
 
 
 
+private class CreateProjectMutationImpl(
+  connector: NexaConnector
+):
+  CreateProjectMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateProjectMutation.Data,
+      CreateProjectMutation.Variables
+  >(
+    connector,
+    CreateProjectMutation.Companion.operationName,
+    CreateProjectMutation.Companion.dataDeserializer,
+    CreateProjectMutation.Companion.variablesSerializer,
+  )
+
+
 private class CreateStudentMutationImpl(
   connector: NexaConnector
 ):
@@ -343,6 +379,21 @@ private class GetMyStudentQueryImpl(
   )
 
 
+private class GetProjectTypeQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectTypeQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectTypeQuery.Data,
+      Unit
+  >(
+    connector,
+    GetProjectTypeQuery.Companion.operationName,
+    GetProjectTypeQuery.Companion.dataDeserializer,
+    GetProjectTypeQuery.Companion.variablesSerializer,
+  )
+
+
 private class GetRoleByNameQueryImpl(
   connector: NexaConnector
 ):
@@ -385,6 +436,21 @@ private class GetUserByIdQueryImpl(
     GetUserByIdQuery.Companion.operationName,
     GetUserByIdQuery.Companion.dataDeserializer,
     GetUserByIdQuery.Companion.variablesSerializer,
+  )
+
+
+private class SeedProjectTypeMutationImpl(
+  connector: NexaConnector
+):
+  SeedProjectTypeMutation,
+  NexaConnectorGeneratedMutationImpl<
+      SeedProjectTypeMutation.Data,
+      Unit
+  >(
+    connector,
+    SeedProjectTypeMutation.Companion.operationName,
+    SeedProjectTypeMutation.Companion.dataDeserializer,
+    SeedProjectTypeMutation.Companion.variablesSerializer,
   )
 
 
