@@ -64,7 +64,10 @@ fun DashboardActionCard(
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFFAFBFB)
         ),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        onClick = {
+            onClick()
+        }
     ) {
         Row(
             modifier = Modifier
