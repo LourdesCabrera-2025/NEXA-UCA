@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import sv.uca.nexauca.presentation.core.theme.Inter
 
+
 @Composable
 fun DasboardIconCard(
     colores: List<Color>,

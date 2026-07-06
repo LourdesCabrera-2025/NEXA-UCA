@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                         MainDashboardRoute -> NavEntry(key) {
                             MenuScreen(
                                 onNavigateToProductivity = {
-                                    backStack.clear()
+
                                     backStack.add(StudentProductivity)
                                 }
                             )

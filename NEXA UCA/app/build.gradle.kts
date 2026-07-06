@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.vico.compose.m3)
     implementation(libs.vico.compose.glance)
     implementation("androidx.graphics:graphics-shapes-android:1.1.0")
+    implementation("androidx.compose.material:material-icons-extended:<versión>")
+
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
