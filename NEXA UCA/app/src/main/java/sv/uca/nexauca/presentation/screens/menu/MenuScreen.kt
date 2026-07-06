@@ -45,7 +45,8 @@ import sv.uca.nexauca.presentation.core.theme.Space_Grotesk
 @Composable
 
 fun MenuScreen(
-    viewModel: MenuViewModel = viewModel()
+    viewModel: MenuViewModel = viewModel(),
+    onNavigateToProductivity : () -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
@@ -168,6 +169,9 @@ fun MenuScreen(
                         Spacer(modifier = Modifier.height(10.dp))
 
                         DashboardActionCard(
+                            onClick = {
+                                onNavigateToProductivity()
+                            },
                             Icono = {
                                 Icon(
                                     Icons.Rounded.BarChart,

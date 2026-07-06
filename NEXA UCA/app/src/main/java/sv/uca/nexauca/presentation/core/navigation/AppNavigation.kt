@@ -36,4 +36,6 @@ data object AppLoginRoute
 
 data object MainDashboardRoute
 
+@Serializable
+data object StudentProductivity
 
