@@ -1,7 +1,5 @@
 package sv.uca.nexauca.presentation.core.components.headers
 
-
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
