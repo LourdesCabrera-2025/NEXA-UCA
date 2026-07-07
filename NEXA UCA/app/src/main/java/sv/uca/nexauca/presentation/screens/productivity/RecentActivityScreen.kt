@@ -31,16 +31,7 @@ import sv.uca.nexauca.presentation.core.components.tables.FilaActividad
 import sv.uca.nexauca.presentation.core.components.tables.GrupoFechaActividad
 import sv.uca.nexauca.presentation.core.components.tables.HistorialActividadSampleData
 import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
-/**
- * Pantalla "Actividad Reciente".
- *
- * Screen de presentación pura: el filtrado por texto/estado ya viene resuelto
- * desde el ViewModel (query, estadoSeleccionado y grupos ya filtrados). Esto
- * evita desagrupar/reagrupar por fecha dentro del Composable.
- *
- * La ola (BootomWaves) va COMO PIE FIJO debajo del LazyColumn, no detrás de él,
- * para que nunca se superponga visualmente con el scroll de la lista.
- */
+
 @Composable
 fun HistorialActividadesScreen(
     estadisticas: List<EstadisticaCard>,
