@@ -25,7 +25,7 @@ import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCardSampleDa
 import sv.uca.nexauca.presentation.core.components.cards.TarjetaEstadistica
 import sv.uca.nexauca.presentation.core.components.filters.EstadoActividad
 import sv.uca.nexauca.presentation.core.components.filters.FilterTabsRow
-import sv.uca.nexauca.presentation.core.components.headers.EncabezadoNexa
+import sv.uca.nexauca.presentation.core.components.headers.HeaderNexa
 import sv.uca.nexauca.presentation.core.components.inputs.BuscadorFiltroBar
 import sv.uca.nexauca.presentation.core.components.tables.FilaActividad
 import sv.uca.nexauca.presentation.core.components.tables.GrupoFechaActividad
@@ -49,7 +49,7 @@ fun HistorialActividadesScreen(
             .background(Color.White)
     ) {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            EncabezadoNexa(
+            HeaderNexa(
                 onBackClick = onBackClick,
                 onNotificationClick = onNotificationClick
             )

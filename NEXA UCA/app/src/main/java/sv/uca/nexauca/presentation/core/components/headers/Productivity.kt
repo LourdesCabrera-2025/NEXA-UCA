@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import sv.uca.nexauca.presentation.core.theme.Inter
 
 @Composable
-fun EncabezadoNexa(
+fun HeaderNexa(
     onBackClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {}
 ) {
@@ -56,8 +56,3 @@ fun EncabezadoNexa(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun EncabezadoNexaPreview() {
-    EncabezadoNexa()
-}

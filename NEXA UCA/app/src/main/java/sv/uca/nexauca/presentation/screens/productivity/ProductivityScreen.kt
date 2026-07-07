@@ -27,7 +27,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import sv.uca.nexauca.presentation.core.components.cards.DashboardActionCard
 import sv.uca.nexauca.presentation.core.components.cards.TarjetasProgreso
 import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCard
 import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCardSampleData
@@ -35,7 +34,7 @@ import sv.uca.nexauca.presentation.core.components.cards.TarjetaEstadistica
 import sv.uca.nexauca.presentation.core.components.charts.DiaActividad
 import sv.uca.nexauca.presentation.core.components.charts.DiaActividadSampleData
 import sv.uca.nexauca.presentation.core.components.charts.TarjetaActividadSemanal
-import sv.uca.nexauca.presentation.core.components.headers.EncabezadoNexa
+import sv.uca.nexauca.presentation.core.components.headers.HeaderNexa
 import sv.uca.nexauca.presentation.core.components.tables.ActividadRecienteSampleData
 import sv.uca.nexauca.presentation.core.components.tables.TableProductivity
 import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
@@ -83,7 +82,7 @@ fun Productivity(
             .fillMaxSize()
             .background(Color(0xFFF5F6FA))
     ) {
-        EncabezadoNexa(onBackClick = onBackClick, onNotificationClick = onNotificationClick)
+        HeaderNexa(onBackClick = onBackClick, onNotificationClick = onNotificationClick)
 
         LazyColumn(
             modifier = Modifier
