@@ -27,7 +27,7 @@ data class GrupoFechaActividad(
 @Preview(showBackground = true)
 @Composable
 fun HistorialActividadPreview() {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(12.dp)) {
         HistorialActividadSampleData.grupos.forEach { grupo ->
             Text(
                 text = grupo.etiquetaFecha,
@@ -35,7 +35,7 @@ fun HistorialActividadPreview() {
                 fontFamily = Inter,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier.padding(vertical = 5.dp)
             )
             grupo.actividades.forEachIndexed { index, actividad ->
                 FilaActividad(item = actividad)

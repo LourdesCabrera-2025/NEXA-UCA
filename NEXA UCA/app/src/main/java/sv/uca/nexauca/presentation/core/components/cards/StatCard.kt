@@ -77,12 +77,12 @@ fun TarjetaEstadistica(stat: EstadisticaCard, modifier: Modifier = Modifier) {
         shape = RoundedCornerShape(14.dp)
     ) {
         Column(
-            modifier = Modifier.padding(14.dp),
+            modifier = Modifier.padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(32.dp)
                     .clip(CircleShape)
                     .background(stat.fondoIcono),
                 contentAlignment = Alignment.Center
@@ -91,13 +91,13 @@ fun TarjetaEstadistica(stat: EstadisticaCard, modifier: Modifier = Modifier) {
                     imageVector = stat.icono,
                     contentDescription = null,
                     tint = stat.colorIcono,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(16.dp)
                 )
             }
-            Spacer(Modifier.height(8.dp))
+            Spacer(Modifier.height(6.dp))
             Text(
                 text = stat.valor,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 fontFamily = Inter,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
@@ -106,7 +106,7 @@ fun TarjetaEstadistica(stat: EstadisticaCard, modifier: Modifier = Modifier) {
             lineasEtiqueta.forEachIndexed { index, linea ->
                 Text(
                     text = linea,
-                    fontSize = if (index == 0) 11.sp else 10.sp,
+                    fontSize = if (index == 0) 10.sp else 9.sp,
                     fontFamily = Inter,
                     fontWeight = FontWeight.Normal,
                     color = Color.Gray,

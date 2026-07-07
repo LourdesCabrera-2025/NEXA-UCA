@@ -39,7 +39,7 @@ import sv.uca.nexauca.presentation.core.components.charts.TarjetaActividadSemana
 import sv.uca.nexauca.presentation.core.components.headers.EncabezadoNexa
 import sv.uca.nexauca.presentation.core.components.tables.ActividadRecienteSampleData
 import sv.uca.nexauca.presentation.core.components.tables.TableProductivity
-import sv.uca.nexauca.presentation.core.components.waves.BootomWaves
+import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
 import sv.uca.nexauca.presentation.core.theme.Inter
 
 data class AccesoRapido(
@@ -150,7 +150,7 @@ fun Productivity(
                 onVerTodasClick = onVerTodasClick
             )
 
-            BootomWaves()
+            ModifiedWaveForm(modifier = Modifier.fillMaxWidth())
         }
     }
 }

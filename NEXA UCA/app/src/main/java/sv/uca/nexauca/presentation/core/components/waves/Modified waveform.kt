@@ -13,37 +13,40 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import sv.uca.nexauca.presentation.core.theme.Inter
 
+
+/**cree otro archivo de wave para no modificar el original, porque la pantalla 3 y 4 lo ocupan pero
+ * distinto a como lo vamos a ocupar en la pantalla 8 y 9
+**/
 @Composable
-fun BootomWaves (
-    modifier: Modifier = Modifier
+fun ModifiedWaveForm(
+    modifier: Modifier = Modifier,
+    height: Dp = 80.dp,
+    showLocationStatus: Boolean = true
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(300.dp)
-    ){
+            .height(height)
+    ) {
         Canvas(Modifier.fillMaxSize()) {
             val width = size.width
-            val height = size.height
+            val canvasHeight = size.height
 
             val top = Path().apply {
-                topWavePath(width, height)
+                topWavePath(width, canvasHeight)
             }
 
             val bottom = Path().apply {
-                bottomWavePath(width, height)
+                bottomWavePath(width, canvasHeight)
             }
 
             drawPath(
@@ -67,26 +70,17 @@ fun BootomWaves (
             )
         }
 
-        Row(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 40.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.LocationOff,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(18.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "Ubicación no activa",
-                color = Color.White,
-                fontSize = 14.sp,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Medium
-            )
+        if (showLocationStatus) {
+            Row(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+            }
         }
     }
 }
