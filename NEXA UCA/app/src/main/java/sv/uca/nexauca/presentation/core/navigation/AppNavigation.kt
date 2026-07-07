@@ -39,3 +39,6 @@ data object MainDashboardRoute
 @Serializable
 data object StudentProductivity
 
+
+@Serializable
+data object RecentActivityRoute

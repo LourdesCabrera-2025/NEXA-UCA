@@ -11,8 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoGraph
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -86,72 +85,74 @@ fun Productivity(
     ) {
         EncabezadoNexa(onBackClick = onBackClick, onNotificationClick = onNotificationClick)
 
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
         ) {
-            Spacer(Modifier.height(12.dp))
+            item {
+                Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                    Spacer(Modifier.height(12.dp))
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = "Mi Productividad",
-                    fontSize = 18.sp,
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black
-                )
-                Spacer(Modifier.width(6.dp))
-                Icon(
-                    imageVector = Icons.Filled.AutoGraph,
-                    contentDescription = null,
-                    tint = Color(0xFF372aac),
-                    modifier = Modifier.size(16.dp)
-                )
-            }
-            Text(
-                text = "Revisa tu avance y actividades registradas.",
-                fontSize = 12.sp,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Normal,
-                color = Color.Gray
-            )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "Mi Productividad",
+                            fontSize = 18.sp,
+                            fontFamily = Inter,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.Black
+                        )
+                        Spacer(Modifier.width(6.dp))
+                        Icon(
+                            imageVector = Icons.Filled.AutoGraph,
+                            contentDescription = null,
+                            tint = Color(0xFF372aac),
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                    Text(
+                        text = "Revisa tu avance y actividades registradas.",
+                        fontSize = 12.sp,
+                        fontFamily = Inter,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.Gray
+                    )
 
-            Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(16.dp))
 
-            TarjetasProgreso(
-                horasInternasCompletadas = horasInternasCompletadas,
-                horasInternasTotal = horasInternasTotal,
-                horasExternasCompletadas = horasExternasCompletadas,
-                horasExternasTotal = horasExternasTotal
-            )
+                    TarjetasProgreso(
+                        horasInternasCompletadas = horasInternasCompletadas,
+                        horasInternasTotal = horasInternasTotal,
+                        horasExternasCompletadas = horasExternasCompletadas,
+                        horasExternasTotal = horasExternasTotal
+                    )
 
-            Spacer(Modifier.height(12.dp))
+                    Spacer(Modifier.height(12.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                estadisticas.forEach { stat ->
-                    TarjetaEstadistica(stat = stat, modifier = Modifier.weight(1f))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        estadisticas.forEach { stat ->
+                            TarjetaEstadistica(stat = stat, modifier = Modifier.weight(1f))
+                        }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    TarjetaActividadSemanal(dias = actividadSemanal)
+
+                    Spacer(Modifier.height(12.dp))
+
+                    TableProductivity(
+                        items = ActividadRecienteSampleData.items,
+                        onVerTodasClick = onVerTodasClick
+                    )
                 }
             }
-
-            Spacer(Modifier.height(12.dp))
-
-            TarjetaActividadSemanal(dias = actividadSemanal)
-
-            Spacer(Modifier.height(12.dp))
-
-            TableProductivity(
-                items = ActividadRecienteSampleData.items,
-                onVerTodasClick = onVerTodasClick
-            )
-
-            ModifiedWaveForm(modifier = Modifier.fillMaxWidth())
         }
+
+        ModifiedWaveForm(modifier = Modifier.fillMaxWidth())
     }
 }
 
