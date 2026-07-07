@@ -12,11 +12,13 @@ import androidx.navigation3.ui.NavDisplay
 import com.google.firebase.auth.FirebaseAuth
 import sv.uca.nexauca.presentation.core.navigation.AppLoginRoute
 import sv.uca.nexauca.presentation.core.navigation.MainDashboardRoute
+import sv.uca.nexauca.presentation.core.navigation.SettingsAccount
 import sv.uca.nexauca.presentation.core.navigation.SplashRoute
 import sv.uca.nexauca.presentation.core.navigation.StudentProductivity
 import sv.uca.nexauca.presentation.screens.login.LoginScreen
 import sv.uca.nexauca.presentation.screens.menu.MenuScreen
 import sv.uca.nexauca.presentation.screens.productivity.Productivity
+import sv.uca.nexauca.presentation.screens.settings.Settings
 import sv.uca.nexauca.presentation.screens.splash.SplashScreen
 
 
@@ -71,14 +73,29 @@ class MainActivity : ComponentActivity() {
                         MainDashboardRoute -> NavEntry(key) {
                             MenuScreen(
                                 onNavigateToProductivity = {
-                                    backStack.clear()
                                     backStack.add(StudentProductivity)
+                                },
+
+                                onNavigateToSettings = {
+                                    backStack.add(SettingsAccount)
                                 }
                             )
                         }
 
                         StudentProductivity -> NavEntry(key) {
-                            Productivity()
+                            Productivity();
+                        }
+
+                        SettingsAccount ->  NavEntry(key) {
+                            Settings(
+                                onNavigateToHome = {
+                                    backStack.add(MainDashboardRoute)
+                                },
+                                onNavigateToLogin = {
+                                    backStack.clear()
+                                    backStack.add(AppLoginRoute)
+                                }
+                            );
                         }
                         else -> error("Ruta desconocida: $key")
                     }

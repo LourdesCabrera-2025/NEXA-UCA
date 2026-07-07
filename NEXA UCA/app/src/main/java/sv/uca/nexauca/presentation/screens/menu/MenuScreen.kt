@@ -19,13 +19,16 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.rounded.AvTimer
 import androidx.compose.material.icons.rounded.BarChart
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,12 +44,14 @@ import sv.uca.nexauca.presentation.core.components.cards.DashboardActionCard
 import sv.uca.nexauca.presentation.core.components.waves.BootomWaves
 import sv.uca.nexauca.presentation.core.theme.Inter
 import sv.uca.nexauca.presentation.core.theme.Space_Grotesk
+import sv.uca.nexauca.presentation.core.utils.getInitials
 
 @Composable
 
 fun MenuScreen(
     viewModel: MenuViewModel = viewModel(),
-    onNavigateToProductivity : () -> Unit
+    onNavigateToProductivity: () -> Unit,
+    onNavigateToSettings: () -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
@@ -73,17 +78,26 @@ fun MenuScreen(
             ) {
                 Row(
                     modifier = Modifier
+
                         .padding(horizontal = 16.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = Icons.Filled.Settings,
-                        contentDescription = "settings",
-                        modifier = Modifier.size(26.dp),
-                        tint = Color(0xFF022873)
-                    )
+
+                    IconButton(
+                        onClick = {
+                            onNavigateToSettings()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = "settings",
+                            modifier = Modifier.size(26.dp),
+                            tint = Color(0xFF022873),
+                        )
+                    }
+
                     Text(
                         text = "NEXA UCA",
                         fontSize = 32.sp,
@@ -113,21 +127,37 @@ fun MenuScreen(
                         Box(
                             modifier = Modifier
                                 .size(75.dp)
-                                .background(
-                                    Color.Gray,
-                                    shape = CircleShape
-                                ),
+                                .clip(RoundedCornerShape(16.dp)),
                             contentAlignment = Alignment.Center
                         ) {
-                            AsyncImage(
-                                model = dataStudentsItem.user.photoUrl,
-                                contentDescription = "perfil",
-                                modifier = Modifier
-                                    .width(75.dp)
-                                    .height(100.dp)
-                                    .clip(RoundedCornerShape(16.dp)),
-                                contentScale = ContentScale.Crop
-                            )
+                            val initials = remember(dataStudentsItem.user.fullName) { getInitials(dataStudentsItem.user.fullName) }
+                            if(!dataStudentsItem.user.photoUrl.isNullOrBlank()) {
+                                AsyncImage(
+                                    model = dataStudentsItem.user.photoUrl,
+                                    contentDescription = "perfil",
+                                    modifier = Modifier
+                                        .width(75.dp)
+                                        .height(100.dp)
+                                        .clip(RoundedCornerShape(16.dp)),
+                                    contentScale = ContentScale.Crop
+                                )
+                            } else {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color(0xFF6750A4)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = initials,
+                                        color = Color.White,
+                                        fontSize = 22.sp,
+                                        fontFamily = Inter,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+
+                            }
                         }
 
                         Column(
@@ -181,7 +211,7 @@ fun MenuScreen(
                             },
                             colorIcono = listOf(Color(0xFF0069a8), Color(0xFF0084d1)),
                             titulo = "Mi Productividad",
-                            description = "Consulte sus estaadisticas, avance y reportes"
+                            description = "Consulte sus estadisticas, avance y reportes"
                         )
                         Spacer(modifier = Modifier.height(10.dp))
 
