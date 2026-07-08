@@ -28,10 +28,10 @@ import sv.uca.nexauca.presentation.screens.productivity.HistorialActividadesScre
 import sv.uca.nexauca.presentation.screens.productivity.Productivity
 import sv.uca.nexauca.presentation.screens.settings.Settings
 import sv.uca.nexauca.presentation.screens.splash.SplashScreen
-import sv.uca.nexauca.presentation.screens.productivity.HistorialActividadesViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import sv.uca.nexauca.presentation.screens.productivity.HistorialActividadesViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,12 +117,11 @@ class MainActivity : ComponentActivity() {
                                     onQueryChange = viewModel::onQueryChange,
                                     estadoSeleccionado = uiState.estadoSeleccionado,
                                     onEstadoSelected = viewModel::onEstadoSelected,
-                                    ordenSeleccionado = uiState.ordenSeleccionado,
-                                    onOrdenSelected = viewModel::onOrdenSelected,
-                                    onLimpiarFiltros = viewModel::onLimpiarFiltros,
                                     onBackClick = { backStack.removeLastOrNull() }
                                 )
                             }
+
+
 
 
 

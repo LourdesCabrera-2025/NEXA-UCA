@@ -16,7 +16,6 @@ import sv.uca.nexauca.data.repositories.impl.ProductividadRepositoryImpl
 import sv.uca.nexauca.data.services.auth.AuthService
 import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCard
 import sv.uca.nexauca.presentation.core.components.filters.EstadoActividad
-import sv.uca.nexauca.presentation.core.components.filters.OrdenActividad
 import sv.uca.nexauca.presentation.core.components.tables.GrupoFechaActividad
 import sv.uca.nexauca.presentation.core.state.ResultState
 import java.text.SimpleDateFormat
@@ -31,7 +30,6 @@ data class HistorialUiState(
     val grupos: List<GrupoFechaActividad> = emptyList(),
     val query: String = "",
     val estadoSeleccionado: EstadoActividad = EstadoActividad.TODAS,
-    val ordenSeleccionado: OrdenActividad = OrdenActividad.RECIENTE,
     val errorMessage: String? = null
 )
 
@@ -88,24 +86,9 @@ class HistorialActividadesViewModel : ViewModel() {
         recalcular()
     }
 
-    fun onOrdenSelected(orden: OrdenActividad) {
-        _uiState.value = _uiState.value.copy(ordenSeleccionado = orden)
-        recalcular()
-    }
-
-    fun onLimpiarFiltros() {
-        _uiState.value = _uiState.value.copy(
-            query = "",
-            estadoSeleccionado = EstadoActividad.TODAS,
-            ordenSeleccionado = OrdenActividad.RECIENTE
-        )
-        recalcular()
-    }
-
     private fun recalcular() {
         val query = _uiState.value.query
         val estado = _uiState.value.estadoSeleccionado
-        val orden = _uiState.value.ordenSeleccionado
 
         val filtradas = actividadesCompletas.filter { item ->
             val coincideTexto = query.isBlank() ||
@@ -116,16 +99,14 @@ class HistorialActividadesViewModel : ViewModel() {
                 EstadoActividad.TODAS -> true
                 EstadoActividad.APROBADAS -> item.approved
                 EstadoActividad.PENDIENTES -> !item.approved
-                EstadoActividad.RECHAZADAS -> false // no existe este estado en la base todavía
+                EstadoActividad.RECHAZADAS -> false // aún no existe en la base
             }
 
             coincideTexto && coincideEstado
         }
 
-        val ordenadas = when (orden) {
-            OrdenActividad.RECIENTE -> filtradas.sortedByDescending { it.checkIn.toDate() }
-            OrdenActividad.ANTIGUO -> filtradas.sortedBy { it.checkIn.toDate() }
-        }
+        // Orden fijo: más recientes primero
+        val ordenadas = filtradas.sortedByDescending { it.checkIn.toDate() }
 
         val aprobadas = actividadesCompletas.count { it.approved }
         val pendientes = actividadesCompletas.count { !it.approved }
