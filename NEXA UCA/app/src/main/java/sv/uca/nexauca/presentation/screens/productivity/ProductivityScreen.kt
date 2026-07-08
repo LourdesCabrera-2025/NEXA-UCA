@@ -112,7 +112,11 @@ fun Productivity(
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         uiState.toEstadisticaCards().forEach { stat ->
-                            TarjetaEstadistica(stat = stat, modifier = Modifier.weight(1f))
+                            TarjetaEstadistica(
+                                stat = stat,
+                                modifier = Modifier.weight(1f)
+                                    .height(100.dp)
+                            )
                         }
                     }
 
