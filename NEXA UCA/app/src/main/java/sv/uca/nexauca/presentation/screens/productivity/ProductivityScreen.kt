@@ -14,69 +14,38 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoGraph
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.History
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import sv.uca.nexauca.presentation.core.components.cards.TarjetasProgreso
-import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCard
-import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCardSampleData
 import sv.uca.nexauca.presentation.core.components.cards.TarjetaEstadistica
-import sv.uca.nexauca.presentation.core.components.charts.DiaActividad
-import sv.uca.nexauca.presentation.core.components.charts.DiaActividadSampleData
 import sv.uca.nexauca.presentation.core.components.charts.TarjetaActividadSemanal
 import sv.uca.nexauca.presentation.core.components.headers.HeaderNexa
-import sv.uca.nexauca.presentation.core.components.tables.ActividadRecienteSampleData
 import sv.uca.nexauca.presentation.core.components.tables.TableProductivity
 import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
 import sv.uca.nexauca.presentation.core.theme.Inter
-
-data class AccesoRapido(
-    val icono: ImageVector,
-    val colores: List<Color>,
-    val titulo: String,
-    val descripcion: String,
-    val onClick: () -> Unit = {}
-)
-
-object AccesoRapidoSampleData {
-    val items = listOf(
-        AccesoRapido(
-            icono = Icons.Filled.CalendarMonth,
-            colores = listOf(Color(0xFF372aac), Color(0xFF51a2ff)),
-            titulo = "Registrar horas",
-            descripcion = "Añade una nueva actividad o registro de horas"
-        ),
-        AccesoRapido(
-            icono = Icons.Filled.History,
-            colores = listOf(Color(0xFF16A34A), Color(0xFF4ADE80)),
-            titulo = "Historial completo",
-            descripcion = "Revisa todas tus actividades registradas"
-        )
-    )
-}
+import sv.uca.nexauca.data.mappers.toDiasActividad
+import sv.uca.nexauca.data.mappers.toEstadisticaCards
+import sv.uca.nexauca.data.mappers.toActividadReciente
 
 @Composable
 fun Productivity(
-    horasInternasCompletadas: Int = 50,
-    horasInternasTotal: Int = 300,
-    horasExternasCompletadas: Int = 178,
-    horasExternasTotal: Int = 300,
-    estadisticas: List<EstadisticaCard> = EstadisticaCardSampleData.items,
-    actividadSemanal: List<DiaActividad> = DiaActividadSampleData.items,
+    viewModel: ProductividadViewModel = viewModel(),
     onBackClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {},
     onVerTodasClick: () -> Unit = {}
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -119,11 +88,21 @@ fun Productivity(
 
                     Spacer(Modifier.height(16.dp))
 
+                    if (uiState.errorMessage != null) {
+                        Text(
+                            text = uiState.errorMessage ?: "",
+                            color = Color.Red,
+                            fontSize = 12.sp,
+                            fontFamily = Inter
+                        )
+                        Spacer(Modifier.height(12.dp))
+                    }
+
                     TarjetasProgreso(
-                        horasInternasCompletadas = horasInternasCompletadas,
-                        horasInternasTotal = horasInternasTotal,
-                        horasExternasCompletadas = horasExternasCompletadas,
-                        horasExternasTotal = horasExternasTotal
+                        horasInternasCompletadas = uiState.horasInternas.toInt(),
+                        horasInternasTotal = uiState.metaHoras,
+                        horasExternasCompletadas = uiState.horasExternas.toInt(),
+                        horasExternasTotal = uiState.metaHoras
                     )
 
                     Spacer(Modifier.height(12.dp))
@@ -132,19 +111,19 @@ fun Productivity(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
-                        estadisticas.forEach { stat ->
+                        uiState.toEstadisticaCards().forEach { stat ->
                             TarjetaEstadistica(stat = stat, modifier = Modifier.weight(1f))
                         }
                     }
 
                     Spacer(Modifier.height(12.dp))
 
-                    TarjetaActividadSemanal(dias = actividadSemanal)
+                    TarjetaActividadSemanal(dias = uiState.toDiasActividad())
 
                     Spacer(Modifier.height(12.dp))
 
                     TableProductivity(
-                        items = ActividadRecienteSampleData.items,
+                        items = uiState.actividadReciente.toActividadReciente(),
                         onVerTodasClick = onVerTodasClick
                     )
                 }
@@ -153,10 +132,4 @@ fun Productivity(
 
         ModifiedWaveForm(modifier = Modifier.fillMaxWidth())
     }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF, heightDp = 900)
-@Composable
-private fun PantallaProductividadPreview() {
-    Productivity()
 }
