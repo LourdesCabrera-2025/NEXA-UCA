@@ -41,3 +41,12 @@ data object StudentProductivity
 
 @Serializable
 data object SettingsAccount
+
+@Serializable
+data object WaitValidationRoute
+
+@Serializable
+data object AttendanceRoute
+
+@Serializable
+data object ActivityRoute

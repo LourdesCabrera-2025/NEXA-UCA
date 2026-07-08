@@ -1,0 +1,19 @@
+query GetActiveAttendance(
+    $participantId: UUID!
+) @auth(level: USER) {
+    attendances(
+        where: {
+            participantId: { eq: $participantId }
+            status: { eq: "ACTIVE" }
+        }
+        limit: 1
+    ) {
+        id
+        participantId
+        checkIn
+        checkOut
+        latitude
+        longitude
+        status
+    }
+}

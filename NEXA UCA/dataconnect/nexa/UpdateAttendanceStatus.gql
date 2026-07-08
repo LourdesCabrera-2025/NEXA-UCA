@@ -1,0 +1,11 @@
+mutation UpdateAttendanceStatus(
+    $id: UUID!
+    $status: String!
+) @auth(level: USER) {
+    attendance_update(
+        id: $id
+        data: {
+            status: $status
+        }
+    )
+}

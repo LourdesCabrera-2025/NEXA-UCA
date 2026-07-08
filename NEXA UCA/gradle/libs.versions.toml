@@ -18,6 +18,12 @@ firebaseBom = "34.13.0"
 sonner = "0.3.9"
 coil = "2.6.0"
 vico = "3.2.3"
+ktor = "3.5.1"
+room = "2.8.4"
+ksp = "2.3.9"
+playServicesLocation = "21.4.0"
+coil3 = "3.4.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,8 +61,21 @@ vico-compose-m2 = {group = "com.patrykandpatrick.vico", name="compose-m2", versi
 vico-compose-m3 = {group = "com.patrykandpatrick.vico", name="compose-m3", version.ref="vico"}
 vico-compose-glance = {group = "com.patrykandpatrick.vico", name="compose-glance", version.ref="vico"}
 
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil3" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+
+room-runtime  = { group = "androidx.room", name = "room-runtime",  version.ref = "room" }
+room-ktx      = { group = "androidx.room", name = "room-ktx",      version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-serialization =  {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

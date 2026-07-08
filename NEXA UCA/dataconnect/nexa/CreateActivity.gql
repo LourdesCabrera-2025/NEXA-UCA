@@ -1,0 +1,13 @@
+mutation CreateActivity(
+    $attendanceId: UUID!
+    $title: String!
+    $description: String!
+) @auth(level: USER) {
+    activity_insert(
+        data: {
+            attendanceId: $attendanceId
+            title: $title
+            description: $description
+        }
+    )
+}

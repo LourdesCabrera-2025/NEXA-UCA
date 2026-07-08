@@ -1,0 +1,25 @@
+query GetParticipantValidation(
+    $studentId: UUID!
+) @auth(level: USER) {
+    participants(
+        where: {
+            studentId: { eq: $studentId }
+        }
+        limit: 1
+    ) {
+        id
+        status
+        accumulateHours
+
+        project {
+            id
+            name
+            latitude
+            longitude
+            allowedRadius
+            maxHoursPerDay
+            totalRequiredHours
+            isActive
+        }
+    }
+}

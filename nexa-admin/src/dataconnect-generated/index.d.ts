@@ -388,6 +388,42 @@ export interface User_Key {
   __typename?: 'User_Key';
 }
 
+interface CreateProjectScheduleRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CreateProjectScheduleVariables): MutationRef<CreateProjectScheduleData, CreateProjectScheduleVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CreateProjectScheduleVariables): MutationRef<CreateProjectScheduleData, CreateProjectScheduleVariables>;
+  operationName: string;
+}
+export const createProjectScheduleRef: CreateProjectScheduleRef;
+
+export function createProjectSchedule(vars: CreateProjectScheduleVariables): MutationPromise<CreateProjectScheduleData, CreateProjectScheduleVariables>;
+export function createProjectSchedule(dc: DataConnect, vars: CreateProjectScheduleVariables): MutationPromise<CreateProjectScheduleData, CreateProjectScheduleVariables>;
+
+interface DeleteProjectScheduleRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: DeleteProjectScheduleVariables): MutationRef<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: DeleteProjectScheduleVariables): MutationRef<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
+  operationName: string;
+}
+export const deleteProjectScheduleRef: DeleteProjectScheduleRef;
+
+export function deleteProjectSchedule(vars: DeleteProjectScheduleVariables): MutationPromise<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
+export function deleteProjectSchedule(dc: DataConnect, vars: DeleteProjectScheduleVariables): MutationPromise<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
+
+interface GetCareersRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<GetCareersData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<GetCareersData, undefined>;
+  operationName: string;
+}
+export const getCareersRef: GetCareersRef;
+
+export function getCareers(options?: ExecuteQueryOptions): QueryPromise<GetCareersData, undefined>;
+export function getCareers(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetCareersData, undefined>;
+
 interface GetDepartmentRef {
   /* Allow users to create refs without passing in DataConnect */
   (): QueryRef<GetDepartmentData, undefined>;
@@ -399,18 +435,6 @@ export const getDepartmentRef: GetDepartmentRef;
 
 export function getDepartment(options?: ExecuteQueryOptions): QueryPromise<GetDepartmentData, undefined>;
 export function getDepartment(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetDepartmentData, undefined>;
-
-interface GetProjectCareersRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: GetProjectCareersVariables): QueryRef<GetProjectCareersData, GetProjectCareersVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: GetProjectCareersVariables): QueryRef<GetProjectCareersData, GetProjectCareersVariables>;
-  operationName: string;
-}
-export const getProjectCareersRef: GetProjectCareersRef;
-
-export function getProjectCareers(vars: GetProjectCareersVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectCareersData, GetProjectCareersVariables>;
-export function getProjectCareers(dc: DataConnect, vars: GetProjectCareersVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectCareersData, GetProjectCareersVariables>;
 
 interface GetProjectScheduleByParticipantRef {
   /* Allow users to create refs without passing in DataConnect */
@@ -424,6 +448,30 @@ export const getProjectScheduleByParticipantRef: GetProjectScheduleByParticipant
 export function getProjectScheduleByParticipant(vars: GetProjectScheduleByParticipantVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectScheduleByParticipantData, GetProjectScheduleByParticipantVariables>;
 export function getProjectScheduleByParticipant(dc: DataConnect, vars: GetProjectScheduleByParticipantVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectScheduleByParticipantData, GetProjectScheduleByParticipantVariables>;
 
+interface GetProjectTypeRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<GetProjectTypeData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<GetProjectTypeData, undefined>;
+  operationName: string;
+}
+export const getProjectTypeRef: GetProjectTypeRef;
+
+export function getProjectType(options?: ExecuteQueryOptions): QueryPromise<GetProjectTypeData, undefined>;
+export function getProjectType(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectTypeData, undefined>;
+
+interface GetMyStudentRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<GetMyStudentData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<GetMyStudentData, undefined>;
+  operationName: string;
+}
+export const getMyStudentRef: GetMyStudentRef;
+
+export function getMyStudent(options?: ExecuteQueryOptions): QueryPromise<GetMyStudentData, undefined>;
+export function getMyStudent(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetMyStudentData, undefined>;
+
 interface CreateProjectRef {
   /* Allow users to create refs without passing in DataConnect */
   (vars: CreateProjectVariables): MutationRef<CreateProjectData, CreateProjectVariables>;
@@ -435,6 +483,66 @@ export const createProjectRef: CreateProjectRef;
 
 export function createProject(vars: CreateProjectVariables): MutationPromise<CreateProjectData, CreateProjectVariables>;
 export function createProject(dc: DataConnect, vars: CreateProjectVariables): MutationPromise<CreateProjectData, CreateProjectVariables>;
+
+interface GetProjectByIdRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: GetProjectByIdVariables): QueryRef<GetProjectByIdData, GetProjectByIdVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: GetProjectByIdVariables): QueryRef<GetProjectByIdData, GetProjectByIdVariables>;
+  operationName: string;
+}
+export const getProjectByIdRef: GetProjectByIdRef;
+
+export function getProjectById(vars: GetProjectByIdVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectByIdData, GetProjectByIdVariables>;
+export function getProjectById(dc: DataConnect, vars: GetProjectByIdVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectByIdData, GetProjectByIdVariables>;
+
+interface GetProjectSchedulesRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<GetProjectSchedulesData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<GetProjectSchedulesData, undefined>;
+  operationName: string;
+}
+export const getProjectSchedulesRef: GetProjectSchedulesRef;
+
+export function getProjectSchedules(options?: ExecuteQueryOptions): QueryPromise<GetProjectSchedulesData, undefined>;
+export function getProjectSchedules(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectSchedulesData, undefined>;
+
+interface GetProjectsRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): QueryRef<GetProjectsData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): QueryRef<GetProjectsData, undefined>;
+  operationName: string;
+}
+export const getProjectsRef: GetProjectsRef;
+
+export function getProjects(options?: ExecuteQueryOptions): QueryPromise<GetProjectsData, undefined>;
+export function getProjects(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectsData, undefined>;
+
+interface SeedProjectScheduleRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (): MutationRef<SeedProjectScheduleData, undefined>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect): MutationRef<SeedProjectScheduleData, undefined>;
+  operationName: string;
+}
+export const seedProjectScheduleRef: SeedProjectScheduleRef;
+
+export function seedProjectSchedule(): MutationPromise<SeedProjectScheduleData, undefined>;
+export function seedProjectSchedule(dc: DataConnect): MutationPromise<SeedProjectScheduleData, undefined>;
+
+interface UpdateProjectScheduleRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: UpdateProjectScheduleVariables): MutationRef<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: UpdateProjectScheduleVariables): MutationRef<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
+  operationName: string;
+}
+export const updateProjectScheduleRef: UpdateProjectScheduleRef;
+
+export function updateProjectSchedule(vars: UpdateProjectScheduleVariables): MutationPromise<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
+export function updateProjectSchedule(dc: DataConnect, vars: UpdateProjectScheduleVariables): MutationPromise<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
 
 interface GetUserByIdRef {
   /* Allow users to create refs without passing in DataConnect */
@@ -472,17 +580,17 @@ export const createStudentRef: CreateStudentRef;
 export function createStudent(vars: CreateStudentVariables): MutationPromise<CreateStudentData, CreateStudentVariables>;
 export function createStudent(dc: DataConnect, vars: CreateStudentVariables): MutationPromise<CreateStudentData, CreateStudentVariables>;
 
-interface GetProjectTypeRef {
+interface GetParticipantsByProjectRef {
   /* Allow users to create refs without passing in DataConnect */
-  (): QueryRef<GetProjectTypeData, undefined>;
+  (vars: GetParticipantsByProjectVariables): QueryRef<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
   /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): QueryRef<GetProjectTypeData, undefined>;
+  (dc: DataConnect, vars: GetParticipantsByProjectVariables): QueryRef<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
   operationName: string;
 }
-export const getProjectTypeRef: GetProjectTypeRef;
+export const getParticipantsByProjectRef: GetParticipantsByProjectRef;
 
-export function getProjectType(options?: ExecuteQueryOptions): QueryPromise<GetProjectTypeData, undefined>;
-export function getProjectType(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectTypeData, undefined>;
+export function getParticipantsByProject(vars: GetParticipantsByProjectVariables, options?: ExecuteQueryOptions): QueryPromise<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
+export function getParticipantsByProject(dc: DataConnect, vars: GetParticipantsByProjectVariables, options?: ExecuteQueryOptions): QueryPromise<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
 
 interface GetRolesRef {
   /* Allow users to create refs without passing in DataConnect */
@@ -496,18 +604,6 @@ export const getRolesRef: GetRolesRef;
 export function getRoles(options?: ExecuteQueryOptions): QueryPromise<GetRolesData, undefined>;
 export function getRoles(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetRolesData, undefined>;
 
-interface GetMyStudentRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (): QueryRef<GetMyStudentData, undefined>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): QueryRef<GetMyStudentData, undefined>;
-  operationName: string;
-}
-export const getMyStudentRef: GetMyStudentRef;
-
-export function getMyStudent(options?: ExecuteQueryOptions): QueryPromise<GetMyStudentData, undefined>;
-export function getMyStudent(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetMyStudentData, undefined>;
-
 interface SeedParticipantsRef {
   /* Allow users to create refs without passing in DataConnect */
   (): MutationRef<SeedParticipantsData, undefined>;
@@ -520,77 +616,17 @@ export const seedParticipantsRef: SeedParticipantsRef;
 export function seedParticipants(): MutationPromise<SeedParticipantsData, undefined>;
 export function seedParticipants(dc: DataConnect): MutationPromise<SeedParticipantsData, undefined>;
 
-interface CreateProjectCareerRef {
+interface GetProjectCareersRef {
   /* Allow users to create refs without passing in DataConnect */
-  (vars: CreateProjectCareerVariables): MutationRef<CreateProjectCareerData, CreateProjectCareerVariables>;
+  (vars: GetProjectCareersVariables): QueryRef<GetProjectCareersData, GetProjectCareersVariables>;
   /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: CreateProjectCareerVariables): MutationRef<CreateProjectCareerData, CreateProjectCareerVariables>;
+  (dc: DataConnect, vars: GetProjectCareersVariables): QueryRef<GetProjectCareersData, GetProjectCareersVariables>;
   operationName: string;
 }
-export const createProjectCareerRef: CreateProjectCareerRef;
+export const getProjectCareersRef: GetProjectCareersRef;
 
-export function createProjectCareer(vars: CreateProjectCareerVariables): MutationPromise<CreateProjectCareerData, CreateProjectCareerVariables>;
-export function createProjectCareer(dc: DataConnect, vars: CreateProjectCareerVariables): MutationPromise<CreateProjectCareerData, CreateProjectCareerVariables>;
-
-interface UpdateProjectScheduleRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: UpdateProjectScheduleVariables): MutationRef<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: UpdateProjectScheduleVariables): MutationRef<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
-  operationName: string;
-}
-export const updateProjectScheduleRef: UpdateProjectScheduleRef;
-
-export function updateProjectSchedule(vars: UpdateProjectScheduleVariables): MutationPromise<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
-export function updateProjectSchedule(dc: DataConnect, vars: UpdateProjectScheduleVariables): MutationPromise<UpdateProjectScheduleData, UpdateProjectScheduleVariables>;
-
-interface DeleteProjectScheduleRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: DeleteProjectScheduleVariables): MutationRef<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: DeleteProjectScheduleVariables): MutationRef<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
-  operationName: string;
-}
-export const deleteProjectScheduleRef: DeleteProjectScheduleRef;
-
-export function deleteProjectSchedule(vars: DeleteProjectScheduleVariables): MutationPromise<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
-export function deleteProjectSchedule(dc: DataConnect, vars: DeleteProjectScheduleVariables): MutationPromise<DeleteProjectScheduleData, DeleteProjectScheduleVariables>;
-
-interface GetCareersRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (): QueryRef<GetCareersData, undefined>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): QueryRef<GetCareersData, undefined>;
-  operationName: string;
-}
-export const getCareersRef: GetCareersRef;
-
-export function getCareers(options?: ExecuteQueryOptions): QueryPromise<GetCareersData, undefined>;
-export function getCareers(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetCareersData, undefined>;
-
-interface GetParticipantsByProjectRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: GetParticipantsByProjectVariables): QueryRef<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: GetParticipantsByProjectVariables): QueryRef<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
-  operationName: string;
-}
-export const getParticipantsByProjectRef: GetParticipantsByProjectRef;
-
-export function getParticipantsByProject(vars: GetParticipantsByProjectVariables, options?: ExecuteQueryOptions): QueryPromise<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
-export function getParticipantsByProject(dc: DataConnect, vars: GetParticipantsByProjectVariables, options?: ExecuteQueryOptions): QueryPromise<GetParticipantsByProjectData, GetParticipantsByProjectVariables>;
-
-interface GetProjectByIdRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: GetProjectByIdVariables): QueryRef<GetProjectByIdData, GetProjectByIdVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: GetProjectByIdVariables): QueryRef<GetProjectByIdData, GetProjectByIdVariables>;
-  operationName: string;
-}
-export const getProjectByIdRef: GetProjectByIdRef;
-
-export function getProjectById(vars: GetProjectByIdVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectByIdData, GetProjectByIdVariables>;
-export function getProjectById(dc: DataConnect, vars: GetProjectByIdVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectByIdData, GetProjectByIdVariables>;
+export function getProjectCareers(vars: GetProjectCareersVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectCareersData, GetProjectCareersVariables>;
+export function getProjectCareers(dc: DataConnect, vars: GetProjectCareersVariables, options?: ExecuteQueryOptions): QueryPromise<GetProjectCareersData, GetProjectCareersVariables>;
 
 interface GetRoleByNameRef {
   /* Allow users to create refs without passing in DataConnect */
@@ -604,53 +640,17 @@ export const getRoleByNameRef: GetRoleByNameRef;
 export function getRoleByName(vars: GetRoleByNameVariables, options?: ExecuteQueryOptions): QueryPromise<GetRoleByNameData, GetRoleByNameVariables>;
 export function getRoleByName(dc: DataConnect, vars: GetRoleByNameVariables, options?: ExecuteQueryOptions): QueryPromise<GetRoleByNameData, GetRoleByNameVariables>;
 
-interface SeedProjectScheduleRef {
+interface CreateProjectCareerRef {
   /* Allow users to create refs without passing in DataConnect */
-  (): MutationRef<SeedProjectScheduleData, undefined>;
+  (vars: CreateProjectCareerVariables): MutationRef<CreateProjectCareerData, CreateProjectCareerVariables>;
   /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): MutationRef<SeedProjectScheduleData, undefined>;
+  (dc: DataConnect, vars: CreateProjectCareerVariables): MutationRef<CreateProjectCareerData, CreateProjectCareerVariables>;
   operationName: string;
 }
-export const seedProjectScheduleRef: SeedProjectScheduleRef;
+export const createProjectCareerRef: CreateProjectCareerRef;
 
-export function seedProjectSchedule(): MutationPromise<SeedProjectScheduleData, undefined>;
-export function seedProjectSchedule(dc: DataConnect): MutationPromise<SeedProjectScheduleData, undefined>;
-
-interface GetProjectSchedulesRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (): QueryRef<GetProjectSchedulesData, undefined>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): QueryRef<GetProjectSchedulesData, undefined>;
-  operationName: string;
-}
-export const getProjectSchedulesRef: GetProjectSchedulesRef;
-
-export function getProjectSchedules(options?: ExecuteQueryOptions): QueryPromise<GetProjectSchedulesData, undefined>;
-export function getProjectSchedules(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectSchedulesData, undefined>;
-
-interface GetProjectsRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (): QueryRef<GetProjectsData, undefined>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect): QueryRef<GetProjectsData, undefined>;
-  operationName: string;
-}
-export const getProjectsRef: GetProjectsRef;
-
-export function getProjects(options?: ExecuteQueryOptions): QueryPromise<GetProjectsData, undefined>;
-export function getProjects(dc: DataConnect, options?: ExecuteQueryOptions): QueryPromise<GetProjectsData, undefined>;
-
-interface CreateProjectScheduleRef {
-  /* Allow users to create refs without passing in DataConnect */
-  (vars: CreateProjectScheduleVariables): MutationRef<CreateProjectScheduleData, CreateProjectScheduleVariables>;
-  /* Allow users to pass in custom DataConnect instances */
-  (dc: DataConnect, vars: CreateProjectScheduleVariables): MutationRef<CreateProjectScheduleData, CreateProjectScheduleVariables>;
-  operationName: string;
-}
-export const createProjectScheduleRef: CreateProjectScheduleRef;
-
-export function createProjectSchedule(vars: CreateProjectScheduleVariables): MutationPromise<CreateProjectScheduleData, CreateProjectScheduleVariables>;
-export function createProjectSchedule(dc: DataConnect, vars: CreateProjectScheduleVariables): MutationPromise<CreateProjectScheduleData, CreateProjectScheduleVariables>;
+export function createProjectCareer(vars: CreateProjectCareerVariables): MutationPromise<CreateProjectCareerData, CreateProjectCareerVariables>;
+export function createProjectCareer(dc: DataConnect, vars: CreateProjectCareerVariables): MutationPromise<CreateProjectCareerData, CreateProjectCareerVariables>;
 
 interface SeedProjectTypeRef {
   /* Allow users to create refs without passing in DataConnect */

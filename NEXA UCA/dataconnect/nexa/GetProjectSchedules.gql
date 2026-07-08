@@ -1,0 +1,15 @@
+query GetProjectSchedules(
+    $participantId: UUID!
+) @auth(level: USER) {
+    projectSchedules(
+        where: {
+            participantId: { eq: $participantId }
+        }
+    ) {
+        id
+        dayOfWeek
+        startHour
+        endHour
+
+    }
+}
