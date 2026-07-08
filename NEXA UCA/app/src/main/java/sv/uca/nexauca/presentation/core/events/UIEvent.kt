@@ -19,6 +19,6 @@ sealed class UIEvent {
     ) : UIEvent ()
 
     data object NavigateToHome : UIEvent()
-    data object NavigateToRegister : UIEvent()
+    data object NavigateToLogin : UIEvent()
 
 }

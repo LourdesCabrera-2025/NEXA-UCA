@@ -1,0 +1,28 @@
+mutation SeedProjectSchedule @auth(level: NO_ACCESS) {
+
+    marteManana: projectSchedule_insert(
+        data: {
+            participantId: "ac2030e07fa54ced86cfcf35175f288e"
+            dayOfWeek: 2
+            startHour: "11:00"
+            endHour: "13:00"
+        }
+    )
+
+    martesTarde: projectSchedule_insert(
+            data: {
+            participantId: "ac2030e07fa54ced86cfcf35175f288e"
+            dayOfWeek: 2
+            startHour: "14:00"
+            endHour: "15:00"
+        }
+    )
+    Miercoles: projectSchedule_insert(
+        data: {
+            participantId: "ac2030e07fa54ced86cfcf35175f288e"
+            dayOfWeek: 3
+            startHour: "16:40"
+            endHour: "17:40"
+        }
+    )
+}

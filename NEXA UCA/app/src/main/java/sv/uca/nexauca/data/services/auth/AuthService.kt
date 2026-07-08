@@ -42,9 +42,6 @@ class AuthService  {
                 .await()
         }
 
-        Log.d("NEXA_DEBUG", "LOGIN MICROSOFT OK")
-        Log.d("NEXA_DEBUG", "uid = ${result.user?.uid}")
-        Log.d("NEXA_DEBUG", "email=${result.user?.email}")
 
         return result.user ?: throw Exception("No se puede obtener el usuario autenticado")
     }
@@ -57,6 +54,10 @@ class AuthService  {
 
     fun currentUser() : FirebaseUser ? {
         return  firebaseAuth.currentUser
+    }
+
+    fun logout() {
+        firebaseAuth.signOut()
     }
 
 }

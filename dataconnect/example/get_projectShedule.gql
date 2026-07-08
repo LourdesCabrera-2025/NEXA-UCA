@@ -1,0 +1,27 @@
+query GetProjectSchedules @auth(level: USER) {
+  projectSchedules {
+    id
+    dayOfWeek
+    startHour
+    endHour
+
+    participant {
+      id
+
+      student {
+        studentCode
+
+        user {
+          id
+          fullName
+          email
+        }
+      }
+
+      project {
+        id
+        name
+      }
+    }
+  }
+}

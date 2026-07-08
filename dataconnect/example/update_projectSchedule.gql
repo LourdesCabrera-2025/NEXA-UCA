@@ -1,0 +1,15 @@
+mutation UpdateProjectSchedule(
+  $id: UUID!
+  $dayOfWeek: Int!
+  $startHour: String!
+  $endHour: String!
+) @auth(level: USER) {
+  projectSchedule_update(
+    key: { id: $id }
+    data: {
+      dayOfWeek: $dayOfWeek
+      startHour: $startHour
+      endHour: $endHour
+    }
+  )
+}

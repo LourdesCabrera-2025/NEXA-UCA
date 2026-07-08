@@ -1,6 +1,6 @@
 import { AlertDialog, Button } from "@heroui/react";
 import { CheckCircleIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { Alert } from "@mui/material";
+
 
 interface GeneralAlertProps {
     isOpenAlert: boolean;
@@ -8,15 +8,16 @@ interface GeneralAlertProps {
     type: 'success' | 'error';
     title: string;
     message: string;
+    portalContainer?: HTMLElement | null;
 }
 
 
-export const GeneralAlert = ({ isOpenAlert, onClose, type, title, message }: GeneralAlertProps) => {
+export const GeneralAlert = ({ isOpenAlert, onClose, type, title, message, portalContainer }: GeneralAlertProps) => {
     const isError = type === 'error';
 
     return (
         <AlertDialog  isOpen={isOpenAlert} onOpenChange={onClose} >
-            <AlertDialog.Backdrop isDismissable={false} isKeyboardDismissDisabled={true}>
+            <AlertDialog.Backdrop isDismissable={false} isKeyboardDismissDisabled={true} UNSTABLE_portalContainer={portalContainer ?? undefined} className={"z-[2000]"}>
                 <AlertDialog.Container>
                     <AlertDialog.Dialog className="sm:max-w-[400px]">
                         <AlertDialog.Header>

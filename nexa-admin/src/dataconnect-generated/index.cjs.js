@@ -13,34 +13,6 @@ const dataConnectSettings = {
 };
 exports.dataConnectSettings = dataConnectSettings;
 
-const seedProjectTypeRef = (dc) => {
-  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
-  dcInstance._useGeneratedSdk();
-  return mutationRef(dcInstance, 'SeedProjectType');
-}
-seedProjectTypeRef.operationName = 'SeedProjectType';
-exports.seedProjectTypeRef = seedProjectTypeRef;
-
-exports.seedProjectType = function seedProjectType(dc) {
-  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
-  return executeMutation(seedProjectTypeRef(dcInstance, inputVars));
-}
-;
-
-const createProjectRef = (dcOrVars, vars) => {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
-  dcInstance._useGeneratedSdk();
-  return mutationRef(dcInstance, 'CreateProject', inputVars);
-}
-createProjectRef.operationName = 'CreateProject';
-exports.createProjectRef = createProjectRef;
-
-exports.createProject = function createProject(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
-  return executeMutation(createProjectRef(dcInstance, inputVars));
-}
-;
-
 const getDepartmentRef = (dc) => {
   const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
   dcInstance._useGeneratedSdk();
@@ -56,33 +28,47 @@ exports.getDepartment = function getDepartment(dcOrOptions, options) {
 }
 ;
 
-const getRoleByNameRef = (dcOrVars, vars) => {
+const getProjectCareersRef = (dcOrVars, vars) => {
   const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();
-  return queryRef(dcInstance, 'GetRoleByName', inputVars);
+  return queryRef(dcInstance, 'GetProjectCareers', inputVars);
 }
-getRoleByNameRef.operationName = 'GetRoleByName';
-exports.getRoleByNameRef = getRoleByNameRef;
+getProjectCareersRef.operationName = 'GetProjectCareers';
+exports.getProjectCareersRef = getProjectCareersRef;
 
-exports.getRoleByName = function getRoleByName(dcOrVars, varsOrOptions, options) {
+exports.getProjectCareers = function getProjectCareers(dcOrVars, varsOrOptions, options) {
   
   const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
-  return executeQuery(getRoleByNameRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+  return executeQuery(getProjectCareersRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
 }
 ;
 
-const getMyStudentRef = (dc) => {
-  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+const getProjectScheduleByParticipantRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
   dcInstance._useGeneratedSdk();
-  return queryRef(dcInstance, 'GetMyStudent');
+  return queryRef(dcInstance, 'GetProjectScheduleByParticipant', inputVars);
 }
-getMyStudentRef.operationName = 'GetMyStudent';
-exports.getMyStudentRef = getMyStudentRef;
+getProjectScheduleByParticipantRef.operationName = 'GetProjectScheduleByParticipant';
+exports.getProjectScheduleByParticipantRef = getProjectScheduleByParticipantRef;
 
-exports.getMyStudent = function getMyStudent(dcOrOptions, options) {
+exports.getProjectScheduleByParticipant = function getProjectScheduleByParticipant(dcOrVars, varsOrOptions, options) {
   
-  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
-  return executeQuery(getMyStudentRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(getProjectScheduleByParticipantRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const createProjectRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CreateProject', inputVars);
+}
+createProjectRef.operationName = 'CreateProject';
+exports.createProjectRef = createProjectRef;
+
+exports.createProject = function createProject(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(createProjectRef(dcInstance, inputVars));
 }
 ;
 
@@ -129,6 +115,107 @@ exports.createStudent = function createStudent(dcOrVars, vars) {
 }
 ;
 
+const getProjectTypeRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetProjectType');
+}
+getProjectTypeRef.operationName = 'GetProjectType';
+exports.getProjectTypeRef = getProjectTypeRef;
+
+exports.getProjectType = function getProjectType(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(getProjectTypeRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const getRolesRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetRoles');
+}
+getRolesRef.operationName = 'GetRoles';
+exports.getRolesRef = getRolesRef;
+
+exports.getRoles = function getRoles(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(getRolesRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const getMyStudentRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetMyStudent');
+}
+getMyStudentRef.operationName = 'GetMyStudent';
+exports.getMyStudentRef = getMyStudentRef;
+
+exports.getMyStudent = function getMyStudent(dcOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
+  return executeQuery(getMyStudentRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const seedParticipantsRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'SeedParticipants');
+}
+seedParticipantsRef.operationName = 'SeedParticipants';
+exports.seedParticipantsRef = seedParticipantsRef;
+
+exports.seedParticipants = function seedParticipants(dc) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
+  return executeMutation(seedParticipantsRef(dcInstance, inputVars));
+}
+;
+
+const createProjectCareerRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CreateProjectCareer', inputVars);
+}
+createProjectCareerRef.operationName = 'CreateProjectCareer';
+exports.createProjectCareerRef = createProjectCareerRef;
+
+exports.createProjectCareer = function createProjectCareer(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(createProjectCareerRef(dcInstance, inputVars));
+}
+;
+
+const updateProjectScheduleRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'UpdateProjectSchedule', inputVars);
+}
+updateProjectScheduleRef.operationName = 'UpdateProjectSchedule';
+exports.updateProjectScheduleRef = updateProjectScheduleRef;
+
+exports.updateProjectSchedule = function updateProjectSchedule(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(updateProjectScheduleRef(dcInstance, inputVars));
+}
+;
+
+const deleteProjectScheduleRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'DeleteProjectSchedule', inputVars);
+}
+deleteProjectScheduleRef.operationName = 'DeleteProjectSchedule';
+exports.deleteProjectScheduleRef = deleteProjectScheduleRef;
+
+exports.deleteProjectSchedule = function deleteProjectSchedule(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(deleteProjectScheduleRef(dcInstance, inputVars));
+}
+;
+
 const getCareersRef = (dc) => {
   const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
   dcInstance._useGeneratedSdk();
@@ -144,18 +231,77 @@ exports.getCareers = function getCareers(dcOrOptions, options) {
 }
 ;
 
-const getProjectTypeRef = (dc) => {
+const getParticipantsByProjectRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetParticipantsByProject', inputVars);
+}
+getParticipantsByProjectRef.operationName = 'GetParticipantsByProject';
+exports.getParticipantsByProjectRef = getParticipantsByProjectRef;
+
+exports.getParticipantsByProject = function getParticipantsByProject(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(getParticipantsByProjectRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const getProjectByIdRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetProjectById', inputVars);
+}
+getProjectByIdRef.operationName = 'GetProjectById';
+exports.getProjectByIdRef = getProjectByIdRef;
+
+exports.getProjectById = function getProjectById(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(getProjectByIdRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const getRoleByNameRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetRoleByName', inputVars);
+}
+getRoleByNameRef.operationName = 'GetRoleByName';
+exports.getRoleByNameRef = getRoleByNameRef;
+
+exports.getRoleByName = function getRoleByName(dcOrVars, varsOrOptions, options) {
+  
+  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrVars, varsOrOptions, options, true, true);
+  return executeQuery(getRoleByNameRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+}
+;
+
+const seedProjectScheduleRef = (dc) => {
   const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
   dcInstance._useGeneratedSdk();
-  return queryRef(dcInstance, 'GetProjectType');
+  return mutationRef(dcInstance, 'SeedProjectSchedule');
 }
-getProjectTypeRef.operationName = 'GetProjectType';
-exports.getProjectTypeRef = getProjectTypeRef;
+seedProjectScheduleRef.operationName = 'SeedProjectSchedule';
+exports.seedProjectScheduleRef = seedProjectScheduleRef;
 
-exports.getProjectType = function getProjectType(dcOrOptions, options) {
+exports.seedProjectSchedule = function seedProjectSchedule(dc) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
+  return executeMutation(seedProjectScheduleRef(dcInstance, inputVars));
+}
+;
+
+const getProjectSchedulesRef = (dc) => {
+  const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
+  dcInstance._useGeneratedSdk();
+  return queryRef(dcInstance, 'GetProjectSchedules');
+}
+getProjectSchedulesRef.operationName = 'GetProjectSchedules';
+exports.getProjectSchedulesRef = getProjectSchedulesRef;
+
+exports.getProjectSchedules = function getProjectSchedules(dcOrOptions, options) {
   
   const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
-  return executeQuery(getProjectTypeRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+  return executeQuery(getProjectSchedulesRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
 }
 ;
 
@@ -174,17 +320,30 @@ exports.getProjects = function getProjects(dcOrOptions, options) {
 }
 ;
 
-const getRolesRef = (dc) => {
+const createProjectScheduleRef = (dcOrVars, vars) => {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(connectorConfig, dcOrVars, vars, true);
+  dcInstance._useGeneratedSdk();
+  return mutationRef(dcInstance, 'CreateProjectSchedule', inputVars);
+}
+createProjectScheduleRef.operationName = 'CreateProjectSchedule';
+exports.createProjectScheduleRef = createProjectScheduleRef;
+
+exports.createProjectSchedule = function createProjectSchedule(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dcOrVars, vars, true);
+  return executeMutation(createProjectScheduleRef(dcInstance, inputVars));
+}
+;
+
+const seedProjectTypeRef = (dc) => {
   const { dc: dcInstance} = validateArgs(connectorConfig, dc, undefined);
   dcInstance._useGeneratedSdk();
-  return queryRef(dcInstance, 'GetRoles');
+  return mutationRef(dcInstance, 'SeedProjectType');
 }
-getRolesRef.operationName = 'GetRoles';
-exports.getRolesRef = getRolesRef;
+seedProjectTypeRef.operationName = 'SeedProjectType';
+exports.seedProjectTypeRef = seedProjectTypeRef;
 
-exports.getRoles = function getRoles(dcOrOptions, options) {
-  
-  const { dc: dcInstance, vars: inputVars, options: inputOpts } = validateArgsWithOptions(connectorConfig, dcOrOptions, options, undefined,false, false);
-  return executeQuery(getRolesRef(dcInstance, inputVars), inputOpts && inputOpts.fetchPolicy);
+exports.seedProjectType = function seedProjectType(dc) {
+  const { dc: dcInstance, vars: inputVars } = validateArgs(connectorConfig, dc, undefined);
+  return executeMutation(seedProjectTypeRef(dcInstance, inputVars));
 }
 ;
