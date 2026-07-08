@@ -1,0 +1,94 @@
+query GetHorasPorTipo($uid: String!) @auth(level: PUBLIC) {
+  participants(where: { student: { user: { id: { eq: $uid } } } }) {
+    accumulateHours
+    project {
+      projectType {
+        name
+      }
+    }
+  }
+}
+
+
+query GetActividadesUsuario($uid: String!) @auth(level: PUBLIC) {
+  activities(
+    where: {
+      attendance: { participant: { student: { user: { id: { eq: $uid } } } } }
+    }
+  ) {
+    id
+    approved
+  }
+}
+
+
+query GetAsistenciasSemana(
+  $uid: String!
+  $inicioSemana: Timestamp!
+  $finSemana: Timestamp!
+) @auth(level: PUBLIC) {
+  attendances(
+    where: {
+      participant: { student: { user: { id: { eq: $uid } } } }
+      checkIn: { ge: $inicioSemana, le: $finSemana }
+    }
+    orderBy: { checkIn: ASC }
+  ) {
+    checkIn
+    checkOut
+  }
+}
+
+
+query GetActividadReciente($uid: String!, $limite: Int!) @auth(level: PUBLIC) {
+  activities(
+    where: {
+      attendance: { participant: { student: { user: { id: { eq: $uid } } } } }
+    }
+    orderBy: { createdAt: DESC }
+    limit: $limite
+  ) {
+    id
+    title
+    approved
+    createdAt
+    attendance {
+      checkIn
+      checkOut
+      participant {
+        project {
+          name
+          projectType {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetTodasActividades($uid: String!) @auth(level: PUBLIC) {
+  activities(
+    where: {
+      attendance: { participant: { student: { user: { id: { eq: $uid } } } } }
+    }
+    orderBy: { createdAt: DESC }
+  ) {
+    id
+    title
+    approved
+    createdAt
+    attendance {
+      checkIn
+      checkOut
+      participant {
+        project {
+          name
+          projectType {
+            name
+          }
+        }
+      }
+    }
+  }
+}
