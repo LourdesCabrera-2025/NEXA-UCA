@@ -11,33 +11,111 @@ import MyLocationRoundedIcon from '@mui/icons-material/MyLocationRounded';
 import { TextField, Box } from '@mui/material';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import ModalEnrollStudent from '@/assets/components/modals/ModalEnrollmentStudent';
+
+import type { Participant } from '@/models/Participant';
+import { ProgramService } from '@/services/firebase/programService';
+import { useParams } from 'react-router-dom';
+import { ParticipantService } from '@/services/firebase/participantService';
+import type { ProjectDetail } from '@/models/ProjectDetail';
 export default function DetalleProgram() {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
+    const [program, setProgram] = React.useState<ProjectDetail | null>(null);
+    const [participant, setParticipants] = React.useState<Participant[]>([]);
 
-    const programaData = {
-        title: 'Biblioteca de Teología',
-        description: 'Catalogación y organización del fondo bibliográfico del área de teología',
-        status: 'Activo',
-        type: 'Servicio social',
-        supervisor: 'Ing. Alvaro García',
-        coordinates: '13.6719, -89.2367',
-        maxHoursPerDay: 8
+    const { id } = useParams();
+
+
+    console.log("ID recibido:", id);
+    const fetchProgram = async () => {
+        if (!id) return;
+
+        try {
+            const data = await ProgramService.getProjectById(id);
+
+            setProgram(data);
+        } catch (error) {
+            console.error("Error al obtner el programa:", error)
+        }
     }
 
-    const estudiantes = [
-        { id: '1', nombre: 'Gabriela Maldonado', cuenta: '#NXS0001', horas: 72, estado: 'En curso' as const, ultimaActividad: 'Ayer 10:30 am' },
-        { id: '2', nombre: 'María de Leon', cuenta: '#NXS0034', horas: 20, estado: 'Atrasado' as const, ultimaActividad: 'Ayer 10:30 am' },
-        { id: '3', nombre: 'José Carbajal', cuenta: '#NXS0034', horas: 40, estado: 'Atrasado' as const, ultimaActividad: 'Ayer 10:30 am' },
-        { id: '4', nombre: 'María de Leon', cuenta: '#NXS0034', horas: 20, estado: 'Atrasado' as const, ultimaActividad: 'Ayer 10:30 am' }
-    ]
+    const fetchParticipants = async () => {
+
+        if (!id) return;
+
+        try {
+            const data = await ParticipantService.getParticipantsByProject(id);
+
+            setParticipants(data);
+        } catch (error) {
+            console.error("Error al obtener los participantes", error);
+        }
+    };
+
+    const loadData = async () => {
+
+        if (!id) return;
+
+        try {
+            await Promise.all([
+                fetchProgram(),
+                fetchParticipants()
+            ]);
+        } catch (error) {
+            console.error("Error al cargar la información", error)
+        }
+    }
+
+    React.useEffect(() => {
+
+        loadData();
+
+    }, [id]);
+
+
+    if (!program) {
+        return <div>Cargando....</div>
+    }
+
+    const programaData = {
+        title: program.name,
+        description: program.description,
+        status: program.isActive ? "Activo" : "Inactivo",
+        type: program.projectType.name,
+        supervisor: program.supervisor.fullName,
+        coordinates: `${program.latitude}, ${program.longitude}`,
+        maxHoursPerDay: program.maxHoursPerDay
+    }
+
+    type EstadoParticipante = "En curso" | "Completo" | "Atrasado";
+
+    const estudiantes: {
+        id: string;
+        nombre: string;
+        cuenta: string;
+        horas: number;
+        estado: EstadoParticipante;
+        ultimaActividad: string;
+    }[] = participant.map(participant => ({
+        id: participant.id,
+        nombre: participant.student.user.fullName,
+        cuenta: participant.student.studentCode,
+        horas: participant.accumulateHours,
+        estado: participant.status as EstadoParticipante,
+        ultimaActividad: "-"
+    }));
 
     const estudianteFiltrados = estudiantes.filter(estudiante => {
         return (
-            estudiante.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            estudiante.cuenta.toLowerCase().includes(searchQuery.toLowerCase())
+            estudiante.nombre
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
+
+            estudiante.cuenta
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
         );
-    })
+    });
 
     return (
         <>
@@ -62,7 +140,7 @@ export default function DetalleProgram() {
                             <PeopleAltIcon sx={{ fontSize: 16, color: '#71717A' }} /> Participantes
                         </span>
                         <span className="text-xl font-bold text-zinc-900 mt-1">
-                            12 <span className="text-sm text-zinc-400 font-normal">/20</span>
+                            {participant.length}<span className="text-sm text-zinc-400 font-normal">/{program.maxStudents}</span>
                         </span>
                     </div>
 
@@ -71,7 +149,7 @@ export default function DetalleProgram() {
                         <span className="text-xs text-zinc-500 font-medium flex items-center gap-1.5">
                             <AccessTimeRoundedIcon sx={{ fontSize: 16, color: '#71717A' }} /> Horas requeridas
                         </span>
-                        <span className="text-xl font-bold text-zinc-900 mt-1">300h</span>
+                        <span className="text-xl font-bold text-zinc-900 mt-1">{program.totalRequiredHours}h</span>
                     </div>
 
                     {/* Vigencia */}
@@ -79,7 +157,7 @@ export default function DetalleProgram() {
                         <span className="text-xs text-zinc-500 font-medium flex items-center gap-1.5">
                             <CalendarMonthRoundedIcon sx={{ fontSize: 16, color: '#71717A' }} /> Vigencia
                         </span>
-                        <span className="text-base font-bold text-zinc-900 mt-1">Ene — Jun 2026</span>
+                        <span className="text-base font-bold text-zinc-900 mt-1">{program.startDate.toLocaleDateString()} — {program.endDate.toLocaleDateString()}</span>
                     </div>
 
                     {/* Radio GPS */}
@@ -87,7 +165,7 @@ export default function DetalleProgram() {
                         <span className="text-xs text-zinc-500 font-medium flex items-center gap-1.5">
                             <MyLocationRoundedIcon sx={{ fontSize: 16, color: '#71717A' }} /> Radio GPS
                         </span>
-                        <span className="text-xl font-bold text-zinc-900 mt-1">100m</span>
+                        <span className="text-xl font-bold text-zinc-900 mt-1">{program.allowedRadius}m</span>
                     </div>
                 </div>
                 <Box sx={{ width: '100%', maxWidth: '360px', mt: 2 }}>
@@ -131,10 +209,10 @@ export default function DetalleProgram() {
                 <ParticipantsTable estudiantes={estudianteFiltrados} />
             </section>
 
-            <ModalEnrollStudent 
-            open={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            programTitle={programaData.title}/>
+            <ModalEnrollStudent
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                programTitle={program.name} />
         </>
     )
 }

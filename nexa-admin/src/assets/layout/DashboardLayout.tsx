@@ -19,6 +19,7 @@ export default function DashboardLayout() {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const layoutRef = React.useRef<HTMLDivElement>(null);
 
     const navTabs = [
         {
@@ -247,7 +248,7 @@ export default function DashboardLayout() {
             <IdleTimeoutDialog isOpen={isExpirationModalOpen} onConfirm={() => {
                 setIsExpiredModalOpen(false);
                 navigate('/Login');
-            }}  />
+            }} portalContainer={layoutRef.current} />
         </>
     )
 }

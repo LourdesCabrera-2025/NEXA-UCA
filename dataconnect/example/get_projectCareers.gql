@@ -1,0 +1,14 @@
+query GetProjectCareers(
+  $projectId: UUID!
+) @auth(level: USER) {
+  projectCareers(
+    where: {
+      projectId: { eq: $projectId }
+    }
+  ) {
+    career {
+      id
+      name
+    }
+  }
+}

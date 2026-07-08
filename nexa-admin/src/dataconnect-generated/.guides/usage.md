@@ -14,23 +14,20 @@ If a user is not using a supported framework, they can use the generated SDK dir
 Here's an example of how to use it with the first 5 operations:
 
 ```js
-import { seedProjectType, createProject, getDepartment, getRoleByName, getMyStudent, getUserById, createUser, createStudent, getCareers, getProjectType } from '@dataconnect/generated';
+import { getDepartment, getProjectCareers, getProjectScheduleByParticipant, createProject, getUserById, createUser, createStudent, getProjectType, getRoles, getMyStudent } from '@dataconnect/generated';
 
-
-// Operation SeedProjectType: 
-const { data } = await SeedProjectType(dataConnect);
-
-// Operation CreateProject:  For variables, look at type CreateProjectVars in ../index.d.ts
-const { data } = await CreateProject(dataConnect, createProjectVars);
 
 // Operation GetDepartment: 
 const { data } = await GetDepartment(dataConnect);
 
-// Operation GetRoleByName:  For variables, look at type GetRoleByNameVars in ../index.d.ts
-const { data } = await GetRoleByName(dataConnect, getRoleByNameVars);
+// Operation GetProjectCareers:  For variables, look at type GetProjectCareersVars in ../index.d.ts
+const { data } = await GetProjectCareers(dataConnect, getProjectCareersVars);
 
-// Operation GetMyStudent: 
-const { data } = await GetMyStudent(dataConnect);
+// Operation GetProjectScheduleByParticipant:  For variables, look at type GetProjectScheduleByParticipantVars in ../index.d.ts
+const { data } = await GetProjectScheduleByParticipant(dataConnect, getProjectScheduleByParticipantVars);
+
+// Operation CreateProject:  For variables, look at type CreateProjectVars in ../index.d.ts
+const { data } = await CreateProject(dataConnect, createProjectVars);
 
 // Operation GetUserById:  For variables, look at type GetUserByIdVars in ../index.d.ts
 const { data } = await GetUserById(dataConnect, getUserByIdVars);
@@ -41,11 +38,14 @@ const { data } = await CreateUser(dataConnect, createUserVars);
 // Operation CreateStudent:  For variables, look at type CreateStudentVars in ../index.d.ts
 const { data } = await CreateStudent(dataConnect, createStudentVars);
 
-// Operation GetCareers: 
-const { data } = await GetCareers(dataConnect);
-
 // Operation GetProjectType: 
 const { data } = await GetProjectType(dataConnect);
+
+// Operation GetRoles: 
+const { data } = await GetRoles(dataConnect);
+
+// Operation GetMyStudent: 
+const { data } = await GetMyStudent(dataConnect);
 
 
 ```

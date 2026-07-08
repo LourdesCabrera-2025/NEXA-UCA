@@ -1,0 +1,12 @@
+mutation SeedParticipants @auth(level: NO_ACCESS) {
+
+    participante1: participant_insert(
+        data: {
+            projectId: "70e1d00be9c64a2196705340bca0fb41",
+            studentId: "4f44cc43fab84ff2a8e75f2c6cdda581"
+            status: "ACTIVE"
+        }
+    )
+    
+
+}

@@ -1,0 +1,15 @@
+mutation CreateProjectSchedule(
+  $participantId: UUID!
+  $dayOfWeek: Int!
+  $startHour: String!
+  $endHour: String!
+) @auth(level: USER) {
+  projectSchedule_insert(
+    data: {
+      participant: { id: $participantId }
+      dayOfWeek: $dayOfWeek
+      startHour: $startHour
+      endHour: $endHour
+    }
+  )
+}

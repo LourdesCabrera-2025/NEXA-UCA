@@ -1,0 +1,5 @@
+mutation DeleteProjectSchedule(
+  $id: UUID!
+) @auth(level: USER) {
+  projectSchedule_delete(key: { id: $id })
+}

@@ -6,15 +6,18 @@ import { AlertDialog, Button } from "@heroui/react";
 interface IdleTimeoutDialogProps {
     isOpen: boolean;
     onConfirm: () => void;
+    portalContainer?: HTMLElement | null;
 }
 
-export function IdleTimeoutDialog({ isOpen, onConfirm }: IdleTimeoutDialogProps) {
+export function IdleTimeoutDialog({ isOpen, onConfirm, portalContainer }: IdleTimeoutDialogProps) {
     return (
         <AlertDialog 
             isOpen={isOpen} 
             onOpenChange={onConfirm}
         >
-            <AlertDialog.Backdrop isDismissable={false} isKeyboardDismissDisabled={true}>
+            <AlertDialog.Backdrop isDismissable={false} isKeyboardDismissDisabled={true} UNSTABLE_portalContainer={portalContainer ?? undefined}
+            
+            >
                 <AlertDialog.Container>
                     <AlertDialog.Dialog className="sm:max-w-[400px]">
                         <AlertDialog.Header>

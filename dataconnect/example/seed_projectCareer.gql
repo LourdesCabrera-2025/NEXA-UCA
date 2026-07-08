@@ -1,0 +1,6 @@
+mutation CreateProjectCareer($projectId: UUID!, $careerId: UUID!)@auth(level: USER) {
+  projectCareer_insert(data: {
+    projectId: $projectId,
+    careerId: $careerId
+  }) 
+}
