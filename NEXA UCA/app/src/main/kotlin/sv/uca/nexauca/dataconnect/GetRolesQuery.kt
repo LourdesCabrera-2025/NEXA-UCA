@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -18,54 +17,32 @@ import kotlinx.coroutines.flow.filterNotNull as _flow_filterNotNull
 import kotlinx.coroutines.flow.map as _flow_map
 
 
-public interface GetUserByIdQuery :
+public interface GetRolesQuery :
     com.google.firebase.dataconnect.generated.GeneratedQuery<
       NexaConnector,
-      GetUserByIdQuery.Data,
-      GetUserByIdQuery.Variables
+      GetRolesQuery.Data,
+      Unit
     >
 {
-  
-    @kotlinx.serialization.Serializable
-  public data class Variables(
-  
-    val id: String
-  ) {
-    
-    
-  }
   
 
   
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val users: List<UsersItem>
-  ) {
-    
-      
-        @kotlinx.serialization.Serializable
-  public data class UsersItem(
+    val roles: List<RolesItem>,
   
-    val id: String,
-    val email: String,
-    val fullName: String,
-    val photoUrl: String?,
-    val isActive: Boolean,
-    val role: Role
   ) {
     
       
         @kotlinx.serialization.Serializable
-  public data class Role(
+  public data class RolesItem(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
   ) {
-    
-    
-  }
-      
     
     
   }
@@ -76,66 +53,45 @@ public interface GetUserByIdQuery :
   
 
   public companion object {
-    public val operationName: String = "GetUserById"
+    public val operationName: String = "GetRoles"
 
     public val dataDeserializer: kotlinx.serialization.DeserializationStrategy<Data> =
       kotlinx.serialization.serializer()
 
-    public val variablesSerializer: kotlinx.serialization.SerializationStrategy<Variables> =
+    public val variablesSerializer: kotlinx.serialization.SerializationStrategy<Unit> =
       kotlinx.serialization.serializer()
   }
 }
 
-public fun GetUserByIdQuery.ref(
-  
-    id: String,
-
-  
+public fun GetRolesQuery.ref(
   
 ): com.google.firebase.dataconnect.QueryRef<
-    GetUserByIdQuery.Data,
-    GetUserByIdQuery.Variables
+    GetRolesQuery.Data,
+    Unit
   > =
   ref(
     
-      GetUserByIdQuery.Variables(
-        id=id,
-  
-      )
+      Unit
     
   )
 
-public suspend fun GetUserByIdQuery.execute(
-
-  
-    
-      id: String,
+public suspend fun GetRolesQuery.execute(
 
   
 
   ): com.google.firebase.dataconnect.QueryResult<
-    GetUserByIdQuery.Data,
-    GetUserByIdQuery.Variables
+    GetRolesQuery.Data,
+    Unit
   > =
   ref(
-    
-      id=id,
-  
     
   ).execute()
 
 
-  public fun GetUserByIdQuery.flow(
+  public fun GetRolesQuery.flow(
     
-      id: String,
-
-  
-    
-    ): kotlinx.coroutines.flow.Flow<GetUserByIdQuery.Data> =
+    ): kotlinx.coroutines.flow.Flow<GetRolesQuery.Data> =
     ref(
-        
-          id=id,
-  
         
       ).subscribe()
       .flow

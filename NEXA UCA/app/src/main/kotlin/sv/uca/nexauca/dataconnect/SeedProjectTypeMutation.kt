@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -29,7 +28,9 @@ public interface SeedProjectTypeMutation :
   public data class Data(
   
     val servicio_interno: ProjectTypeKey,
-    val servicio_externo: ProjectTypeKey
+  
+    val servicio_externo: ProjectTypeKey,
+  
   ) {
     
     

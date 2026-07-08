@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -18,10 +17,10 @@ import kotlinx.coroutines.flow.filterNotNull as _flow_filterNotNull
 import kotlinx.coroutines.flow.map as _flow_map
 
 
-public interface GetDepartmentQuery :
+public interface GetCareersQuery :
     com.google.firebase.dataconnect.generated.GeneratedQuery<
       NexaConnector,
-      GetDepartmentQuery.Data,
+      GetCareersQuery.Data,
       Unit
     >
 {
@@ -31,16 +30,33 @@ public interface GetDepartmentQuery :
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val departments: List<DepartmentsItem>
+    val careers: List<CareersItem>,
+  
   ) {
     
       
         @kotlinx.serialization.Serializable
-  public data class DepartmentsItem(
+  public data class CareersItem(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
+    val department: Department,
+  
   ) {
+    
+      
+        @kotlinx.serialization.Serializable
+  public data class Department(
+  
+    val name: String,
+  
+  ) {
+    
+    
+  }
+      
     
     
   }
@@ -51,7 +67,7 @@ public interface GetDepartmentQuery :
   
 
   public companion object {
-    public val operationName: String = "GetDepartment"
+    public val operationName: String = "GetCareers"
 
     public val dataDeserializer: kotlinx.serialization.DeserializationStrategy<Data> =
       kotlinx.serialization.serializer()
@@ -61,10 +77,10 @@ public interface GetDepartmentQuery :
   }
 }
 
-public fun GetDepartmentQuery.ref(
+public fun GetCareersQuery.ref(
   
 ): com.google.firebase.dataconnect.QueryRef<
-    GetDepartmentQuery.Data,
+    GetCareersQuery.Data,
     Unit
   > =
   ref(
@@ -73,12 +89,12 @@ public fun GetDepartmentQuery.ref(
     
   )
 
-public suspend fun GetDepartmentQuery.execute(
+public suspend fun GetCareersQuery.execute(
 
   
 
   ): com.google.firebase.dataconnect.QueryResult<
-    GetDepartmentQuery.Data,
+    GetCareersQuery.Data,
     Unit
   > =
   ref(
@@ -86,9 +102,9 @@ public suspend fun GetDepartmentQuery.execute(
   ).execute()
 
 
-  public fun GetDepartmentQuery.flow(
+  public fun GetCareersQuery.flow(
     
-    ): kotlinx.coroutines.flow.Flow<GetDepartmentQuery.Data> =
+    ): kotlinx.coroutines.flow.Flow<GetCareersQuery.Data> =
     ref(
         
       ).subscribe()

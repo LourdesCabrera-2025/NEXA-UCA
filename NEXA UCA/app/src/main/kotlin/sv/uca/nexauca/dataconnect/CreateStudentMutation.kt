@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -27,10 +26,15 @@ public interface CreateStudentMutation :
   public data class Variables(
   
     val studentCode: String,
+  
     val phoneNumber: String,
+  
     val birthDate: com.google.firebase.dataconnect.OptionalVariable<com.google.firebase.dataconnect.LocalDate?>,
+  
     val userId: String,
-    val careerId: com.google.firebase.dataconnect.OptionalVariable<@kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID?>
+  
+    val careerId: com.google.firebase.dataconnect.OptionalVariable<@kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID?>,
+  
   ) {
     
     
@@ -100,7 +104,8 @@ public interface CreateStudentMutation :
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val student_insert: StudentKey
+    val student_insert: StudentKey,
+  
   ) {
     
     

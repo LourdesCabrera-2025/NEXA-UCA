@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -31,7 +30,8 @@ public interface GetMyStudentQuery :
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val students: List<StudentsItem>
+    val students: List<StudentsItem>,
+  
   ) {
     
       
@@ -39,10 +39,15 @@ public interface GetMyStudentQuery :
   public data class StudentsItem(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
+  
     val studentCode: String,
+  
     val phoneNumber: String?,
+  
     val user: User,
-    val career: Career?
+  
+    val career: Career?,
+  
   ) {
     
       
@@ -50,11 +55,17 @@ public interface GetMyStudentQuery :
   public data class User(
   
     val id: String,
+  
     val email: String,
+  
     val fullName: String,
+  
     val photoUrl: String?,
+  
     val isActive: Boolean,
-    val role: Role
+  
+    val role: Role,
+  
   ) {
     
       
@@ -62,7 +73,9 @@ public interface GetMyStudentQuery :
   public data class Role(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
   ) {
     
     
@@ -76,8 +89,11 @@ public interface GetMyStudentQuery :
   public data class Career(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
+  
     val name: String,
-    val department: Department
+  
+    val department: Department,
+  
   ) {
     
       
@@ -85,7 +101,9 @@ public interface GetMyStudentQuery :
   public data class Department(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
   ) {
     
     

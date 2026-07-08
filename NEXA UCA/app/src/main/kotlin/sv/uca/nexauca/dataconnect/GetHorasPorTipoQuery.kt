@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -18,18 +17,19 @@ import kotlinx.coroutines.flow.filterNotNull as _flow_filterNotNull
 import kotlinx.coroutines.flow.map as _flow_map
 
 
-public interface GetRoleByNameQuery :
+public interface GetHorasPorTipoQuery :
     com.google.firebase.dataconnect.generated.GeneratedQuery<
       NexaConnector,
-      GetRoleByNameQuery.Data,
-      GetRoleByNameQuery.Variables
+      GetHorasPorTipoQuery.Data,
+      GetHorasPorTipoQuery.Variables
     >
 {
   
     @kotlinx.serialization.Serializable
   public data class Variables(
   
-    val name: String
+    val uid: String,
+  
   ) {
     
     
@@ -40,16 +40,43 @@ public interface GetRoleByNameQuery :
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val roles: List<RolesItem>
+    val participants: List<ParticipantsItem>,
+  
   ) {
     
       
         @kotlinx.serialization.Serializable
-  public data class RolesItem(
+  public data class ParticipantsItem(
   
-    val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+    val accumulateHours: Double,
+  
+    val project: Project,
+  
   ) {
+    
+      
+        @kotlinx.serialization.Serializable
+  public data class Project(
+  
+    val projectType: ProjectType,
+  
+  ) {
+    
+      
+        @kotlinx.serialization.Serializable
+  public data class ProjectType(
+  
+    val name: String,
+  
+  ) {
+    
+    
+  }
+      
+    
+    
+  }
+      
     
     
   }
@@ -60,7 +87,7 @@ public interface GetRoleByNameQuery :
   
 
   public companion object {
-    public val operationName: String = "GetRoleByName"
+    public val operationName: String = "GetHorasPorTipo"
 
     public val dataDeserializer: kotlinx.serialization.DeserializationStrategy<Data> =
       kotlinx.serialization.serializer()
@@ -70,55 +97,55 @@ public interface GetRoleByNameQuery :
   }
 }
 
-public fun GetRoleByNameQuery.ref(
+public fun GetHorasPorTipoQuery.ref(
   
-    name: String,
+    uid: String,
 
   
   
 ): com.google.firebase.dataconnect.QueryRef<
-    GetRoleByNameQuery.Data,
-    GetRoleByNameQuery.Variables
+    GetHorasPorTipoQuery.Data,
+    GetHorasPorTipoQuery.Variables
   > =
   ref(
     
-      GetRoleByNameQuery.Variables(
-        name=name,
+      GetHorasPorTipoQuery.Variables(
+        uid=uid,
   
       )
     
   )
 
-public suspend fun GetRoleByNameQuery.execute(
+public suspend fun GetHorasPorTipoQuery.execute(
 
   
     
-      name: String,
+      uid: String,
 
   
 
   ): com.google.firebase.dataconnect.QueryResult<
-    GetRoleByNameQuery.Data,
-    GetRoleByNameQuery.Variables
+    GetHorasPorTipoQuery.Data,
+    GetHorasPorTipoQuery.Variables
   > =
   ref(
     
-      name=name,
+      uid=uid,
   
     
   ).execute()
 
 
-  public fun GetRoleByNameQuery.flow(
+  public fun GetHorasPorTipoQuery.flow(
     
-      name: String,
+      uid: String,
 
   
     
-    ): kotlinx.coroutines.flow.Flow<GetRoleByNameQuery.Data> =
+    ): kotlinx.coroutines.flow.Flow<GetHorasPorTipoQuery.Data> =
     ref(
         
-          name=name,
+          uid=uid,
   
         
       ).subscribe()

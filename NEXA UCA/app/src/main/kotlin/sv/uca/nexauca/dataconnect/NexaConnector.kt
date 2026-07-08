@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -26,9 +25,17 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val createUser: CreateUserMutation
   
+    public val getActividadReciente: GetActividadRecienteQuery
+  
+    public val getActividadesUsuario: GetActividadesUsuarioQuery
+  
+    public val getAsistenciasSemana: GetAsistenciasSemanaQuery
+  
     public val getCareers: GetCareersQuery
   
     public val getDepartment: GetDepartmentQuery
+  
+    public val getHorasPorTipo: GetHorasPorTipoQuery
   
     public val getMyStudent: GetMyStudentQuery
   
@@ -97,12 +104,28 @@ private class NexaConnectorImpl(
       CreateUserMutationImpl(this)
     }
   
+    override val getActividadReciente by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetActividadRecienteQueryImpl(this)
+    }
+  
+    override val getActividadesUsuario by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetActividadesUsuarioQueryImpl(this)
+    }
+  
+    override val getAsistenciasSemana by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetAsistenciasSemanaQueryImpl(this)
+    }
+  
     override val getCareers by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetCareersQueryImpl(this)
     }
   
     override val getDepartment by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetDepartmentQueryImpl(this)
+    }
+  
+    override val getHorasPorTipo by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetHorasPorTipoQueryImpl(this)
     }
   
     override val getMyStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -147,8 +170,12 @@ private class NexaConnectorImpl(
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun queries(): List<com.google.firebase.dataconnect.generated.GeneratedQuery<NexaConnector, *, *>> =
     listOf(
-      getCareers,
+      getActividadReciente,
+        getActividadesUsuario,
+        getAsistenciasSemana,
+        getCareers,
         getDepartment,
+        getHorasPorTipo,
         getMyStudent,
         getProjectType,
         getRoleByName,
@@ -334,6 +361,51 @@ private class CreateUserMutationImpl(
   )
 
 
+private class GetActividadRecienteQueryImpl(
+  connector: NexaConnector
+):
+  GetActividadRecienteQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetActividadRecienteQuery.Data,
+      GetActividadRecienteQuery.Variables
+  >(
+    connector,
+    GetActividadRecienteQuery.Companion.operationName,
+    GetActividadRecienteQuery.Companion.dataDeserializer,
+    GetActividadRecienteQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetActividadesUsuarioQueryImpl(
+  connector: NexaConnector
+):
+  GetActividadesUsuarioQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetActividadesUsuarioQuery.Data,
+      GetActividadesUsuarioQuery.Variables
+  >(
+    connector,
+    GetActividadesUsuarioQuery.Companion.operationName,
+    GetActividadesUsuarioQuery.Companion.dataDeserializer,
+    GetActividadesUsuarioQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetAsistenciasSemanaQueryImpl(
+  connector: NexaConnector
+):
+  GetAsistenciasSemanaQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetAsistenciasSemanaQuery.Data,
+      GetAsistenciasSemanaQuery.Variables
+  >(
+    connector,
+    GetAsistenciasSemanaQuery.Companion.operationName,
+    GetAsistenciasSemanaQuery.Companion.dataDeserializer,
+    GetAsistenciasSemanaQuery.Companion.variablesSerializer,
+  )
+
+
 private class GetCareersQueryImpl(
   connector: NexaConnector
 ):
@@ -361,6 +433,21 @@ private class GetDepartmentQueryImpl(
     GetDepartmentQuery.Companion.operationName,
     GetDepartmentQuery.Companion.dataDeserializer,
     GetDepartmentQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetHorasPorTipoQueryImpl(
+  connector: NexaConnector
+):
+  GetHorasPorTipoQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetHorasPorTipoQuery.Data,
+      GetHorasPorTipoQuery.Variables
+  >(
+    connector,
+    GetHorasPorTipoQuery.Companion.operationName,
+    GetHorasPorTipoQuery.Companion.dataDeserializer,
+    GetHorasPorTipoQuery.Companion.variablesSerializer,
   )
 
 

@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -18,10 +17,10 @@ import kotlinx.coroutines.flow.filterNotNull as _flow_filterNotNull
 import kotlinx.coroutines.flow.map as _flow_map
 
 
-public interface GetRolesQuery :
+public interface GetDepartmentQuery :
     com.google.firebase.dataconnect.generated.GeneratedQuery<
       NexaConnector,
-      GetRolesQuery.Data,
+      GetDepartmentQuery.Data,
       Unit
     >
 {
@@ -31,15 +30,18 @@ public interface GetRolesQuery :
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val roles: List<RolesItem>
+    val departments: List<DepartmentsItem>,
+  
   ) {
     
       
         @kotlinx.serialization.Serializable
-  public data class RolesItem(
+  public data class DepartmentsItem(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
   ) {
     
     
@@ -51,7 +53,7 @@ public interface GetRolesQuery :
   
 
   public companion object {
-    public val operationName: String = "GetRoles"
+    public val operationName: String = "GetDepartment"
 
     public val dataDeserializer: kotlinx.serialization.DeserializationStrategy<Data> =
       kotlinx.serialization.serializer()
@@ -61,10 +63,10 @@ public interface GetRolesQuery :
   }
 }
 
-public fun GetRolesQuery.ref(
+public fun GetDepartmentQuery.ref(
   
 ): com.google.firebase.dataconnect.QueryRef<
-    GetRolesQuery.Data,
+    GetDepartmentQuery.Data,
     Unit
   > =
   ref(
@@ -73,12 +75,12 @@ public fun GetRolesQuery.ref(
     
   )
 
-public suspend fun GetRolesQuery.execute(
+public suspend fun GetDepartmentQuery.execute(
 
   
 
   ): com.google.firebase.dataconnect.QueryResult<
-    GetRolesQuery.Data,
+    GetDepartmentQuery.Data,
     Unit
   > =
   ref(
@@ -86,9 +88,9 @@ public suspend fun GetRolesQuery.execute(
   ).execute()
 
 
-  public fun GetRolesQuery.flow(
+  public fun GetDepartmentQuery.flow(
     
-    ): kotlinx.coroutines.flow.Flow<GetRolesQuery.Data> =
+    ): kotlinx.coroutines.flow.Flow<GetDepartmentQuery.Data> =
     ref(
         
       ).subscribe()

@@ -1,13 +1,12 @@
 
 @file:Suppress(
   "KotlinRedundantDiagnosticSuppress",
-  "LocalVariableName",
+  "PropertyName",
   "MayBeConstant",
   "RedundantVisibilityModifier",
   "RedundantCompanionReference",
   "RemoveEmptyClassBody",
   "SpellCheckingInspection",
-  "LocalVariableName",
   "unused",
 )
 
@@ -18,29 +17,64 @@ import kotlinx.coroutines.flow.filterNotNull as _flow_filterNotNull
 import kotlinx.coroutines.flow.map as _flow_map
 
 
-public interface GetProjectTypeQuery :
+public interface GetUserByIdQuery :
     com.google.firebase.dataconnect.generated.GeneratedQuery<
       NexaConnector,
-      GetProjectTypeQuery.Data,
-      Unit
+      GetUserByIdQuery.Data,
+      GetUserByIdQuery.Variables
     >
 {
+  
+    @kotlinx.serialization.Serializable
+  public data class Variables(
+  
+    val id: String,
+  
+  ) {
+    
+    
+  }
   
 
   
     @kotlinx.serialization.Serializable
   public data class Data(
   
-    val projectTypes: List<ProjectTypesItem>
+    val users: List<UsersItem>,
+  
   ) {
     
       
         @kotlinx.serialization.Serializable
-  public data class ProjectTypesItem(
+  public data class UsersItem(
+  
+    val id: String,
+  
+    val email: String,
+  
+    val fullName: String,
+  
+    val photoUrl: String?,
+  
+    val isActive: Boolean,
+  
+    val role: Role,
+  
+  ) {
+    
+      
+        @kotlinx.serialization.Serializable
+  public data class Role(
   
     val id: @kotlinx.serialization.Serializable(with = com.google.firebase.dataconnect.serializers.UUIDSerializer::class) java.util.UUID,
-    val name: String
+  
+    val name: String,
+  
   ) {
+    
+    
+  }
+      
     
     
   }
@@ -51,45 +85,66 @@ public interface GetProjectTypeQuery :
   
 
   public companion object {
-    public val operationName: String = "GetProjectType"
+    public val operationName: String = "GetUserById"
 
     public val dataDeserializer: kotlinx.serialization.DeserializationStrategy<Data> =
       kotlinx.serialization.serializer()
 
-    public val variablesSerializer: kotlinx.serialization.SerializationStrategy<Unit> =
+    public val variablesSerializer: kotlinx.serialization.SerializationStrategy<Variables> =
       kotlinx.serialization.serializer()
   }
 }
 
-public fun GetProjectTypeQuery.ref(
+public fun GetUserByIdQuery.ref(
+  
+    id: String,
+
+  
   
 ): com.google.firebase.dataconnect.QueryRef<
-    GetProjectTypeQuery.Data,
-    Unit
+    GetUserByIdQuery.Data,
+    GetUserByIdQuery.Variables
   > =
   ref(
     
-      Unit
+      GetUserByIdQuery.Variables(
+        id=id,
+  
+      )
     
   )
 
-public suspend fun GetProjectTypeQuery.execute(
+public suspend fun GetUserByIdQuery.execute(
+
+  
+    
+      id: String,
 
   
 
   ): com.google.firebase.dataconnect.QueryResult<
-    GetProjectTypeQuery.Data,
-    Unit
+    GetUserByIdQuery.Data,
+    GetUserByIdQuery.Variables
   > =
   ref(
+    
+      id=id,
+  
     
   ).execute()
 
 
-  public fun GetProjectTypeQuery.flow(
+  public fun GetUserByIdQuery.flow(
     
-    ): kotlinx.coroutines.flow.Flow<GetProjectTypeQuery.Data> =
+      id: String,
+
+  
+    
+    ): kotlinx.coroutines.flow.Flow<GetUserByIdQuery.Data> =
     ref(
+        
+          id=id,
+  
         
       ).subscribe()
       .flow
