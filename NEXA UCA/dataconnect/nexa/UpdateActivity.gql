@@ -1,0 +1,11 @@
+mutation UpdateActivity(
+    $id: UUID!
+    $approved: Boolean!
+) @auth(level: USER) {
+    activity_update(
+        id: $id
+        data: {
+            approved: $approved
+        }
+    )
+}

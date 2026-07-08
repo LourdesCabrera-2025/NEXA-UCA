@@ -51,7 +51,8 @@ import sv.uca.nexauca.presentation.core.utils.getInitials
 fun MenuScreen(
     viewModel: MenuViewModel = viewModel(),
     onNavigateToProductivity: () -> Unit,
-    onNavigateToSettings: () -> Unit
+    onNavigateToSettings: () -> Unit,
+    onNavigateToValidation:() -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
@@ -216,6 +217,9 @@ fun MenuScreen(
                         Spacer(modifier = Modifier.height(10.dp))
 
                         DashboardActionCard(
+                            onClick = {
+                                onNavigateToValidation()
+                            },
                             Icono = {
                                 Icon(
                                     Icons.Rounded.AvTimer,

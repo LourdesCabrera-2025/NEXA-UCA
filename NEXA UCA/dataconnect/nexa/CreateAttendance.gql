@@ -1,0 +1,17 @@
+mutation CreateAttendance(
+    $participantId: UUID!
+    $checkIn: Timestamp!
+    $latitude: Float!
+    $longitude: Float!
+    $status: String!
+) @auth(level: USER) {
+    attendance_insert(
+        data: {
+            participantId: $participantId
+            checkIn: $checkIn
+            latitude: $latitude
+            longitude: $longitude
+            status: $status
+        }
+    )
+}

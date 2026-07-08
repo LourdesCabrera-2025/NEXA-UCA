@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import sv.uca.nexauca.data.repositories.impl.UserRepositoryImpl
+import sv.uca.nexauca.data.services.auth.AuthService
 import sv.uca.nexauca.presentation.core.events.UIEvent
 import sv.uca.nexauca.presentation.core.notifier.NexaToastType
 import sv.uca.nexauca.presentation.core.notifier.ToastSonner
@@ -27,7 +28,7 @@ class SettingsViewModel: ViewModel() {
 
     val events = _events.asSharedFlow()
 
-    val authService = FirebaseAuth.getInstance()
+    val authService = AuthService();
 
     private val _uiState = MutableStateFlow(SettingsUIState())
     val uiState = _uiState.asStateFlow()
@@ -74,7 +75,7 @@ class SettingsViewModel: ViewModel() {
     fun onLogout() {
         viewModelScope.launch {
             try {
-                authService.signOut()
+                authService.logout()
 
                 _events.emit(UIEvent.NavigateToLogin)
             } catch (e: Exception) {

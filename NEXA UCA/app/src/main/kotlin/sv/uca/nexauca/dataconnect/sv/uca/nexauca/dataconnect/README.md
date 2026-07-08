@@ -80,21 +80,21 @@ val connector: NexaConnector = NexaConnector.getInstance(
 ### NexaConnector - Query and Mutation Properties
 
 The `nexa` Data Connect connector defines
-7 queries and
-4 mutations,
-a total of 11 operations.
+11 queries and
+9 mutations,
+a total of 20 operations.
 Each of these operations is exposed
 as a property of [NexaConnector].
 
 
 An example of the property for a query
-is the query named "GetCareers",
-which can be accessed via the [NexaConnector.getCareers] property.
+is the query named "GetActiveAttendance",
+which can be accessed via the [NexaConnector.getActiveAttendance] property.
 
 
 An example of the property for a mutation
-is the mutation named "CreateProject",
-which can be accessed via the [NexaConnector.createProject] property.
+is the mutation named "CreateActivity",
+which can be accessed via the [NexaConnector.createActivity] property.
 
 
 ### NexaConnector - The `dataConnect` Property
@@ -189,14 +189,14 @@ println("GetCareers query returned: ${queryResult.data}")
 If a query has _required_ variables then they must be specified as
 arguments to the `execute()` method.
 
-For example, the "GetRoleByName" query has 1 required variable ("name")
-and can be executed via the [NexaConnector.getRoleByName]
+For example, the "GetActiveAttendance" query has 1 required variable ("participantId")
+and can be executed via the [NexaConnector.getActiveAttendance]
 property as follows:
 
 ```kotlin
 val connector = NexaConnector.instance
-val queryResult = connector.getRoleByName.execute(name="waldo")
-println("GetRoleByName query returned: ${queryResult.data}")
+val queryResult = connector.getActiveAttendance.execute(participantId=java.util.UUID.randomUUID())
+println("GetActiveAttendance query returned: ${queryResult.data}")
 ```
 
 

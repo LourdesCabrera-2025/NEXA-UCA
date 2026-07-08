@@ -11,10 +11,14 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.google.firebase.auth.FirebaseAuth
 import sv.uca.nexauca.presentation.core.navigation.AppLoginRoute
+import sv.uca.nexauca.presentation.core.navigation.AttendanceRoute
 import sv.uca.nexauca.presentation.core.navigation.MainDashboardRoute
 import sv.uca.nexauca.presentation.core.navigation.SettingsAccount
 import sv.uca.nexauca.presentation.core.navigation.SplashRoute
 import sv.uca.nexauca.presentation.core.navigation.StudentProductivity
+import sv.uca.nexauca.presentation.core.navigation.WaitValidationRoute
+import sv.uca.nexauca.presentation.screens.attendance.AttendanceScreen
+import sv.uca.nexauca.presentation.screens.attendance.WaitValidationScreen
 import sv.uca.nexauca.presentation.screens.login.LoginScreen
 import sv.uca.nexauca.presentation.screens.menu.MenuScreen
 import sv.uca.nexauca.presentation.screens.productivity.Productivity
@@ -78,6 +82,9 @@ class MainActivity : ComponentActivity() {
 
                                 onNavigateToSettings = {
                                     backStack.add(SettingsAccount)
+                                },
+                                onNavigateToValidation = {
+                                    backStack.add(WaitValidationRoute)
                                 }
                             )
                         }
@@ -96,6 +103,24 @@ class MainActivity : ComponentActivity() {
                                     backStack.add(AppLoginRoute)
                                 }
                             );
+                        }
+
+                        WaitValidationRoute -> NavEntry(key) {
+                            WaitValidationScreen(
+                                onValidationSuccess = {
+                                    backStack.removeLastOrNull()
+                                    backStack.add(AttendanceRoute)
+                                }
+                            )
+                        }
+
+                        AttendanceRoute -> NavEntry(key) {
+                            AttendanceScreen(
+                                onFinish = {
+                                    backStack.clear()
+                                    backStack.add(MainDashboardRoute)
+                                }
+                            )
                         }
                         else -> error("Ruta desconocida: $key")
                     }

@@ -1,0 +1,17 @@
+query GetActivityByAttendance(
+    $attendanceId: UUID!
+) @auth(level: USER) {
+    activities(
+        where: {
+            attendanceId: { eq: $attendanceId }
+        }
+        limit: 1
+    ) {
+        id
+        attendanceId
+        title
+        description
+        approved
+        createdAt
+    }
+}

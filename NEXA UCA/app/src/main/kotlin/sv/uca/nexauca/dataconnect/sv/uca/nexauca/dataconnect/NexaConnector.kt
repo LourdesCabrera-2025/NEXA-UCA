@@ -20,17 +20,29 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 
   
+    public val createActivity: CreateActivityMutation
+  
+    public val createAttendance: CreateAttendanceMutation
+  
     public val createProject: CreateProjectMutation
   
     public val createStudent: CreateStudentMutation
   
     public val createUser: CreateUserMutation
   
+    public val getActiveAttendance: GetActiveAttendanceQuery
+  
+    public val getActivityByAttendance: GetActivityByAttendanceQuery
+  
     public val getCareers: GetCareersQuery
   
     public val getDepartment: GetDepartmentQuery
   
     public val getMyStudent: GetMyStudentQuery
+  
+    public val getParticipantValidation: GetParticipantValidationQuery
+  
+    public val getProjectSchedules: GetProjectSchedulesQuery
   
     public val getProjectType: GetProjectTypeQuery
   
@@ -41,6 +53,12 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
     public val getUserById: GetUserByIdQuery
   
     public val seedProjectType: SeedProjectTypeMutation
+  
+    public val updateActivity: UpdateActivityMutation
+  
+    public val updateAttendanceCheckOut: UpdateAttendanceCheckOutMutation
+  
+    public val updateAttendanceStatus: UpdateAttendanceStatusMutation
   
 
   public companion object {
@@ -85,6 +103,14 @@ private class NexaConnectorImpl(
   override val dataConnect: com.google.firebase.dataconnect.FirebaseDataConnect
 ) : NexaConnector {
   
+    override val createActivity by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateActivityMutationImpl(this)
+    }
+  
+    override val createAttendance by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateAttendanceMutationImpl(this)
+    }
+  
     override val createProject by lazy(LazyThreadSafetyMode.PUBLICATION) {
       CreateProjectMutationImpl(this)
     }
@@ -97,6 +123,14 @@ private class NexaConnectorImpl(
       CreateUserMutationImpl(this)
     }
   
+    override val getActiveAttendance by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetActiveAttendanceQueryImpl(this)
+    }
+  
+    override val getActivityByAttendance by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetActivityByAttendanceQueryImpl(this)
+    }
+  
     override val getCareers by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetCareersQueryImpl(this)
     }
@@ -107,6 +141,14 @@ private class NexaConnectorImpl(
   
     override val getMyStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetMyStudentQueryImpl(this)
+    }
+  
+    override val getParticipantValidation by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetParticipantValidationQueryImpl(this)
+    }
+  
+    override val getProjectSchedules by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectSchedulesQueryImpl(this)
     }
   
     override val getProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -129,6 +171,18 @@ private class NexaConnectorImpl(
       SeedProjectTypeMutationImpl(this)
     }
   
+    override val updateActivity by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      UpdateActivityMutationImpl(this)
+    }
+  
+    override val updateAttendanceCheckOut by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      UpdateAttendanceCheckOutMutationImpl(this)
+    }
+  
+    override val updateAttendanceStatus by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      UpdateAttendanceStatusMutationImpl(this)
+    }
+  
 
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun operations(): List<com.google.firebase.dataconnect.generated.GeneratedOperation<NexaConnector, *, *>> =
@@ -137,19 +191,28 @@ private class NexaConnectorImpl(
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun mutations(): List<com.google.firebase.dataconnect.generated.GeneratedMutation<NexaConnector, *, *>> =
     listOf(
-      createProject,
+      createActivity,
+        createAttendance,
+        createProject,
         createStudent,
         createUser,
         seedProjectType,
+        updateActivity,
+        updateAttendanceCheckOut,
+        updateAttendanceStatus,
         
     )
 
   @com.google.firebase.dataconnect.ExperimentalFirebaseDataConnect
   override fun queries(): List<com.google.firebase.dataconnect.generated.GeneratedQuery<NexaConnector, *, *>> =
     listOf(
-      getCareers,
+      getActiveAttendance,
+        getActivityByAttendance,
+        getCareers,
         getDepartment,
         getMyStudent,
+        getParticipantValidation,
+        getProjectSchedules,
         getProjectType,
         getRoleByName,
         getRoles,
@@ -289,6 +352,36 @@ private open class NexaConnectorGeneratedMutationImpl<Data, Variables>(
 
 
 
+private class CreateActivityMutationImpl(
+  connector: NexaConnector
+):
+  CreateActivityMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateActivityMutation.Data,
+      CreateActivityMutation.Variables
+  >(
+    connector,
+    CreateActivityMutation.Companion.operationName,
+    CreateActivityMutation.Companion.dataDeserializer,
+    CreateActivityMutation.Companion.variablesSerializer,
+  )
+
+
+private class CreateAttendanceMutationImpl(
+  connector: NexaConnector
+):
+  CreateAttendanceMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateAttendanceMutation.Data,
+      CreateAttendanceMutation.Variables
+  >(
+    connector,
+    CreateAttendanceMutation.Companion.operationName,
+    CreateAttendanceMutation.Companion.dataDeserializer,
+    CreateAttendanceMutation.Companion.variablesSerializer,
+  )
+
+
 private class CreateProjectMutationImpl(
   connector: NexaConnector
 ):
@@ -334,6 +427,36 @@ private class CreateUserMutationImpl(
   )
 
 
+private class GetActiveAttendanceQueryImpl(
+  connector: NexaConnector
+):
+  GetActiveAttendanceQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetActiveAttendanceQuery.Data,
+      GetActiveAttendanceQuery.Variables
+  >(
+    connector,
+    GetActiveAttendanceQuery.Companion.operationName,
+    GetActiveAttendanceQuery.Companion.dataDeserializer,
+    GetActiveAttendanceQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetActivityByAttendanceQueryImpl(
+  connector: NexaConnector
+):
+  GetActivityByAttendanceQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetActivityByAttendanceQuery.Data,
+      GetActivityByAttendanceQuery.Variables
+  >(
+    connector,
+    GetActivityByAttendanceQuery.Companion.operationName,
+    GetActivityByAttendanceQuery.Companion.dataDeserializer,
+    GetActivityByAttendanceQuery.Companion.variablesSerializer,
+  )
+
+
 private class GetCareersQueryImpl(
   connector: NexaConnector
 ):
@@ -376,6 +499,36 @@ private class GetMyStudentQueryImpl(
     GetMyStudentQuery.Companion.operationName,
     GetMyStudentQuery.Companion.dataDeserializer,
     GetMyStudentQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetParticipantValidationQueryImpl(
+  connector: NexaConnector
+):
+  GetParticipantValidationQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetParticipantValidationQuery.Data,
+      GetParticipantValidationQuery.Variables
+  >(
+    connector,
+    GetParticipantValidationQuery.Companion.operationName,
+    GetParticipantValidationQuery.Companion.dataDeserializer,
+    GetParticipantValidationQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectSchedulesQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectSchedulesQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectSchedulesQuery.Data,
+      GetProjectSchedulesQuery.Variables
+  >(
+    connector,
+    GetProjectSchedulesQuery.Companion.operationName,
+    GetProjectSchedulesQuery.Companion.dataDeserializer,
+    GetProjectSchedulesQuery.Companion.variablesSerializer,
   )
 
 
@@ -451,6 +604,51 @@ private class SeedProjectTypeMutationImpl(
     SeedProjectTypeMutation.Companion.operationName,
     SeedProjectTypeMutation.Companion.dataDeserializer,
     SeedProjectTypeMutation.Companion.variablesSerializer,
+  )
+
+
+private class UpdateActivityMutationImpl(
+  connector: NexaConnector
+):
+  UpdateActivityMutation,
+  NexaConnectorGeneratedMutationImpl<
+      UpdateActivityMutation.Data,
+      UpdateActivityMutation.Variables
+  >(
+    connector,
+    UpdateActivityMutation.Companion.operationName,
+    UpdateActivityMutation.Companion.dataDeserializer,
+    UpdateActivityMutation.Companion.variablesSerializer,
+  )
+
+
+private class UpdateAttendanceCheckOutMutationImpl(
+  connector: NexaConnector
+):
+  UpdateAttendanceCheckOutMutation,
+  NexaConnectorGeneratedMutationImpl<
+      UpdateAttendanceCheckOutMutation.Data,
+      UpdateAttendanceCheckOutMutation.Variables
+  >(
+    connector,
+    UpdateAttendanceCheckOutMutation.Companion.operationName,
+    UpdateAttendanceCheckOutMutation.Companion.dataDeserializer,
+    UpdateAttendanceCheckOutMutation.Companion.variablesSerializer,
+  )
+
+
+private class UpdateAttendanceStatusMutationImpl(
+  connector: NexaConnector
+):
+  UpdateAttendanceStatusMutation,
+  NexaConnectorGeneratedMutationImpl<
+      UpdateAttendanceStatusMutation.Data,
+      UpdateAttendanceStatusMutation.Variables
+  >(
+    connector,
+    UpdateAttendanceStatusMutation.Companion.operationName,
+    UpdateAttendanceStatusMutation.Companion.dataDeserializer,
+    UpdateAttendanceStatusMutation.Companion.variablesSerializer,
   )
 
 
