@@ -9,10 +9,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -21,12 +27,15 @@ import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCard
 import sv.uca.nexauca.presentation.core.components.cards.TarjetaEstadistica
 import sv.uca.nexauca.presentation.core.components.filters.EstadoActividad
 import sv.uca.nexauca.presentation.core.components.filters.FilterTabsRow
+import sv.uca.nexauca.presentation.core.components.filters.FiltersBottomSheet
+import sv.uca.nexauca.presentation.core.components.filters.OrdenActividad
 import sv.uca.nexauca.presentation.core.components.headers.HeaderNexa
 import sv.uca.nexauca.presentation.core.components.inputs.BuscadorFiltroBar
 import sv.uca.nexauca.presentation.core.components.tables.FilaActividad
 import sv.uca.nexauca.presentation.core.components.tables.GrupoFechaActividad
 import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistorialActividadesScreen(
     estadisticas: List<EstadisticaCard>,
@@ -35,9 +44,15 @@ fun HistorialActividadesScreen(
     onQueryChange: (String) -> Unit,
     estadoSeleccionado: EstadoActividad,
     onEstadoSelected: (EstadoActividad) -> Unit,
+    ordenSeleccionado: OrdenActividad,
+    onOrdenSelected: (OrdenActividad) -> Unit,
+    onLimpiarFiltros: () -> Unit = {},
     onBackClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {}
 ) {
+    var mostrarFiltrosSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +81,7 @@ fun HistorialActividadesScreen(
             BuscadorFiltroBar(
                 query = query,
                 onQueryChange = onQueryChange,
-                onFiltrosClick = { /* Falta implementar el comportamiento */ },
+                onFiltrosClick = { mostrarFiltrosSheet = true },
                 modifier = Modifier.padding(top = 2.dp)
             )
 
@@ -119,5 +134,19 @@ fun HistorialActividadesScreen(
 
         ModifiedWaveForm(modifier = Modifier.fillMaxWidth())
     }
-}
 
+    if (mostrarFiltrosSheet) {
+        FiltersBottomSheet(
+            sheetState = sheetState,
+            ordenSeleccionado = ordenSeleccionado,
+            onOrdenSelected = onOrdenSelected,
+            onDismiss = { mostrarFiltrosSheet = false },
+            onLimpiar = {
+                onLimpiarFiltros()
+                mostrarFiltrosSheet = false
+            },
+            onAplicar = { mostrarFiltrosSheet = false }
+        )
+
+    }
+}

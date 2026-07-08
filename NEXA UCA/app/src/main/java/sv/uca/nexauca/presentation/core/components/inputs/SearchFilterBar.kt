@@ -39,7 +39,7 @@ fun BuscadorFiltroBar(
             modifier = Modifier.weight(1f),
             placeholder = {
                 Text(
-                    "Buscar actividad o Proyecto...",
+                    "Buscar actividad o Proyecto",
                     fontSize = 14.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

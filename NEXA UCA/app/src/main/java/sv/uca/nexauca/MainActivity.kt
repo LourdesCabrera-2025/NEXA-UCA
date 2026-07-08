@@ -117,9 +117,14 @@ class MainActivity : ComponentActivity() {
                                     onQueryChange = viewModel::onQueryChange,
                                     estadoSeleccionado = uiState.estadoSeleccionado,
                                     onEstadoSelected = viewModel::onEstadoSelected,
+                                    ordenSeleccionado = uiState.ordenSeleccionado,
+                                    onOrdenSelected = viewModel::onOrdenSelected,
+                                    onLimpiarFiltros = viewModel::onLimpiarFiltros,
                                     onBackClick = { backStack.removeLastOrNull() }
                                 )
                             }
+
+
 
                             SettingsAccount -> NavEntry(key) {
                                 Settings(
