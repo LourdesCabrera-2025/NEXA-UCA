@@ -1,0 +1,36 @@
+query GetProjectById(
+  $id: UUID!
+) @auth(level: USER) {
+  project(
+    key: {
+      id: $id
+    }
+  ) {
+    id
+    name
+    description
+
+    projectType {
+      id
+      name
+    }
+
+    supervisor {
+      id
+      fullName
+      email
+      photoUrl
+    }
+
+    startDate
+    endDate
+    latitude
+    longitude
+    allowedRadius
+    maxStudents
+    maxHoursPerDay
+    totalRequiredHours
+    isActive
+    createdAt
+  }
+}

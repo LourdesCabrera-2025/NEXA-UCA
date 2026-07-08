@@ -1,0 +1,6 @@
+query GetDepartment @auth(level: USER){
+    departments {
+        id
+        name
+    }
+}

@@ -1,0 +1,30 @@
+query GetParticipantsByProject(
+  $projectId: UUID!
+) @auth(level: USER) {
+  participants(
+    where: {
+      projectId: { eq: $projectId }
+    }
+  ) {
+    id
+    status
+    accumulateHours
+
+    student {
+      studentCode
+
+      career {
+        id
+        name
+      }
+
+
+      user {
+        fullName
+        email
+        photoUrl
+      }
+    }
+  }
+
+}
