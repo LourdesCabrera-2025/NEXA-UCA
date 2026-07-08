@@ -1,4 +1,4 @@
-connectorId: nexa
+connectorId: admin
 generate:
   javascriptSdk:
     - outputDir: ../../nexa-admin/src/dataconnect-generated
