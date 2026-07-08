@@ -1,6 +1,0 @@
-query GetRoles  @auth (level: USER){
-    roles {
-        id
-        name
-    }
-}

@@ -1,6 +1,0 @@
-query GetProjectType @auth(level: USER){
-    projectTypes {
-        id
-        name
-    }
-}

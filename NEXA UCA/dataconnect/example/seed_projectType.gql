@@ -1,6 +1,0 @@
-mutation SeedProjectType @auth (level: NO_ACCESS){
-
-    servicio_interno: projectType_insert(data: {name: "Servicio Interno"})
-    servicio_externo: projectType_insert(data: {name: "Servicio Externo"})
-}
-
