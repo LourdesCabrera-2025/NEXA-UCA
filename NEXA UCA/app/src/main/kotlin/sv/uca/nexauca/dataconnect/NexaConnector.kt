@@ -21,9 +21,15 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val createProject: CreateProjectMutation
   
+    public val createProjectCareer: CreateProjectCareerMutation
+  
+    public val createProjectSchedule: CreateProjectScheduleMutation
+  
     public val createStudent: CreateStudentMutation
   
     public val createUser: CreateUserMutation
+  
+    public val deleteProjectSchedule: DeleteProjectScheduleMutation
   
     public val getActividadReciente: GetActividadRecienteQuery
   
@@ -39,15 +45,35 @@ public interface NexaConnector : com.google.firebase.dataconnect.generated.Gener
   
     public val getMyStudent: GetMyStudentQuery
   
+    public val getParticipantsByProject: GetParticipantsByProjectQuery
+  
+    public val getProjectById: GetProjectByIdQuery
+  
+    public val getProjectCareers: GetProjectCareersQuery
+  
+    public val getProjectScheduleByParticipant: GetProjectScheduleByParticipantQuery
+  
+    public val getProjectSchedules: GetProjectSchedulesQuery
+  
     public val getProjectType: GetProjectTypeQuery
+  
+    public val getProjects: GetProjectsQuery
   
     public val getRoleByName: GetRoleByNameQuery
   
     public val getRoles: GetRolesQuery
   
+    public val getTodasActividades: GetTodasActividadesQuery
+  
     public val getUserById: GetUserByIdQuery
   
+    public val seedParticipants: SeedParticipantsMutation
+  
+    public val seedProjectSchedule: SeedProjectScheduleMutation
+  
     public val seedProjectType: SeedProjectTypeMutation
+  
+    public val updateProjectSchedule: UpdateProjectScheduleMutation
   
 
   public companion object {
@@ -96,12 +122,24 @@ private class NexaConnectorImpl(
       CreateProjectMutationImpl(this)
     }
   
+    override val createProjectCareer by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateProjectCareerMutationImpl(this)
+    }
+  
+    override val createProjectSchedule by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      CreateProjectScheduleMutationImpl(this)
+    }
+  
     override val createStudent by lazy(LazyThreadSafetyMode.PUBLICATION) {
       CreateStudentMutationImpl(this)
     }
   
     override val createUser by lazy(LazyThreadSafetyMode.PUBLICATION) {
       CreateUserMutationImpl(this)
+    }
+  
+    override val deleteProjectSchedule by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      DeleteProjectScheduleMutationImpl(this)
     }
   
     override val getActividadReciente by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -132,8 +170,32 @@ private class NexaConnectorImpl(
       GetMyStudentQueryImpl(this)
     }
   
+    override val getParticipantsByProject by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetParticipantsByProjectQueryImpl(this)
+    }
+  
+    override val getProjectById by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectByIdQueryImpl(this)
+    }
+  
+    override val getProjectCareers by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectCareersQueryImpl(this)
+    }
+  
+    override val getProjectScheduleByParticipant by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectScheduleByParticipantQueryImpl(this)
+    }
+  
+    override val getProjectSchedules by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectSchedulesQueryImpl(this)
+    }
+  
     override val getProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetProjectTypeQueryImpl(this)
+    }
+  
+    override val getProjects by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetProjectsQueryImpl(this)
     }
   
     override val getRoleByName by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -144,12 +206,28 @@ private class NexaConnectorImpl(
       GetRolesQueryImpl(this)
     }
   
+    override val getTodasActividades by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      GetTodasActividadesQueryImpl(this)
+    }
+  
     override val getUserById by lazy(LazyThreadSafetyMode.PUBLICATION) {
       GetUserByIdQueryImpl(this)
     }
   
+    override val seedParticipants by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      SeedParticipantsMutationImpl(this)
+    }
+  
+    override val seedProjectSchedule by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      SeedProjectScheduleMutationImpl(this)
+    }
+  
     override val seedProjectType by lazy(LazyThreadSafetyMode.PUBLICATION) {
       SeedProjectTypeMutationImpl(this)
+    }
+  
+    override val updateProjectSchedule by lazy(LazyThreadSafetyMode.PUBLICATION) {
+      UpdateProjectScheduleMutationImpl(this)
     }
   
 
@@ -161,9 +239,15 @@ private class NexaConnectorImpl(
   override fun mutations(): List<com.google.firebase.dataconnect.generated.GeneratedMutation<NexaConnector, *, *>> =
     listOf(
       createProject,
+        createProjectCareer,
+        createProjectSchedule,
         createStudent,
         createUser,
+        deleteProjectSchedule,
+        seedParticipants,
+        seedProjectSchedule,
         seedProjectType,
+        updateProjectSchedule,
         
     )
 
@@ -177,9 +261,16 @@ private class NexaConnectorImpl(
         getDepartment,
         getHorasPorTipo,
         getMyStudent,
+        getParticipantsByProject,
+        getProjectById,
+        getProjectCareers,
+        getProjectScheduleByParticipant,
+        getProjectSchedules,
         getProjectType,
+        getProjects,
         getRoleByName,
         getRoles,
+        getTodasActividades,
         getUserById,
         
     )
@@ -331,6 +422,36 @@ private class CreateProjectMutationImpl(
   )
 
 
+private class CreateProjectCareerMutationImpl(
+  connector: NexaConnector
+):
+  CreateProjectCareerMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateProjectCareerMutation.Data,
+      CreateProjectCareerMutation.Variables
+  >(
+    connector,
+    CreateProjectCareerMutation.Companion.operationName,
+    CreateProjectCareerMutation.Companion.dataDeserializer,
+    CreateProjectCareerMutation.Companion.variablesSerializer,
+  )
+
+
+private class CreateProjectScheduleMutationImpl(
+  connector: NexaConnector
+):
+  CreateProjectScheduleMutation,
+  NexaConnectorGeneratedMutationImpl<
+      CreateProjectScheduleMutation.Data,
+      CreateProjectScheduleMutation.Variables
+  >(
+    connector,
+    CreateProjectScheduleMutation.Companion.operationName,
+    CreateProjectScheduleMutation.Companion.dataDeserializer,
+    CreateProjectScheduleMutation.Companion.variablesSerializer,
+  )
+
+
 private class CreateStudentMutationImpl(
   connector: NexaConnector
 ):
@@ -358,6 +479,21 @@ private class CreateUserMutationImpl(
     CreateUserMutation.Companion.operationName,
     CreateUserMutation.Companion.dataDeserializer,
     CreateUserMutation.Companion.variablesSerializer,
+  )
+
+
+private class DeleteProjectScheduleMutationImpl(
+  connector: NexaConnector
+):
+  DeleteProjectScheduleMutation,
+  NexaConnectorGeneratedMutationImpl<
+      DeleteProjectScheduleMutation.Data,
+      DeleteProjectScheduleMutation.Variables
+  >(
+    connector,
+    DeleteProjectScheduleMutation.Companion.operationName,
+    DeleteProjectScheduleMutation.Companion.dataDeserializer,
+    DeleteProjectScheduleMutation.Companion.variablesSerializer,
   )
 
 
@@ -466,6 +602,81 @@ private class GetMyStudentQueryImpl(
   )
 
 
+private class GetParticipantsByProjectQueryImpl(
+  connector: NexaConnector
+):
+  GetParticipantsByProjectQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetParticipantsByProjectQuery.Data,
+      GetParticipantsByProjectQuery.Variables
+  >(
+    connector,
+    GetParticipantsByProjectQuery.Companion.operationName,
+    GetParticipantsByProjectQuery.Companion.dataDeserializer,
+    GetParticipantsByProjectQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectByIdQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectByIdQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectByIdQuery.Data,
+      GetProjectByIdQuery.Variables
+  >(
+    connector,
+    GetProjectByIdQuery.Companion.operationName,
+    GetProjectByIdQuery.Companion.dataDeserializer,
+    GetProjectByIdQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectCareersQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectCareersQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectCareersQuery.Data,
+      GetProjectCareersQuery.Variables
+  >(
+    connector,
+    GetProjectCareersQuery.Companion.operationName,
+    GetProjectCareersQuery.Companion.dataDeserializer,
+    GetProjectCareersQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectScheduleByParticipantQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectScheduleByParticipantQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectScheduleByParticipantQuery.Data,
+      GetProjectScheduleByParticipantQuery.Variables
+  >(
+    connector,
+    GetProjectScheduleByParticipantQuery.Companion.operationName,
+    GetProjectScheduleByParticipantQuery.Companion.dataDeserializer,
+    GetProjectScheduleByParticipantQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectSchedulesQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectSchedulesQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectSchedulesQuery.Data,
+      Unit
+  >(
+    connector,
+    GetProjectSchedulesQuery.Companion.operationName,
+    GetProjectSchedulesQuery.Companion.dataDeserializer,
+    GetProjectSchedulesQuery.Companion.variablesSerializer,
+  )
+
+
 private class GetProjectTypeQueryImpl(
   connector: NexaConnector
 ):
@@ -478,6 +689,21 @@ private class GetProjectTypeQueryImpl(
     GetProjectTypeQuery.Companion.operationName,
     GetProjectTypeQuery.Companion.dataDeserializer,
     GetProjectTypeQuery.Companion.variablesSerializer,
+  )
+
+
+private class GetProjectsQueryImpl(
+  connector: NexaConnector
+):
+  GetProjectsQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetProjectsQuery.Data,
+      Unit
+  >(
+    connector,
+    GetProjectsQuery.Companion.operationName,
+    GetProjectsQuery.Companion.dataDeserializer,
+    GetProjectsQuery.Companion.variablesSerializer,
   )
 
 
@@ -511,6 +737,21 @@ private class GetRolesQueryImpl(
   )
 
 
+private class GetTodasActividadesQueryImpl(
+  connector: NexaConnector
+):
+  GetTodasActividadesQuery,
+  NexaConnectorGeneratedQueryImpl<
+      GetTodasActividadesQuery.Data,
+      GetTodasActividadesQuery.Variables
+  >(
+    connector,
+    GetTodasActividadesQuery.Companion.operationName,
+    GetTodasActividadesQuery.Companion.dataDeserializer,
+    GetTodasActividadesQuery.Companion.variablesSerializer,
+  )
+
+
 private class GetUserByIdQueryImpl(
   connector: NexaConnector
 ):
@@ -526,6 +767,36 @@ private class GetUserByIdQueryImpl(
   )
 
 
+private class SeedParticipantsMutationImpl(
+  connector: NexaConnector
+):
+  SeedParticipantsMutation,
+  NexaConnectorGeneratedMutationImpl<
+      SeedParticipantsMutation.Data,
+      Unit
+  >(
+    connector,
+    SeedParticipantsMutation.Companion.operationName,
+    SeedParticipantsMutation.Companion.dataDeserializer,
+    SeedParticipantsMutation.Companion.variablesSerializer,
+  )
+
+
+private class SeedProjectScheduleMutationImpl(
+  connector: NexaConnector
+):
+  SeedProjectScheduleMutation,
+  NexaConnectorGeneratedMutationImpl<
+      SeedProjectScheduleMutation.Data,
+      Unit
+  >(
+    connector,
+    SeedProjectScheduleMutation.Companion.operationName,
+    SeedProjectScheduleMutation.Companion.dataDeserializer,
+    SeedProjectScheduleMutation.Companion.variablesSerializer,
+  )
+
+
 private class SeedProjectTypeMutationImpl(
   connector: NexaConnector
 ):
@@ -538,6 +809,21 @@ private class SeedProjectTypeMutationImpl(
     SeedProjectTypeMutation.Companion.operationName,
     SeedProjectTypeMutation.Companion.dataDeserializer,
     SeedProjectTypeMutation.Companion.variablesSerializer,
+  )
+
+
+private class UpdateProjectScheduleMutationImpl(
+  connector: NexaConnector
+):
+  UpdateProjectScheduleMutation,
+  NexaConnectorGeneratedMutationImpl<
+      UpdateProjectScheduleMutation.Data,
+      UpdateProjectScheduleMutation.Variables
+  >(
+    connector,
+    UpdateProjectScheduleMutation.Companion.operationName,
+    UpdateProjectScheduleMutation.Companion.dataDeserializer,
+    UpdateProjectScheduleMutation.Companion.variablesSerializer,
   )
 
 

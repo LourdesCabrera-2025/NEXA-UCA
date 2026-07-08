@@ -9,6 +9,7 @@ import sv.uca.nexauca.dataconnect.execute
 import sv.uca.nexauca.presentation.core.state.ResultState
 import sv.uca.nexauca.data.models.ActividadRecienteItem
 
+
 class ProductividadRepositoryImpl : ProductividadApiRepository {
 
     private val connector = NexaConnector.instance
@@ -72,8 +73,29 @@ class ProductividadRepositoryImpl : ProductividadApiRepository {
             }
             ResultState.Success(items)
         } catch (e: Exception) {
-            ResultState.Error(e.message ?: "No se pudo cargar la actividad reciente")
+            ResultState.Error(e.message ?: "No se logro cargar la actividad reciente")
         }
     }
+
+
+override suspend fun getTodasActividades(uid: String): ResultState<List<ActividadRecienteItem>> {
+    return try {
+        val result = connector.getTodasActividades.execute(uid = uid)
+        val items = result.data.activities.map { a ->
+            ActividadRecienteItem(
+                id = a.id,
+                title = a.title,
+                approved = a.approved,
+                checkIn = a.attendance.checkIn,
+                checkOut = a.attendance.checkOut,
+                projectName = a.attendance.participant.project.name,
+                projectType = a.attendance.participant.project.projectType.name
+            )
+        }
+        ResultState.Success(items)
+    } catch (e: Exception) {
+        ResultState.Error(e.message ?: "No se logro cargar el historial")
+    }
+}
 }
 

@@ -80,9 +80,9 @@ val connector: NexaConnector = NexaConnector.getInstance(
 ### NexaConnector - Query and Mutation Properties
 
 The `nexa` Data Connect connector defines
-11 queries and
-4 mutations,
-a total of 15 operations.
+18 queries and
+10 mutations,
+a total of 28 operations.
 Each of these operations is exposed
 as a property of [NexaConnector].
 
@@ -220,15 +220,15 @@ last argument of the `execute()` method.
 If a mutation has no variables then it can be easily executed
 by calling the `execute()` method with no arguments.
 
-For example, the "SeedProjectType" mutation has no variables
+For example, the "SeedParticipants" mutation has no variables
 and can be executed via the
-[NexaConnector.seedProjectType]
+[NexaConnector.seedParticipants]
 property as follows:
 
 ```kotlin
 val connector = NexaConnector.instance
-val mutationResult = connector.seedProjectType.execute()
-println("SeedProjectType mutation returned: ${mutationResult.data}")
+val mutationResult = connector.seedParticipants.execute()
+println("SeedParticipants mutation returned: ${mutationResult.data}")
 ```
 
 

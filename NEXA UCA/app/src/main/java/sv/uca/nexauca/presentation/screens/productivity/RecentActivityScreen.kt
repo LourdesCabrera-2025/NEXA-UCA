@@ -13,15 +13,11 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCard
-import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCardSampleData
 import sv.uca.nexauca.presentation.core.components.cards.TarjetaEstadistica
 import sv.uca.nexauca.presentation.core.components.filters.EstadoActividad
 import sv.uca.nexauca.presentation.core.components.filters.FilterTabsRow
@@ -29,7 +25,6 @@ import sv.uca.nexauca.presentation.core.components.headers.HeaderNexa
 import sv.uca.nexauca.presentation.core.components.inputs.BuscadorFiltroBar
 import sv.uca.nexauca.presentation.core.components.tables.FilaActividad
 import sv.uca.nexauca.presentation.core.components.tables.GrupoFechaActividad
-import sv.uca.nexauca.presentation.core.components.tables.HistorialActividadSampleData
 import sv.uca.nexauca.presentation.core.components.waves.ModifiedWaveForm
 
 @Composable
@@ -126,20 +121,3 @@ fun HistorialActividadesScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HistorialActividadesScreenPreview() {
-    val queryState = remember { mutableStateOf("") }
-    val estadoSeleccionadoState = remember { mutableStateOf(EstadoActividad.APROBADAS) }
-
-    HistorialActividadesScreen(
-        estadisticas = EstadisticaCardSampleData.items,
-        grupos = HistorialActividadSampleData.grupos,
-        query = queryState.value,
-        onQueryChange = { queryState.value = it },
-        estadoSeleccionado = estadoSeleccionadoState.value,
-        onEstadoSelected = { estadoSeleccionadoState.value = it },
-        onBackClick = { /* acción de prueba */ },
-        onNotificationClick = { /* acción de prueba */ }
-    )
-}

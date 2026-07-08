@@ -10,16 +10,12 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.google.firebase.auth.FirebaseAuth
-import sv.uca.nexauca.presentation.core.components.cards.EstadisticaCardSampleData
-import sv.uca.nexauca.presentation.core.components.filters.EstadoActividad
-import sv.uca.nexauca.presentation.core.components.tables.HistorialActividadSampleData
 import sv.uca.nexauca.presentation.core.navigation.AppLoginRoute
 import sv.uca.nexauca.presentation.core.navigation.MainDashboardRoute
 import sv.uca.nexauca.presentation.core.navigation.RecentActivityRoute
@@ -32,6 +28,10 @@ import sv.uca.nexauca.presentation.screens.productivity.HistorialActividadesScre
 import sv.uca.nexauca.presentation.screens.productivity.Productivity
 import sv.uca.nexauca.presentation.screens.settings.Settings
 import sv.uca.nexauca.presentation.screens.splash.SplashScreen
+import sv.uca.nexauca.presentation.screens.productivity.HistorialActividadesViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,16 +107,16 @@ class MainActivity : ComponentActivity() {
                             }
 
                             RecentActivityRoute -> NavEntry(key) {
-                                val queryState = remember { mutableStateOf("") }
-                                val estadoSeleccionadoState = remember { mutableStateOf(EstadoActividad.APROBADAS) }
+                                val viewModel: HistorialActividadesViewModel = viewModel()
+                                val uiState by viewModel.uiState.collectAsState()
 
                                 HistorialActividadesScreen(
-                                    estadisticas = EstadisticaCardSampleData.items,
-                                    grupos = HistorialActividadSampleData.grupos,
-                                    query = queryState.value,
-                                    onQueryChange = { queryState.value = it },
-                                    estadoSeleccionado = estadoSeleccionadoState.value,
-                                    onEstadoSelected = { estadoSeleccionadoState.value = it },
+                                    estadisticas = uiState.estadisticas,
+                                    grupos = uiState.grupos,
+                                    query = uiState.query,
+                                    onQueryChange = viewModel::onQueryChange,
+                                    estadoSeleccionado = uiState.estadoSeleccionado,
+                                    onEstadoSelected = viewModel::onEstadoSelected,
                                     onBackClick = { backStack.removeLastOrNull() }
                                 )
                             }

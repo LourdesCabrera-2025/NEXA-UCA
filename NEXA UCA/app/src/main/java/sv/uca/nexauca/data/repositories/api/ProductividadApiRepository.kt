@@ -10,6 +10,8 @@ interface ProductividadApiRepository {
 
     suspend fun getActividadesUsuario(uid: String): ResultState<List<Boolean>>
 
+    suspend fun getTodasActividades(uid: String): ResultState<List<ActividadRecienteItem>>
+
     suspend fun getAsistenciasSemana(
         uid: String,
         inicioSemana: Timestamp,
